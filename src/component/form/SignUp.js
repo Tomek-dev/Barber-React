@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constans/constant';
 import { checkUsernameAvailability, signUp } from '../../util/ApiUtils';
+import { store } from 'react-notifications-component';
 
 class SignUp extends Component{
     constructor(props){
@@ -50,15 +51,33 @@ class SignUp extends Component{
         }
 
         signUp(signUpRequest).then(response =>{
-            notification.success({
-                message: 'Barber',
-                description: "Thank you! You're successfully registered. Please Login to continue!"
-            })
+            store.addNotification({
+                title: "Success",
+                message: "Thank you! You're successfully registered. Please Login to continue!",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    onScreen: true
+                }
+            });
             this.props.history.push("/login");
         }).catch(error => {
-            notification.error({
-                message: 'Barber',
-                description: error.message || 'Sorry! Something went wrong. Please try again!'
+            store.addNotification({
+                title: "Success",
+                message: error.message || 'Sorry! Something went wrong. Please try again!',
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                    duration: 5000,
+                    onScreen: true
+                }
             });
         });
     }
@@ -77,23 +96,30 @@ class SignUp extends Component{
                     <form className="signup-form" onSubmit={this.handleSubmit}>
                         <input
                         type="text" 
+                        name="username"
                         className="signup-form-element"
                         value={this.state.name.value}
+                        onBlur={this.validateUsernameAvailability}
                         onChange={(event) => this.handleChange(event, this.validateUsername)}/>
                         <input 
                         type="text"
+                        name="email"
                         className="signup-form-element"
                         value={this.state.email.value}
+                        onBlur={this.validateEmailAvailability}
                         onChange={(event) => this.handleChange(event, this.validateEmail)}/>
                         <input 
                         type="password"
+                        name="password"
                         className="signup-form-element"
                         value={this.state.password.value}
                         onChange={(event) => this.handleChange(event, this.validatePassword)}/>
                         <input 
                         type="password"
+                        name="confirm-password"
                         className="signup-form-element"
                         value={this.state.confirmPassword.value}
+                        onChange={(event) => this.handleChange(event, this.validateConfirmPassword)}
                         />
                         <button 
                         type="submit"
@@ -162,6 +188,20 @@ class SignUp extends Component{
             return{
                 validationStatus: 'error',
                 errorMsg: 'Password is not valid.'
+            }
+        }else{
+            return{
+                validationStatus: 'success',
+                errorMsg: null
+            }
+        }
+    }
+
+    validateConfirmPassword = (confirmPassword) =>{
+        if(!confirmPassword === this.state.password.value){
+            return{
+                validationStatus: 'error',
+                errorMsg: 'Passwords not equals.'
             }
         }else{
             return{

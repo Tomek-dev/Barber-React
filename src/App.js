@@ -1,26 +1,16 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from '../src/component/Header'
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 class App extends Component{
 
-  /*state =
-  {
-    data: []
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:8080/api/barber/1')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        this.setState({ data });
-    });
-  }*/
-
   render() {
     return (
-      <Header />
+      <div className="app-container">
+        <ReactNotification />
+      </div>
     );
   }
 }
