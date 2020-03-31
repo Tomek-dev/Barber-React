@@ -60,6 +60,14 @@ export function change(password){
     });
 }
 
+export function forgot(username){
+    return request({
+        url: API_BASE_URL + "/forgot",
+        method: 'POST',
+        body: JSON.stringify(username)
+    });
+}
+
 // Methods
 
 export function post(json, url){
