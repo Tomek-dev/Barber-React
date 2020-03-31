@@ -1,92 +1,141 @@
 import React, { Component } from 'react';
-import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constans/constant';
-import { checkUsernameAvailability, signUp } from '../../util/ApiUtils';
-import { store } from 'react-notifications-component';
+import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constans/Constant';
+import { checkUsernameAvailability, checkEmailAvailability, signUp } from '../../util/ApiUtils';
 
 class SignUp extends Component{
     constructor(props){
         super(props);
         this.state ={
-            username: {
-                value: ''
+            form: {
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
             },
-            email: {
-                value: ''
-            },
-            password: {
-                value: ''
-            },
-            confirmPassword: {
-                value: ''
+            error: {
+                msg: '',
+                status: ''
             }
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.validateUsernameAvailability = this.validateUsernameAvailability.bind(this);
-        this.validateEmailAvailability = this.validateEmailAvailability(this);
-        this.isFormInvalid = this.isFormInvalid.bind(this);
     }
 
-    handleChange(event, validation){
-        const target = event.target;
-        const inputName = target.name;
-        const inputValue = target.value;
-
+    handleChange = (event) => {
         this.setState({
-            [inputName]: {
-                value: inputValue,
-                ...validation(inputValue)
-            }
-        })
-    }
-
-    handleSubmit(event){
-        event.preventDefault();
-
-        const signUpRequest = {
-            username: this.state.username.value,
-            email: this.state.email.value,
-            password: this.state.password.value,
-            confirmPassword: this.state.confirmPassword.value
-        }
-
-        signUp(signUpRequest).then(response =>{
-            store.addNotification({
-                title: "Success",
-                message: "Thank you! You're successfully registered. Please Login to continue!",
-                type: "success",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    onScreen: true
-                }
-            });
-            this.props.history.push("/login");
-        }).catch(error => {
-            store.addNotification({
-                title: "Success",
-                message: error.message || 'Sorry! Something went wrong. Please try again!',
-                type: "success",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animated", "fadeIn"],
-                animationOut: ["animated", "fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    onScreen: true
-                }
-            });
+            form: {
+                ...this.state.form,
+                [event.target.name]: event.target.value
+            },
+            ...this.state.error
         });
     }
 
-    isFormInvalid(){
-        return !(this.state.username.validationStatus === 'success' &&
-            this.state.email.validationStatus === 'success' &&
-            this.state.password.validationStatus === 'success' &&
-            this.state.confirmPassword.validationStatus === 'success')
+    validate = (form) =>{
+        const EMAIL_REGEX = RegExp(EMAIL_PATTERN);
+        const PASSWORD_REGEX = RegExp(PASSWORD_PATTERN);
+        if(!form.username){
+            return 'Username may not be empty.';
+        }else if(form.username.length < USERNAME_MIN_LENGTH){
+            return 'Username is too short (Minimum ' + USERNAME_MIN_LENGTH + ' characters needed).';
+        }else if(form.username.length > USERNAME_MAX_LENGTH){
+            return 'Username is too long (Maximum ' + USERNAME_MAX_LENGTH + ' characters is allowed).';
+        }else if(!form.email){
+            return 'Email may not be empty.';
+        }else if(!EMAIL_REGEX.test(form.email)){
+            return 'Email is invalid.';
+        }else if(!form.password){
+            return 'Password may not be empty.';
+        }else if(form.password.length < PASSWORD_MIN_LENGTH){
+            return 'Password is too short (Minimum ' + PASSWORD_MIN_LENGTH + ' characters needed).';
+        }else if(form.password.length > PASSWORD_MAX_LENGTH){
+            return 'Password is too long (Maximum ' + PASSWORD_MAX_LENGTH + ' characters is allowed).';
+        }else if(!PASSWORD_REGEX.test(form.password)){
+            return 'Password is invalid.';
+        }else if(form.confirmPassword !== form.password){
+            return 'Passwords not equals.';
+        }else{
+            return null;
+        }
+    }
+
+
+    handleSubmit(event){
+        event.preventDefault();
+        const form = this.state.form;
+        const errorMsg = this.validate(form);
+        console.log(errorMsg);
+        if(errorMsg){
+            this.setState({
+                ...this.state,
+                error: {
+                    msg: errorMsg,
+                    status: 'error'
+                }
+            });
+            console.log(this.state);
+            return;
+        }
+        checkUsernameAvailability(form.username).then(response => {
+            if(!response.available){
+                this.setState({
+                    ...this.state,
+                    error: {
+                        msg: 'This username is already taken.',
+                        status: 'error'
+                    }
+                });
+                return;
+            }
+        }).catch(e => {
+            this.setState({
+               ...this.state,
+               error: {
+                   msg: 'Sorry! Something went wrong. Please try again!',
+                   status: 'error' 
+               }
+            });
+            return;
+        })
+        checkEmailAvailability(form.email).then(response => {
+            if(!response.available){
+                this.setState({
+                    ...this.state,
+                    error: {
+                        msg: 'This email is already taken.',
+                        status: 'error'
+                    }
+                });
+                return;
+            }
+        }).catch(e => {
+            this.setState({
+               ...this.state,
+               error: {
+                   msg: 'Sorry! Something went wrong. Please try again!',
+                   status: 'error' 
+                }
+            });
+            return;
+        })
+        const signUpRequest = form;
+        signUp(signUpRequest).then(response => {
+            this.setState({
+                error: {
+                    msg: 'Thank you! You\'re successfully registered. Please Login to continue!',
+                    status: 'success'
+                }
+            });
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: {
+                    msg: e.message || 'Sorry! Something went wrong. Please try again!',
+                    status: 'error'
+                }
+            });
+        });
+        console.log(signUpRequest);
     }
 
     render(){
@@ -94,223 +143,42 @@ class SignUp extends Component{
             <div className="signup-container">
                 <div className="signup-content">
                     <form className="signup-form" onSubmit={this.handleSubmit}>
+                        <div className={this.state.error.status}>
+                            {this.state.error.msg}
+                        </div>
                         <input
                         type="text" 
                         name="username"
                         className="signup-form-element"
-                        value={this.state.name.value}
-                        onBlur={this.validateUsernameAvailability}
-                        onChange={(event) => this.handleChange(event, this.validateUsername)}/>
+                        value={this.state.form.username}
+                        onChange={this.handleChange}/>
                         <input 
                         type="text"
                         name="email"
                         className="signup-form-element"
-                        value={this.state.email.value}
-                        onBlur={this.validateEmailAvailability}
-                        onChange={(event) => this.handleChange(event, this.validateEmail)}/>
+                        value={this.state.form.email}
+                        onChange={this.handleChange}/>
                         <input 
                         type="password"
                         name="password"
                         className="signup-form-element"
-                        value={this.state.password.value}
-                        onChange={(event) => this.handleChange(event, this.validatePassword)}/>
+                        value={this.state.form.password}
+                        onChange={this.handleChange}/>
                         <input 
                         type="password"
-                        name="confirm-password"
+                        name="confirmPassword"
                         className="signup-form-element"
-                        value={this.state.confirmPassword.value}
-                        onChange={(event) => this.handleChange(event, this.validateConfirmPassword)}
+                        value={this.state.form.confirmPassword}
+                        onChange={this.handleChange}
                         />
                         <button 
                         type="submit"
                         className="signup-submit"
-                        disabled={this.isFormInvalid}>Sign Up</button>
+                        >Sign Up</button>
                     </form>
                 </div>
             </div>
         );
-    }
-
-    validateUsername = (username) => {
-        if(username.length < USERNAME_MIN_LENGTH){
-            return {
-                validationStatus: 'error',
-                errorMsg: 'Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed).'
-            }
-        }
-        else if(username.length > USERNAME_MAX_LENGTH){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Username is too long (Maximum ${USERNAME_MAX_LENGTH} characters is allowed).'
-            }
-        }else{
-            return{
-                validationStatus: 'success',
-                errorMsg: null
-            }
-        }
-    }
-
-    validateEmail = (email) => {
-        const EMAIL_REGEX = RegExp(EMAIL_PATTERN);
-        if(!email){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Email may not be empty.'
-            }
-        }
-        else if(!EMAIL_REGEX.test(email)){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Email not valid.'
-            }
-        }else{
-            return{
-                validationStatus: 'success',
-                errorMsg: null
-            }
-        }
-    }
-
-    validatePassword = (password) => {
-        const PASSWORD_REGEX = RegExp(PASSWORD_PATTERN);
-        if(password.length < PASSWORD_MIN_LENGTH){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Password is too short (Minimum ${PASSWORD_MIN_LENGTH} characters needed).'
-            }
-        }else if(password.length > PASSWORD_MAX_LENGTH){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Password is too long (Maximum ${PASSWORD_MIN_LENGTH} is allowed).'
-            }
-        }else if(PASSWORD_REGEX.test(password)){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Password is not valid.'
-            }
-        }else{
-            return{
-                validationStatus: 'success',
-                errorMsg: null
-            }
-        }
-    }
-
-    validateConfirmPassword = (confirmPassword) =>{
-        if(!confirmPassword === this.state.password.value){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'Passwords not equals.'
-            }
-        }else{
-            return{
-                validationStatus: 'success',
-                errorMsg: null
-            }
-        }
-    }
-
-    validateUsernameAvailability() {
-        const username = this.state.username.value;
-        const usernameValidation = this.validateUsername(username);
-
-        if(usernameValidation.validationStatus === 'error'){
-            this.setState({
-                username: {
-                    value: username,
-                    ...usernameValidation
-                }
-            });
-            return;
-        }
-
-        this.setState({
-            username: {
-                value: username,
-                validationStatus: 'validating',
-                errorMsg: null
-            }
-        });
-
-        checkUsernameAvailability(username).then(response =>{
-            if(response.available){
-                this.setState({
-                    username: {
-                        value: username,
-                        validationStatus: 'success',
-                        errorMsg: null
-                    }
-                });
-            }else{
-                this.setState({
-                    username: {
-                        value: username,
-                        validationStatus: 'error',
-                        errorMsg: 'This username is already taken.'
-                    }
-                });
-            }
-        }).catch(error => {
-            this.setState({
-                username: {
-                    username: username,
-                    validationStatus: 'success',
-                    errorMsg: null
-                }
-            })
-        })
-    }
-
-    validateEmailAvailability(){
-        const email = this.state.email.value;
-        const emailValidation = validateEmail(email);
-
-        if(emailValidation.validationStatus === 'error'){
-            this.setState({
-                email: {
-                    value: email,
-                    ...emailValidation
-                }
-            });
-            return;
-        }
-
-        this.setState({
-            email: {
-                value: email,
-                validationStatus: 'validating',
-                errorMsg: null
-            }
-        });
-
-        checkEmailAvailability(email).then(response =>{
-            if(response.available) {
-                this.setState({
-                    email: {
-                        value: email,
-                        validationStatus: 'success',
-                        errorMsg: null
-                    }
-                });
-            }else{
-                this.setState({
-                    email: {
-                        value: email,
-                        validationStatus: 'error',
-                        errorMsg: 'This email is already taken'
-                    }
-                });
-            }
-        }).catch(error => {
-            this.setState({
-                email:{
-                    value: email,
-                    validationStatus: 'success',
-                    errorMsg: null
-                }
-            });
-        });
     }
 }
 

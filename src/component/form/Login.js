@@ -1,120 +1,109 @@
-import { Component } from "react";
+import React, { Component } from 'react';
 import { login } from "../../util/ApiUtils";
-import { ACCESS_TOKEN } from "../../constans/constant";
-import { store } from 'react-notifications-component';
+import { ACCESS_TOKEN } from "../../constans/Constant";
 
 class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-            username: {
-                value: ''
+            form: {
+                username: '',
+                password: ''
             },
-            password: {
-                value: ''
+            error: {
+                msg: '',
+                status: ''
             }
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    handleChange(event){
-        const target = event.target;
-        const inputName = target.name;
-        const inputValue = target.value;
+    handleChange = (event) => {
         this.setState({
-            [inputName]: {
-                value: inputValue,
-                ...fieldsValidation(inputValue)
-            }
+            form: {
+                ...this.state.form,
+                [event.target.name]: event.target.value
+            },
+            ...this.state.error
         });
+    }
+
+    validate = (form) => {
+        if(!form.username){
+            return 'Username may not be empty.';
+        }else if(!form.password){
+            return 'Password may not be empty.';
+        }
+        return null;
     }
 
     handleSubmit(event){
         event.preventDefault();
-        const loginRequest = {
-            username: this.state.username.value,
-            password: this.state.password.value
-        };
-                login(loginRequest).then(response => {
-                    localStorage.setItem(ACCESS_TOKEN, response.token);
-                    this.props.onLogin();
-                }).catch(error => {
-                    if(error.status === 401){
-                        store.addNotification({
-                            title: "Error",
-                            message: "Your Username or Password is incorrect. Please try again!",
-                            type: "error",
-                            insert: "top",
-                            container: "top-right",
-                            animationIn: ["animated", "fadeIn"],
-                            animationOut: ["animated", "fadeOut"],
-                            dismiss: {
-                                duration: 5000,
-                                onScreen: true
-                            }
-                        });
-                    }else{
-                        store.addNotification({
-                            title: "Error",
-                            message: error.message || 'Sorry! Something went wrong. Please try again!',
-                            type: "error",
-                            insert: "top",
-                            container: "top-right",
-                            animationIn: ["animated", "fadeIn"],
-                            animationOut: ["animated", "fadeOut"],
-                            dismiss: {
-                                duration: 5000,
-                                onScreen: true
-                            }
-                        });
+        const form = this.state.form;
+        const errorMsg = this.validate(form);
+        if(errorMsg){
+            this.setState({
+                ...this.state,
+                error: {
+                    msg: errorMsg,
+                    status: 'error'
+                }
+            });
+            return;
+        }
+        const loginRequest = form;
+        login(loginRequest).then(response => {
+            localStorage.setItem(ACCESS_TOKEN, response.token);
+        }).catch(error => {
+            if(error.status === 401){
+                this.setState({
+                    ...this.state,
+                    error: {
+                        msg: errorMsg,
+                        status: 'error'
                     }
                 });
+            }else{
+                this.setState({
+                    ...this.state,
+                    error: {
+                        msg: error.message || 'Sorry! Something went wrong. Please try again!',
+                        status: 'error'
+                    }
+                });
+            }
+        });        
     }
 
-    isFormInvalid(){
-        return !(this.state.username.validationStatus === 'success' &&
-            this.state.password.validationStatus === 'success')
-    }
 
     render(){
         return(
             <div className="login-container">
                 <div className="login-content">
                     <form className="login-form" onSubmit={this.handleSubmit}>
+                        <div className={this.state.error.status}>
+                            {this.state.error.msg}
+                        </div>
                         <input 
                         type="text"
                         name="username"
                         className="login-form-element"
-                        value={this.state.username.value}
-                        onChange={this.onChange}
+                        value={this.state.form.username}
+                        onChange={this.handleChange}
                         />
                         <input 
-                        type="passsword"
-                        name="passsword"
+                        type="password"
+                        name="password"
                         className="login-form-element"
-                        value={this.state.passsword.value}
-                        onChange={this.onChange}
+                        value={this.state.form.password}
+                        onChange={this.handleChange}
                         />
-                        <button disabled={this.isFormInvalid}></button>
+                        <button disabled={this.isFormInvalid}>Login</button>
                     </form>
                 </div>
             </div>
         );
-    }
-
-    fieldsValidation = (field) => {
-        if(!field){
-            return{
-                validationStatus: 'error',
-                errorMsg: 'This field may not be empty.'
-            }
-        }else{
-            return{
-                validationStatus: 'success',
-                errorMsg: null
-            }
-        }
     }
 }
 

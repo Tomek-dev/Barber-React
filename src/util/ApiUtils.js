@@ -1,5 +1,4 @@
-import {API_BASE_URL} from '../constans'
-import { ACCESS_TOKEN } from '../constans/constant';
+import { ACCESS_TOKEN, API_BASE_URL } from '../constans/Constant';
 
 const request = (options) =>{
     const headers = new Headers({
@@ -43,11 +42,11 @@ export function checkUsernameAvailability(username){
     return request({
         url: API_BASE_URL + "/user/available?username=" + username,
         method: 'GET'
-    })
+    });
 }
 
 export function checkEmailAvailability(email){
-    return({
+    return request({
         url: API_BASE_URL + "/user/available?email="+email,
         method: 'GET'
     });

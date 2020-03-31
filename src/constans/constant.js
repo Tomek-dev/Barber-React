@@ -6,6 +6,6 @@ export const USERNAME_MAX_LENGTH = 24;
 
 export const PASSWORD_MIN_LENGTH = 8;
 export const PASSWORD_MAX_LENGTH = 36;
-export const PASSWORD_PATTERN = '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$)';
+export const PASSWORD_PATTERN = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$)/;
 
-export const EMAIL_PATTERN = '[^@ ]+@[^@ ]+\\.[^@ ]+'; 
+export const EMAIL_PATTERN = /[^@ ]+@[^@ ]+\\.[^@ ]+/; // change
