@@ -99,7 +99,7 @@ class Login extends Component{
                         value={this.state.form.password}
                         onChange={this.handleChange}
                         />
-                        <button disabled={this.isFormInvalid}>Login</button>
+                        <button type="submit" className="login-submit">Login</button>
                     </form>
                 </div>
             </div>

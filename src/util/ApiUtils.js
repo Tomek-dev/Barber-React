@@ -51,3 +51,28 @@ export function checkEmailAvailability(email){
         method: 'GET'
     });
 }
+
+export function change(password){
+    return request({
+        url: API_BASE_URL + "/change",
+        method: 'POST',
+        body: JSON.stringify(password)
+    });
+}
+
+// Methods
+
+export function post(json, url){
+    return request({
+        url: API_BASE_URL + url,
+        method: 'POST',
+        body: JSON.stringify(json)
+    });
+}
+
+export function get(url){
+    return request({
+        url: API_BASE_URL + url,
+        method: 'GET',
+    });
+}
