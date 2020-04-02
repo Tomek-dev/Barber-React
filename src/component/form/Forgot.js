@@ -42,7 +42,7 @@ class Forgot extends Component{
                     status: 'success'
                 }
             });
-        }).catch(error => {
+        }).catch(e => {
             this.setState({
                 username: '',
                 error: {

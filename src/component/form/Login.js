@@ -55,8 +55,9 @@ class Login extends Component{
         const loginRequest = form;
         login(loginRequest).then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.token);
-        }).catch(error => {
-            if(error.status === 401){
+            this.context.history.push('/');
+        }).catch(e => {
+            if(e.status === 401){
                 this.setState({
                     ...this.state,
                     error: {
@@ -68,7 +69,7 @@ class Login extends Component{
                 this.setState({
                     ...this.state,
                     error: {
-                        msg: error.message || 'Sorry! Something went wrong. Please try again!',
+                        msg: e.message || 'Sorry! Something went wrong. Please try again!',
                         status: 'error'
                     }
                 });
