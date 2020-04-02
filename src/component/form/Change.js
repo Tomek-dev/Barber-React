@@ -46,6 +46,7 @@ class Change extends Component{
     } 
 
     handleSubmit = (event) => {
+        event.preventDefault();
         const form = this.state.form;
         const errorMsg = this.validate(form);
         if(errorMsg){
@@ -61,7 +62,10 @@ class Change extends Component{
         const changeRequest = form;
         change(changeRequest).then(response => {
             this.setState({
-                ...this.state,
+                form: {
+                    password: '',
+                    confirmPassword: ''
+                },
                 error: {
                     msg: 'Successfully changed password. Please Login to continue!',
                     status: 'success'

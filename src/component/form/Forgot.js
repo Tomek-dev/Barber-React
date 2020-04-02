@@ -23,6 +23,7 @@ class Forgot extends Component{
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
         const errorMsg = this.validate(this.state.username);
         if(!errorMsg){
             this.setState({

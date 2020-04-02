@@ -31,24 +31,43 @@ class DropDownMenu extends Component {
     }
 
     render(){
+        let items;
+        if(this.props.user.auth = 'busisness'){
+            items = [
+                <div className="drop-drop-item">
+                    <Link to="/business">Business</Link>
+                </div>,
+                <div className="drop-down-item">
+                    <Link to="/settings">Settings</Link>
+                </div>,
+                <div className="drop-down-item">
+                    <Link to="/help">Help</Link>
+                </div>,
+                <div className="drop-down-item">
+                    <Link to="logout">Logout</Link>
+                </div>
+            ]
+        }else if(this.props.user.auth = 'user'){
+            items = [
+                <div className="drop-down-item">
+                    <Link to="/profile">Profile</Link>
+                </div>,
+                <div className="drop-down-item">
+                    <Link to="/settings">Settings</Link>
+                </div>,
+                <div className="drop-down-item">
+                    <Link to="logout">Logout</Link>
+                </div>
+            ]
+        }
+
         return(
             <div className="drop-down">
                 <button onClick={this.showDropDownMenu}>Profil</button>
                 <div className="drop-down-list">
                 {this.state.displayMenu ? (
                     <div className="drop-down-menu">
-                        <div className="drop-drop-item">
-                            <Link to="/business">Business</Link>
-                        </div>
-                        <div className="drop-drop-item">
-                            <Link to="/settings">Settings</Link>
-                        </div>
-                        <div className="drop-drop-item">
-                            <Link to="/help">Help</Link>
-                        </div>
-                        <div className="drop-drop-item">
-                            <Link to="logout">Logout</Link>
-                        </div>
+                        {items}
                     </div>
                 ): null}
                 </div>

@@ -10,10 +10,10 @@ class Author extends Component{
             <div className="author">
                 <img />
                 <div className="author-props">
-                    <p>{props.review.name}</p>
+                    <p>{this.props.review.name}</p>
                     <div>
-                        
-                        <p>{props.review.date}</p>
+                        <p>{this.props.review.star}</p>
+                        <p>{this.props.review.date}</p>
                     </div>
                 </div>
             </div>
