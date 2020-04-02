@@ -38,6 +38,13 @@ export function signUp(signUpRequest){
     });
 }
 
+export function authenticatedUser(){
+    return request({
+        url: API_BASE_URL + "/user",
+        method: 'GET',
+    });
+}
+
 export function checkUsernameAvailability(username){
     return request({
         url: API_BASE_URL + "/user/available?username=" + username,

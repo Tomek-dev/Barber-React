@@ -126,6 +126,7 @@ class SignUp extends Component{
                     status: 'success'
                 }
             });
+            this.context.history.push('/login');
         }).catch(e => {
             this.setState({
                 ...this.state,

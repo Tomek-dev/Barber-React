@@ -13,7 +13,7 @@ class DropDownMenu extends Component {
 
     handleMenuClick({ key }){
         if(key === "logout"){
-            // logout
+            this.props.onLogout();
         }
     }
 

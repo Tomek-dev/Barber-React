@@ -11,7 +11,7 @@ class Header extends Component {
 
     render(){
         let menu;
-        if(false){
+        if(this.props.user){
             menu = [
                 <div className="header-login" key="login">
                     <Link to="/login">Login</Link>

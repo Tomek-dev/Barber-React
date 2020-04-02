@@ -55,7 +55,7 @@ class Login extends Component{
         const loginRequest = form;
         login(loginRequest).then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.token);
-            this.context.history.push('/');
+            this.props.onLogin();
         }).catch(e => {
             if(e.status === 401){
                 this.setState({

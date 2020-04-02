@@ -22,18 +22,17 @@ class Search extends Component{
         this.hideSearchPanel = this.hideSearchPanel.bind(this);
     }
 
-    showSearchPanel(event) {
-        event.preventDefault();
+    showSearchPanel() {
         this.setState({ 
             ...this.state, 
-            displayMenu: true
+            display: true
         });
       }
     
     hideSearchPanel() {
         this.setState({ 
             ...this.state, 
-            displayMenu: false 
+            display: false 
         });
     }
 
@@ -63,6 +62,7 @@ class Search extends Component{
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
         const form = this.state.form;
         const errorMsg = this.validate(form);
         if(errorMsg){
@@ -93,7 +93,8 @@ class Search extends Component{
     render(){
         const element = 
         <div className="search-container">
-                <div className="search-content">
+            <button onClick={this.hideSearchPanel}>Close</button>
+            <div className="search-content">
                     <form onSubmit={this.handleSubmit} className="search-form">
                         <div className="search-form-bar">
                             <input 
@@ -117,6 +118,7 @@ class Search extends Component{
             <div className="search">
                 <button onClick={this.showSearchPanel}>Search</button>
                 <ReactModal 
+                ariaHideApp={false}
                 className="search-modal"
                 overlayClassName="search-modal-overlay"
                 onRequestClose={this.hideSearchPanel}
