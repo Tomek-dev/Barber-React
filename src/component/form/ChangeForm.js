@@ -3,7 +3,7 @@ import { change } from '../../util/ApiUtils';
 import { PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN } from '../../constans/Constant';
 
 
-class Change extends Component{
+class ChangeForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -112,4 +112,4 @@ class Change extends Component{
     }
 }
 
-export default Change;
+export default ChangeForm;

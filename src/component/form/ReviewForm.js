@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { post } from '../../util/ApiUtils';
+import ReactModal from 'react-modal';
 
-class Review extends Component{
+class ReviewForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -14,10 +15,19 @@ class Review extends Component{
             error: {
                 msg: '',
                 status: ''
-            }
+            },
+            display: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.handleReviewPanel = this.handleReviewPanel.bind(this);
+    }
+
+    handleReviewPanel(){
+        this.setState({ 
+            ...this.state, 
+            display: !this.state.display
+        });
     }
 
     validate = (form) => {
@@ -75,28 +85,43 @@ class Review extends Component{
         });
     }
 
-    render(){
+    render(){  
         return(
             <div className="review-container-form">
-                <form className="review-form" onSubmit={this.onSubmit}>
-                    <div className="review-visit">
-                        <input />
+                <button onClick={this.handleReviewPanel}>
+                    Review
+                </button>
+                <ReactModal
+                ariaHideApp={false}
+                className="search-modal"
+                overlayClassName="search-modal-overlay"
+                onRequestClose={this.handleReviewPanel}
+                shouldCloseOnOverlayClick={true}
+                isOpen={this.state.display}>
+                    <div className="review-content-form">
+                        <form className="review-form" onSubmit={this.onSubmit}>
+                            <div className="review-visit">
+                                <input />
+                            </div>
+                            <div className="review-form-content">
+                                <input 
+                                type=""
+                                name="review"
+                                className="review-input"
+                                value={this.state.form.review}
+                                onChange={this.onChange}
+                                />
+                                <input 
+                    
+                                />
+                                <button type="submit">Review</button>
+                            </div>
+                        </form>
                     </div>
-                    <div className="review-form-content">
-                        <input 
-                        type=""
-                        name="review"
-                        className="review-input"
-                        value={this.state.form.review}
-                        onChange={this.onChange}
-                        />
-                        <input 
-                        
-                        />
-                        <button type="submit">Review</button>
-                    </div>
-                </form>
+                </ReactModal>
             </div>
         );
     }
 }
+
+export default ReviewForm;

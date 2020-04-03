@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ReviewForm } from '../form/ReviewForm';
 
 class Opinion extends Component{
     constructor(props){
@@ -11,6 +12,7 @@ class Opinion extends Component{
                 <div className="opinion-element">
                     <p>Opinion</p>
                     <p>...</p>
+                    <ReviewForm />
                 </div>
                 <div className="opinion-element">
                     <p><span>{this.props.opinion.stars}</span>/5</p>

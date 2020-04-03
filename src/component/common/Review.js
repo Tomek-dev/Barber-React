@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Author } from './Author'
+import { Author } from './Author';
 
 class Review extends Component{
     constructor(props){

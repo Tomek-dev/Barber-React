@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { login } from "../../util/ApiUtils";
 import { ACCESS_TOKEN } from "../../constans/Constant";
 
-class Login extends Component{
+class LoginForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -108,4 +108,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default LoginForm;

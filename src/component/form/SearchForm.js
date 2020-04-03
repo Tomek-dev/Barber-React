@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { get } from '../../util/ApiUtils';
 import ReactModal from 'react-modal';
 
-class Search extends Component{
+class SearchForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -18,23 +18,15 @@ class Search extends Component{
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.showSearchPanel = this.showSearchPanel.bind(this);
-        this.hideSearchPanel = this.hideSearchPanel.bind(this);
+        this.handleSearchPanel = this.handleSearchPanel.bind(this);
     }
 
-    showSearchPanel() {
+    handleSearchPanel() {
         this.setState({ 
             ...this.state, 
-            display: true
+            display: !this.state.display
         });
       }
-    
-    hideSearchPanel() {
-        this.setState({ 
-            ...this.state, 
-            display: false 
-        });
-    }
 
     handleChange = (event) => {
         this.setState({
@@ -76,58 +68,45 @@ class Search extends Component{
             return;
         }
         let url = this.url(form);
-        get(url).ther(response => {
-            // ??
-            this.context.history.push(url);
-        }).catch(e => {
-            this.setState({
-                ...this.state,
-                error: {
-                    msg: e.message || 'Sorry! Something went wrong. Please try again!',
-                    status: 'error'
-                }
-            });
-        });
+        this.context.history.push(url);
     }
 
     render(){
-        const element = 
-        <div className="search-container">
-            <button onClick={this.hideSearchPanel}>Close</button>
-            <div className="search-content">
-                    <form onSubmit={this.handleSubmit} className="search-form">
-                        <div className="search-form-bar">
-                            <input 
-                            type="text"
-                            name="query"
-                            className="search-form-element"
-                            value={this.state.form.query}
-                            onChange={this.handleChange}/>
-                            <input 
-                            type="text"
-                            name="city"
-                            className="search-form-element"
-                            value={this.state.form.city}
-                            onChange={this.handleChange}/>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
         return(
             <div className="search">
-                <button onClick={this.showSearchPanel}>Search</button>
+                <button onClick={this.handleSearchPanel}>Search</button>
                 <ReactModal 
                 ariaHideApp={false}
                 className="search-modal"
                 overlayClassName="search-modal-overlay"
-                onRequestClose={this.hideSearchPanel}
+                onRequestClose={this.handleSearchPanel}
+                shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
-                    {element}
+                    <div className="search-container">
+                        <button onClick={this.hideSearchPanel}>Close</button>
+                        <div className="search-content">
+                            <form onSubmit={this.handleSubmit} className="search-form">
+                                <div className="search-form-bar">
+                                    <input 
+                                    type="text"
+                                    name="query"
+                                    className="search-form-element"
+                                    value={this.state.form.query}
+                                    onChange={this.handleChange}/>
+                                    <input 
+                                    type="text"
+                                    name="city"
+                                    className="search-form-element"
+                                    value={this.state.form.city}
+                                    onChange={this.handleChange}/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </ReactModal>
             </div>
         )
     }
 }
 
-export default Search;
+export default SearchForm;

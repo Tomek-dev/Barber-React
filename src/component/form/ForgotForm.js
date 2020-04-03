@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { forgot } from '../../util/ApiUtils';
 
-class Forgot extends Component{
+class ForgotForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -78,3 +78,5 @@ class Forgot extends Component{
         )
     }
 }
+
+export default ForgotForm;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import DropDownMenu from './DropDownMenu';
-import Search from '../form/Search';
+import SearchForm from '../form/SearchForm';
 
 
 class Header extends Component {
@@ -32,7 +32,7 @@ class Header extends Component {
                     <img />
                 </div>
                 <div className="header-menu">
-                    <Search />
+                    <SearchForm />
                     {menu}
                 </div>
             </div>

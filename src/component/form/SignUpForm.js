@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constans/Constant';
 import { checkUsernameAvailability, checkEmailAvailability, signUp } from '../../util/ApiUtils';
 
-class SignUp extends Component{
+class SignUpForm extends Component{
     constructor(props){
         super(props);
         this.state ={
@@ -183,4 +183,4 @@ class SignUp extends Component{
     }
 }
 
-export default SignUp;
+export default SignUpForm;
