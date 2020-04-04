@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { post } from '../../util/ApiUtils';
 import ReactModal from 'react-modal';
+import VisitForm from './VisitForm';
 
 class ReviewForm extends Component{
     constructor(props){
@@ -32,9 +33,11 @@ class ReviewForm extends Component{
 
     validate = (form) => {
         if(!form.review){
-            return 'Review may not be empty';
+            return 'Review may not be empty.';
         }else if(!form.star){
-            return 'Specify the number of stars';
+            return 'Specify the number of stars.';
+        }else if(!form.worker || !form.service){
+            return 'Specify visit to review.'
         }
         // validate other
         return null;
@@ -44,6 +47,14 @@ class ReviewForm extends Component{
         this.setState({
             ...this.state,
             [event.target.name]: event.target.value
+        });
+    }
+
+    handleVisit = (object) => {
+        this.setState({
+            ...this.state,
+            service: object.service,
+            worker: object.worker
         });
     }
 
@@ -100,9 +111,7 @@ class ReviewForm extends Component{
                 isOpen={this.state.display}>
                     <div className="review-content-form">
                         <form className="review-form" onSubmit={this.onSubmit}>
-                            <div className="review-visit">
-                                <input />
-                            </div>
+                            <VisitForm onClick={this.handleVisit}/>
                             <div className="review-form-content">
                                 <input 
                                 type=""

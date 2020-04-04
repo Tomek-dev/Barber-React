@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { get } from '../../util/ApiUtils';
 import ReactModal from 'react-modal';
 
 class SearchForm extends Component{

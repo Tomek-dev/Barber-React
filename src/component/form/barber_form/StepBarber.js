@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+c
 
 class SetpBarber extends Component{
     constructor(props){
