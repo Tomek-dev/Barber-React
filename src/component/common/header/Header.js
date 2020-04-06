@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import './Header.css';
 import { Link } from 'react-router-dom'
 import DropDownMenu from './DropDownMenu';
-import SearchForm from '../../form/SearchForm';
-
+import SearchForm from './SearchForm';
+import { FaRegUserCircle } from 'react-icons/fa'
 
 class Header extends Component {
     constructor(props){
@@ -11,13 +12,13 @@ class Header extends Component {
 
     render(){
         let menu;
-        if(this.props.user){
+        if(true){ //this.props.user
             menu = [
                 <div className="header-login" key="login">
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" className="login-link"><FaRegUserCircle className="icon"/> Login</Link>
                 </div>,
                 <div className="header-businesses" key="for-businesses">
-                    <Link to="/businesses">FOR BUSINESSES</Link>
+                    <Link to="/businesses" className="businesses-link">Businesses</Link>
                 </div>
             ];
         }else{
@@ -29,7 +30,8 @@ class Header extends Component {
         return(
             <div className="header">
                 <div className="header-logo">
-                    <img />
+                    <Link className="logo-name" to="/">Barber</Link>
+                    <img alt="" src=""/>
                 </div>
                 <div className="header-menu">
                     <SearchForm />

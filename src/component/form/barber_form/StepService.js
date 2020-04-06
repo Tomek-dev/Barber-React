@@ -11,7 +11,7 @@ class StepService extends Component{
                 price: '',
                 time: ''
             },
-            error: ''
+            error: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -29,10 +29,10 @@ class StepService extends Component{
 
     handleDelete = (event) => {
         let array = [...this.props.service];
-        let index = array.indexOf(event.target.key);
+        let index = array.indexOf(event.target.value);
         if(index > -1){
             array.splice(index, 1);
-            this.props.onDelete(array);
+            this.props.onChange(array);
         }
     }
 
@@ -63,7 +63,8 @@ class StepService extends Component{
             return;
         }
         let array = [...this.props.service];
-        this.props.handleService(array)
+        array.push(form);
+        this.props.onChange(array)
         this.setState({
             form: {
                 name: '',
@@ -76,6 +77,9 @@ class StepService extends Component{
     }
 
     render(){
+        if(this.props.step !== 3){
+            return null;
+        }
         return(
             <div className="form-step-service">
                 <div className="service-error">
@@ -110,10 +114,12 @@ class StepService extends Component{
                 </form>
                 <div className="service-list">
                     {this.props.service.map(item, index => (
-                        <Service service={this.props.service} key={index} onDelete={this.handleDelete} />
+                        <Service service={item} key={index} onDelete={this.handleDelete} />
                     ))}
                 </div>
             </div>
         )
     }
 }
+
+export default StepService;

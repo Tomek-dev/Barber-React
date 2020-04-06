@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import './SearchForm.css';
+import { FaSearch, FaTimes } from 'react-icons/fa'
 
 class SearchForm extends Component{
     constructor(props){
@@ -73,7 +75,7 @@ class SearchForm extends Component{
     render(){
         return(
             <div className="search">
-                <button onClick={this.handleSearchPanel}>Search</button>
+                <button className="search-btn" onClick={this.handleSearchPanel}><FaSearch /></button>
                 <ReactModal 
                 ariaHideApp={false}
                 className="search-modal"
@@ -82,14 +84,19 @@ class SearchForm extends Component{
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
                     <div className="search-container">
-                        <button onClick={this.hideSearchPanel}>Close</button>
+                        <div>
+                            <button className="search-close-btn" onClick={this.hideSearchPanel}><FaTimes /></button>
+                        </div>
                         <div className="search-content">
-                            <form onSubmit={this.handleSubmit} className="search-form">
+                            <form autocomplete="off" onSubmit={this.handleSubmit} className="search-form">
                                 <div className="search-form-bar">
+                                    <p className="search-paragraph">Search</p>
                                     <input 
                                     type="text"
                                     name="query"
                                     className="search-form-element"
+                                    placeholder="
+                                    What are you looking for?"
                                     value={this.state.form.query}
                                     onChange={this.handleChange}/>
                                     <input 
@@ -99,6 +106,7 @@ class SearchForm extends Component{
                                     value={this.state.form.city}
                                     onChange={this.handleChange}/>
                                 </div>
+                                <button type="submit" className="search-btn-submit">Search</button>
                             </form>
                         </div>
                     </div>

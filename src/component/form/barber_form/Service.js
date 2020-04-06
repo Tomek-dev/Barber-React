@@ -3,12 +3,17 @@ import React, { Component } from 'react';
 class Service extends Component{
     constructor(props){
         super(props)
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete= (event) => {
+        this.props.onDelete(event);
     }
 
     render(){
         const serviceProps = this.props.service;
         return(
-            <div className="service" key={this.props.key}>
+            <div className="service">
                 <div className="service-props">
                     <div className="service-element">
                        <p>{serviceProps.name}</p>
@@ -19,8 +24,8 @@ class Service extends Component{
                         <p>{serviceProps.time}</p>
                     </div>
                 </div>
-                <button onClick={this.props.onDelete}>
-                    
+                <button value={serviceProps} onClick={this.handleDelete}>
+                    Delete
                 </button>
             </div>
         )

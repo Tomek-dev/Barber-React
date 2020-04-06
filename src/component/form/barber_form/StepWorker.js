@@ -22,10 +22,10 @@ class StepWorker extends Component{
 
     handleDelete = (event) => {
         let array = [...this.props.worker];
-        let index = array.indexOf(event.target.key);
+        let index = array.indexOf(event.target.value);
         if(index > -1){
             array.splice(index, 1);
-            this.props.onDelete(array);
+            this.props.onChange(array);
         }
     }
 
@@ -50,7 +50,8 @@ class StepWorker extends Component{
             return;
         }
         let array = [...this.props.worker];
-        this.props.handleWorker(array)
+        array.push(form);
+        this.props.onChange(array)
         this.setState({
             form: {
                 name: '',
@@ -60,6 +61,9 @@ class StepWorker extends Component{
     }
 
     render(){
+        if(this.props.step !== 4){
+            return null;
+        }
         return(
             <div className="form-step-worker">
                 <div className="worker-error">
@@ -76,7 +80,7 @@ class StepWorker extends Component{
                 </form>
                 <div className="worker-list">
                     {this.props.worker.map(item, index => (
-                        <Worker worker={this.props.worker} key={index} onDelete={this.handleDelete} />
+                        <Worker worker={item} key={index} onDelete={this.handleDelete} />
                     ))}
                 </div>
             </div>

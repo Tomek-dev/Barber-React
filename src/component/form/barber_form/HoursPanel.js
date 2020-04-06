@@ -22,20 +22,24 @@ class HoursPanel extends Component{
         });
     }
 
-    handleChange = (key, name) => {
+    handleChange = (event) => {
         this.setState({
             ...this.state,
             form: {
                 ...this.state.form,
-                [name]: key
+                [event.target.name]: event.target.value
             }
         })
+    }
+
+    handleSubmit = (event) => {
+        this.props.onChange(event);
     }
 
     render(){
         const data = this.state.form;
         return(
-            <div className="hours-panel" key={this.props.day}>
+            <div className="hours-panel">
                 <button onClick={this.handleHoursPanel}></button>
                 <ReactModal 
                 ariaHideApp={false}
@@ -46,7 +50,9 @@ class HoursPanel extends Component{
                 isOpen={this.state.display}>
                     <Hours name="open" onSelect={this.handleChange}/>
                     <Hours name="close" onSelect={this.handleChange}/>
-                <button onClick={this.props.onChange(key, data)}></button>
+                <button name={this.props.day} 
+                value={this.state.form}
+                onClick={this.handleSubmit}>Set</button>
                 </ReactModal>
             </div>
         )

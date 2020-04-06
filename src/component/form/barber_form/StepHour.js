@@ -14,16 +14,25 @@ class StepHour extends Component {
             sunday: []
         }
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (key, data) => {
+    handleChange = (event) => {
         this.setState({
             ...this.state,
-            [key]: data
+            [event.target.name]: event.target.value
         });
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.onChange(this.state, 'open')
+    }
+
     render(){
+        if(this.props.step !== 2){
+            return null;
+        }
         return(
             <div className="form-step-hours">
                 <div className="hours-step-element">
@@ -41,9 +50,11 @@ class StepHour extends Component {
                     <HoursPanel day="saturday" onChange={this.handleChange}/>
                     <p>Sunday</p>
                     <HoursPanel day="sunday" onChange={this.handleChange}/>
-                    <button onClick={this.props.onHourClick}></button> 
+                    <button onClick={this.handleSubmit}></button> 
                 </div>
             </div>
         )
     }
 }
+
+export default StepHour;

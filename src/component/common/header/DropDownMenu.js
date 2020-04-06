@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import './DropDownMenu.css';
+import { FaUser, FaSlidersH, FaSignOutAlt, FaQuestionCircle, FaBriefcase, FaRegUserCircle } from 'react-icons/fa' 
 
 class DropDownMenu extends Component {
     constructor(props){
@@ -32,41 +34,41 @@ class DropDownMenu extends Component {
 
     render(){
         let items;
-        if(this.props.user.auth = 'busisness'){
+        if(true){   //this.props.user.auth = 'busisness'
             items = [
-                <div className="drop-drop-item">
-                    <Link to="/business">Business</Link>
+                <div className="drop-down-item" key="business">
+                    <Link className="link" to="/business"><FaBriefcase className="icon"/>Business</Link>
                 </div>,
-                <div className="drop-down-item">
-                    <Link to="/settings">Settings</Link>
+                <div className="drop-down-item" key="settings">
+                    <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item">
-                    <Link to="/help">Help</Link>
+                <div className="drop-down-item" key="help">
+                    <Link className="link" to="/help"><FaQuestionCircle className="icon"/>Help</Link>
                 </div>,
-                <div className="drop-down-item">
-                    <Link to="logout">Logout</Link>
+                <div className="drop-down-item" key="logout">
+                    <Link className="link" to="logout"><FaSignOutAlt className="icon"/> Logout</Link>
                 </div>
             ]
-        }else if(this.props.user.auth = 'user'){
+        }else if(false){ //this.props.user.auth = 'user'
             items = [
                 <div className="drop-down-item">
-                    <Link to="/profile">Profile</Link>
+                    <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
                 </div>,
                 <div className="drop-down-item">
-                    <Link to="/settings">Settings</Link>
+                    <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
                 <div className="drop-down-item">
-                    <Link to="logout">Logout</Link>
+                    <Link className="link" to="logout"><FaSignOutAlt className="icon"/>Logout</Link>
                 </div>
             ]
         }
 
         return(
             <div className="drop-down">
-                <button onClick={this.showDropDownMenu}>Profil</button>
+                <button className="drop-down-btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>Account</button>
                 <div className="drop-down-list">
                 {this.state.displayMenu ? (
-                    <div className="drop-down-menu">
+                    <div>
                         {items}
                     </div>
                 ): null}
@@ -74,6 +76,7 @@ class DropDownMenu extends Component {
             </div>
         );
     }
+    //Accoutn to username
 }
 
 export default DropDownMenu;

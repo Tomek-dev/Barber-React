@@ -10,7 +10,7 @@ const HeaderItem = ({text, selected}) => {
 
 export const HeaderMenu = (list, selected) => 
     list.map(element => {
-        return <HeaderItem text={element} key={element} selected={selected}/>
+        return <HeaderItem text={element} name={element} selected={selected}/>
     })
 
 class Hours extends Component{
@@ -22,11 +22,11 @@ class Hours extends Component{
         this.handleSelect = this.handleSelect.bind(this);
     }
 
-    handleSelect = (event) =>{
+    handleSelect = (event) => {
         this.setState({
-            selected: event.target.key
+            selected: event.target.name
         });
-        this.props.onSelect(event.target.key, event.target.name)
+        this.props.onSelect(event)
     }
 
     render(){
@@ -36,6 +36,7 @@ class Hours extends Component{
                 <ScrollMenu
                 name={this.props.name}
                 data={items}
+                value={this.props.selected}
                 selected={selected}
                 onSelect={this.handleSelect}/>
             </div>
