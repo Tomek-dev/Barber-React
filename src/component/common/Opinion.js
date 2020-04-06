@@ -12,12 +12,14 @@ class Opinion extends Component{
                 <div className="opinion-element">
                     <p>Opinion</p>
                     <p>...</p>
-                    <ReviewForm />
                 </div>
                 <div className="opinion-element">
-                    <p><span>{this.props.opinion.stars}</span>/5</p>
-                    <p></p>
-                    <p>{this.props.opinion.count}</p>
+                    <div>
+                        <p><span>{this.props.opinion.average}</span>5</p>
+                        <p></p>
+                        <p>{this.props.opinion.count}</p>
+                    </div>
+                    <ReviewForm />
                 </div>
             </div>
         );

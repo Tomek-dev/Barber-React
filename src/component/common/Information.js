@@ -16,8 +16,8 @@ class Information extends Component{
                 </div>
                 <WorkerMenu worker={}/>
                 <div className="info-contact">
-                    <p>Contact</p>
-                    {this.props.barber.contact}
+                    <p>Social media</p>
+                    {this.props.barber.social}
                 </div>
                 <div className="info-open">
                     <p>Opening hours</p>
@@ -32,13 +32,9 @@ class Information extends Component{
                             <p>Sunday</p>
                         </div>
                         <div className="info-open-hours">
-                            <p>?</p>
-                            <p>?</p>
-                            <p>?</p>
-                            <p>?</p>
-                            <p>?</p>
-                            <p>?</p>
-                            <p>?</p>
+                            {this.props.open.map(hour => {
+                                return <p>{hour.open} - {hour.close}</p>
+                            })}
                         </div>
                     </div>
                 </div>

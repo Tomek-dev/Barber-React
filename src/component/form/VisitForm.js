@@ -7,10 +7,7 @@ class VisitForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            form: {
-                service: '',
-                worker: ''
-            },
+            visit: '',
             data: [],
             error: ''
         }
@@ -18,7 +15,7 @@ class VisitForm extends Component {
     }
 
     componentDidMount(){
-        get('/oauth/user/').then(respone => { //id
+        get('/oauth/visit/').then(respone => { //id
             this.setState({
                 ...this.state,
                 data: response
@@ -31,12 +28,11 @@ class VisitForm extends Component {
         ]);
     }
 
-    handleChange = (object) => {
+    handleChange = ({key}) => {
         this.setState({
             ...this.state,
             form: {
-                service: object.service,
-                worker: object.worker 
+                visit: key
             }
         });
     }
@@ -52,7 +48,7 @@ class VisitForm extends Component {
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
                     {this.state.data.map(element => {
-                        return <Visit review={element} onClick={this.handleChange(element)}/>
+                        return <Visit review={element} onClick={this.handleChange}/>
                     })}
                     <button onClick={this.props.onClick(form)}>Choose</button>
                 </ReactModal>
