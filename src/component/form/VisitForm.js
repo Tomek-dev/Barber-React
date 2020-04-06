@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import { get } from '../../util/ApiUtils';
-import { Visit } from '../common/Visit'
+import { Visit } from '../common/barber/Visit'
 
 class VisitForm extends Component {
     constructor(props){

@@ -10,7 +10,8 @@ class Map extends Component{
     }
 
     render(){
-        const position = [this.props.lat, this.props.lng];
+        const barber = this.props.barber;
+        const position = [barber.lat, barber.lng];
         return(
             <LeafletMap center={position} zoom={this.state.zoom}>
                 <TileLayer
@@ -21,8 +22,8 @@ class Map extends Component{
                     <Popup>
                         <img />
                         <div>
-                            {this.props.name}
-                            {this.props.address}
+                            {barber.name}
+                            {barber.address}
                         </div>
                     </Popup>
                 </Marker>
