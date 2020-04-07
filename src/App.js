@@ -1,9 +1,11 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from './component/common/header/Header';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser } from "./util/ApiUtils";
+import Images from './component/common/images/Images';
+import LoginPage from './component/page/LoginPage';
 
 class App extends Component{
   constructor(props){
@@ -48,11 +50,15 @@ class App extends Component{
     // this.loadUser();
   }
 
+
   render() {
+    const images = [];
+
     return (
       <Router>
         <div className="app-container">
           <Header />
+          <Route path="/login" component={LoginPage}/>
         </div>
       </Router>
     );

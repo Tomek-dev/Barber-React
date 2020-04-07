@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { forgot } from '../../util/ApiUtils';
+import { forgot } from '../../../util/ApiUtils';
+import './Forgot.css'
+import ReactModal from 'react-modal';
 
 class ForgotForm extends Component{
     constructor(props){
@@ -9,10 +11,13 @@ class ForgotForm extends Component{
             error: {
                 msg: '',
                 status: ''
-            }
+            },
+            display: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.hanldeChange = this.hanldeChange.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     hanldeChange = (event) => {
@@ -61,19 +66,44 @@ class ForgotForm extends Component{
         return null;
     }
 
+    handleOpen(){
+        this.setState({
+            ...this.state,
+            display: true
+        })
+    }
+
+    handleClose(){
+        this.setState({
+            ...this.state,
+            display: false
+        })
+    }
+
     render(){
         return(
             <div className="forgot-container">
-                <div className="forgot-content">
-                    <form className="forgot-form" onSubmit={this.handleSubmit}>
-                        <input
-                        type="text"
-                        name="username"
-                        value={this.state.username}
-                        onChange={this.hanldeChange} />
-                        <button className="forgot-submit">Send</button>
-                    </form>
-                </div>
+                <button onClick={this.handleOpen} className="forgot-btn" type="button">Forgot password</button>
+                <ReactModal
+                ariaHideApp={false}
+                className="forgot-modal"
+                overlayClassName="forgot-modal-overlay"
+                onRequestClose={this.handleClose}
+                shouldCloseOnOverlayClick={true}
+                isOpen={this.state.display}>
+                    <div className="forgot-container">
+                        <form autocomplete="off" className="forgot-form" onSubmit={this.handleSubmit}>
+                            <input
+                            placeholder="Enter your email"
+                            type="text"
+                            name="username"
+                            className="forgot-form-element"
+                            value={this.state.username}
+                            onChange={this.hanldeChange} />
+                            <button className="forgot-submit">Send</button>
+                        </form>
+                    </div>
+                </ReactModal>
             </div>
         )
     }

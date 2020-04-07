@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { login } from "../../util/ApiUtils";
-import { ACCESS_TOKEN } from "../../constans/Constant";
+import { login } from "../../../util/ApiUtils";
+import { ACCESS_TOKEN } from "../../../constans/Constant";
+import { Link } from 'react-router-dom'
+import './LoginForm.css'
+import ForgotForm from '../forgot/ForgotForm';
 
 class LoginForm extends Component{
     constructor(props){
@@ -81,12 +84,14 @@ class LoginForm extends Component{
     render(){
         return(
             <div className="login-container">
+                <p className="login-paragraph">Login as employer</p>
                 <div className="login-content">
-                    <form className="login-form" onSubmit={this.handleSubmit}>
+                    <form autocomplete="off" className="login-form" onSubmit={this.handleSubmit}>
                         <div className={this.state.error.status}>
                             {this.state.error.msg}
                         </div>
                         <input 
+                        placeholder="Username"
                         type="text"
                         name="username"
                         className="login-form-element"
@@ -94,12 +99,18 @@ class LoginForm extends Component{
                         onChange={this.handleChange}
                         />
                         <input 
+                        placeholder="Password"
                         type="password"
                         name="password"
                         className="login-form-element"
                         value={this.state.form.password}
                         onChange={this.handleChange}
                         />
+                        <div className="login-info">
+                            <p>Don't have an account?</p>
+                            <Link className="account-link" to="/">Create account</Link>
+                            <p>Any trouble with login? <ForgotForm /></p> 
+                        </div>
                         <button type="submit" className="login-submit">Login</button>
                     </form>
                 </div>

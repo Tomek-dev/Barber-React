@@ -1,0 +1,41 @@
+.social-login{
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+}
+
+.social-login img{
+    height: 16px;
+    margin-right: 8px;
+}
+
+.social-login a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #444;
+}
+
+.social-login a:hover{
+    color: #333;
+}
+
+.btn{
+    margin: 10px auto;
+}
+
+.social-login p{
+    margin: 6px 0;
+}
+
+.social-info-paragraph{
+    color: #555;
+    text-align: center;
+}
+
+.social-paragraph{
+    text-align: center;
+    color: #362821;
+    font-weight: 700;
+    font-size: 1.2rem;
+}

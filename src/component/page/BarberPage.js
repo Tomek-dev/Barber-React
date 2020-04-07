@@ -4,7 +4,7 @@ import ServicePanel from '../common/barber/ServicePanel';
 import ReviewPanel from '../common/barber/ReviewPanel';
 import Information from '../common/barber/Information';
 
-class Barber extends Component{
+class BarberPage extends Component{
     constructor(props){
         super(props);
         this.state = {

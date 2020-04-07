@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import LoginForm from '../form/LoginForm';
-import SocialLogin from '../common/SocialLogin';
+import LoginForm from '../common/login/LoginForm';
+import SocialLogin from '../common/login/SocialLogin';
+import './LoginPage.css'
+
 
 class LoginPage extends Component{
     constructor(props){
@@ -10,9 +12,17 @@ class LoginPage extends Component{
     render(){
         return(
             <div className="login-page-container">
-                <LoginForm />
-                <SocialLogin />
+                <div className="login-page-content">
+                    <div className="login-method">
+                        <LoginForm />
+                    </div>
+                    <div className="login-method side">
+                        <SocialLogin />
+                    </div>
+                </div>
             </div>
         )
     }
 }
+
+export default LoginPage;
