@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { login } from "../../../util/ApiUtils";
 import { ACCESS_TOKEN } from "../../../constans/Constant";
-import { Link } from 'react-router-dom'
-import './LoginForm.css'
+import { Link } from 'react-router-dom';
+import './LoginForm.css';
 import ForgotForm from '../forgot/ForgotForm';
 
 class LoginForm extends Component{
@@ -108,7 +108,7 @@ class LoginForm extends Component{
                         />
                         <div className="login-info">
                             <p>Don't have an account?</p>
-                            <Link className="account-link" to="/">Create account</Link>
+                            <Link className="account-link" to="/register">Create account</Link>
                             <p>Any trouble with login? <ForgotForm /></p> 
                         </div>
                         <button type="submit" className="login-submit">Login</button>

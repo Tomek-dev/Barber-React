@@ -19,15 +19,23 @@ class SearchForm extends Component{
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleSearchPanel = this.handleSearchPanel.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
-    handleSearchPanel() {
-        this.setState({ 
-            ...this.state, 
-            display: !this.state.display
-        });
-      }
+    handleOpen(){
+        this.setState({
+            ...this.state,
+            display: true
+        })
+    }
+
+    handleClose(){
+        this.setState({
+            ...this.state,
+            display: false
+        })
+    }
 
     handleChange = (event) => {
         this.setState({
@@ -75,17 +83,17 @@ class SearchForm extends Component{
     render(){
         return(
             <div className="search">
-                <button className="search-btn" onClick={this.handleSearchPanel}><FaSearch /></button>
+                <button className="search-btn" onClick={this.handleOpen}><FaSearch /></button>
                 <ReactModal 
                 ariaHideApp={false}
                 className="search-modal"
                 overlayClassName="search-modal-overlay"
-                onRequestClose={this.handleSearchPanel}
+                onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
                     <div className="search-container">
                         <div>
-                            <button className="search-close-btn" onClick={this.hideSearchPanel}><FaTimes /></button>
+                            <button className="search-close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
                         <div className="search-content">
                             <form autocomplete="off" onSubmit={this.handleSubmit} className="search-form">
@@ -100,6 +108,7 @@ class SearchForm extends Component{
                                     value={this.state.form.query}
                                     onChange={this.handleChange}/>
                                     <input 
+                                    placeholder="Where?"
                                     type="text"
                                     name="city"
                                     className="search-form-element"

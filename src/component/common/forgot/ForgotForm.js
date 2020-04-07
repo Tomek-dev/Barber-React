@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { forgot } from '../../../util/ApiUtils';
 import './Forgot.css'
 import ReactModal from 'react-modal';
+import { FaTimes } from 'react-icons/fa'
 
 class ForgotForm extends Component{
     constructor(props){
@@ -91,8 +92,12 @@ class ForgotForm extends Component{
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
-                    <div className="forgot-container">
+                    <div className="forgot-content">
+                        <div>
+                            <button className="forgot-close-btn" onClick={this.handleClose}><FaTimes /></button>
+                        </div>
                         <form autocomplete="off" className="forgot-form" onSubmit={this.handleSubmit}>
+                            <p className="forgot-paragraph">Dont't worry. Type your email and we will send you token to reset password.</p>
                             <input
                             placeholder="Enter your email"
                             type="text"

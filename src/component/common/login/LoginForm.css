@@ -31,9 +31,9 @@
 
 .login-submit{
     background-color: #362821;
-    border-radius: 35%/100%;
+    border-radius: 20px;
     border: none;
-    width: 35%;
+    width: 30%;
     outline: none;
     cursor: pointer;
     font-size: 1.1rem;
@@ -51,5 +51,6 @@
     text-align: center;
     color: #362821;
     font-weight: 700;
+    margin: 8px 0;
     font-size: 1.2rem;
 }

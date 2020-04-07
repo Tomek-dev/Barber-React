@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../constans/Constant';
 import { checkUsernameAvailability, checkEmailAvailability, signUp } from '../../util/ApiUtils';
+import './SignUpForm.css';
+import { Link } from 'react-router-dom';
 
 class SignUpForm extends Component{
     constructor(props){
@@ -149,29 +151,37 @@ class SignUpForm extends Component{
                         </div>
                         <input
                         type="text" 
+                        placeholder="Username"
                         name="username"
                         className="signup-form-element"
                         value={this.state.form.username}
                         onChange={this.handleChange}/>
                         <input 
                         type="text"
+                        placeholder="Email"
                         name="email"
                         className="signup-form-element"
                         value={this.state.form.email}
                         onChange={this.handleChange}/>
                         <input 
+                        placeholder="Password"
                         type="password"
                         name="password"
                         className="signup-form-element"
                         value={this.state.form.password}
                         onChange={this.handleChange}/>
                         <input 
+                        placeholder="Confirm password"
                         type="password"
                         name="confirmPassword"
                         className="signup-form-element"
                         value={this.state.form.confirmPassword}
                         onChange={this.handleChange}
                         />
+                        <div className="signup-info">
+                            <p>Already have an account? <Link className="signup-link" to="/login">Login</Link></p>
+                            <p>Clicking "Get Started" above to accept  <Link to="" className="signup-link">Terms of Service</Link> & <Link to="" className="signup-link">Privacy Policy.</Link></p>
+                        </div>
                         <button 
                         type="submit"
                         className="signup-submit"

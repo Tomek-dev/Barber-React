@@ -3,9 +3,11 @@ import { Component } from 'react';
 import Header from './component/common/header/Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
-import { authenticatedUser } from "./util/ApiUtils";
+import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
 import LoginPage from './component/page/LoginPage';
+import SignUpForm from './component/form/SignUpForm';
+import './App.css';
 
 class App extends Component{
   constructor(props){
@@ -59,6 +61,7 @@ class App extends Component{
         <div className="app-container">
           <Header />
           <Route path="/login" component={LoginPage}/>
+          <Route path="/register" component={SignUpForm}/>
         </div>
       </Router>
     );
