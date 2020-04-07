@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Service from './Service';
+import './StepService.css';
 
 class StepService extends Component{
     constructor(props){
@@ -80,42 +81,56 @@ class StepService extends Component{
         if(this.props.step !== 3){
             return null;
         }
+        const elements = [];
+        if(this.props.service){
+            elements = this.props.service.map((item, index) => (
+                <Service service={item} key={index} onDelete={this.handleDelete} />
+            ))
+        }
         return(
-            <div className="form-step-service">
-                <div className="service-error">
-                    {error}
+            <div className="step-service-container">
+                <div>
+                    <p className="barber-step">Third Step</p>
+                    <p className="barber-text-info">Add some service.</p>
                 </div>
-                <form onSubmit={this.handleSubmit}>
+                <div className="service-error">
+                    {this.state.error}
+                </div>
+                <form className="form-step-service" onSubmit={this.handleSubmit}>
                     <input 
                     type="text"
                     name="name"
-                    className="barber-form-element"
+                    placeholder="Name"
+                    className="service-form-element"
                     value={this.state.name}
                     onChange={this.state.handleChange}/>
                     <input 
+                    placeholder="Description"
                     type="text"
                     name="description"
-                    className="barber-form-element"
+                    className="service-form-element"
                     value={this.state.description}
                     onChange={this.state.handleChange}/>
-                    <input 
-                    type="text"
-                    name="price"
-                    className="barber-form-element"
-                    value={this.state.price}
-                    onChange={this.state.handleChange}/>
-                    <input 
-                    type="text"
-                    name="time"
-                    className="barber-form-element"
-                    value={this.state.time}
-                    onChange={this.state.handleChange}/>
-                    <button type="submit">Add</button>
+                    <div className="service-props">
+                        <input 
+                        type="text"
+                        name="price"
+                        placeholder="Price"
+                        className="service-props-element"
+                        value={this.state.price}
+                        onChange={this.state.handleChange}/>
+                        <input 
+                        type="text"
+                        placeholder="Time"
+                        name="time"
+                        className="service-props-element"
+                        value={this.state.time}
+                        onChange={this.state.handleChange}/>
+                    </div>
+                    <button className="service-submit" type="submit">Add</button>
                 </form>
                 <div className="service-list">
-                    {this.props.service.map(item, index => (
-                        <Service service={item} key={index} onDelete={this.handleDelete} />
-                    ))}
+                    {elements}
                 </div>
             </div>
         )

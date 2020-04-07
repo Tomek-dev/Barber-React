@@ -1,0 +1,36 @@
+.form-step-worker{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.worker-form-element{
+    margin: 10px auto;
+    font-size: 1.2rem;
+    border: none;
+    border-bottom: 1px solid #777;
+    color: #555;
+    outline: none;
+    padding: 0 5px;
+}
+
+.worker-submit{
+    padding: 6px 14px;
+    background-color: #362821;
+    border: none;
+    outline: none;
+    color: #eee;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.worker-submit:hover{
+    background-color: #251710;
+    color: #ddd;
+}
+
+.worker-btn-field{
+    text-align: center;
+}

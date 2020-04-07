@@ -103,8 +103,7 @@ class SearchForm extends Component{
                                     type="text"
                                     name="query"
                                     className="search-form-element"
-                                    placeholder="
-                                    What are you looking for?"
+                                    placeholder="What are you looking for?"
                                     value={this.state.form.query}
                                     onChange={this.handleChange}/>
                                     <input 

@@ -7,6 +7,7 @@ import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
 import LoginPage from './component/page/LoginPage';
 import SignUpForm from './component/form/SignUpForm';
+import BarberForm from './component/form/barber_form/BarberForm';
 import './App.css';
 
 class App extends Component{
@@ -62,6 +63,7 @@ class App extends Component{
           <Header />
           <Route path="/login" component={LoginPage}/>
           <Route path="/register" component={SignUpForm}/>
+          <Route path="/business-create" component={BarberForm}/>
         </div>
       </Router>
     );

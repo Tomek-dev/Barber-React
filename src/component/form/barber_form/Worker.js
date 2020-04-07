@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Service extends Component{
+class Worker extends Component{
     constructor(props){
         super(props)
         this.handleDelete = this.handleDelete.bind(this);
@@ -13,8 +13,8 @@ class Service extends Component{
     render(){
         const workerProps = this.props.worker;
         return(
-            <div className="service">
-                <div className="service-props">
+            <div className="worker">
+                <div className="worker-props">
                     {workerProps.name}
                 </div>
                 <button value={workerProps} onClick={this.handleDelete}>
@@ -25,4 +25,4 @@ class Service extends Component{
     }
 }
 
-export default Service;
+export default Worker;

@@ -36,8 +36,8 @@ class Hours extends Component{
                 <ScrollMenu
                 name={this.props.name}
                 data={items}
-                value={this.props.selected}
-                selected={selected}
+                value={this.state.selected}
+                selected={this.state.selected}
                 onSelect={this.handleSelect}/>
             </div>
         )

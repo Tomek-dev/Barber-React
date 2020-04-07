@@ -3,6 +3,7 @@ import StepBarber from './StepBarber';
 import StepHour from './StepHour';
 import StepService from './StepService';
 import StepWorker from './StepWorker';
+import './BarberForm.css'
 
 class BarberForm extends Component{
     constructor(props){
@@ -56,8 +57,8 @@ class BarberForm extends Component{
     }
 
     next(){
-        let step = this.props.step;
-        step = step < 4? step + 1 : 4;
+        let step = this.state.step;
+        step = step >= 3? 4: step + 1;
         this.setState({
             ...this.state,
             step: step
@@ -73,30 +74,34 @@ class BarberForm extends Component{
         });
     }
 
-    nextBtn(){
+    get nextBtn(){
         let step = this.state.step;
         if(step < 4){
             return(
                 <button onClick={this.next}
                 type="button"
-                className="next-btn">
+                className="barber-btn">
                     Next
                 </button>
             )
+        }else{
+            return null;
         }
     }
 
-    prevBtn(){
+    get prevBtn(){
         let step = this.state.step;
-        if(step > 2){
+        if(step >= 2){
             return(
                 <button
                 onClick={this.prev}
                 type="button"
-                className="prev-btn">
+                className="barber-btn prev-btn">
                     Prev
                 </button>
             )
+        }else{
+            return null;
         }
     }
 
@@ -121,7 +126,11 @@ class BarberForm extends Component{
                     <StepBarber step={this.state.step} onChange={this.handleChange}/>
                     <StepHour step={this.state.step} onChange={this.handleObjectChange}/>
                     <StepService step={this.state.step} onChange={this.handleList} services={this.state.services}/>
-                    <StepWorker step={this.state.step} onChange={this.handleList}/>
+                    <StepWorker step={this.state.step} worker={this.state.workers} onChange={this.handleList}/>
+                    <div className="barber-form-buttons">
+                        {this.prevBtn}
+                        {this.nextBtn}
+                    </div>
                 </form>
             </div>
         )

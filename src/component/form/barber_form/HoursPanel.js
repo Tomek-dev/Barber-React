@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import Hours from './Hours'
+import { FaRegEdit } from 'react-icons/fa'
+import './HoursPanel.css'
 
 class HoursPanel extends Component{
     constructor(props){
@@ -40,7 +43,7 @@ class HoursPanel extends Component{
         const data = this.state.form;
         return(
             <div className="hours-panel">
-                <button onClick={this.handleHoursPanel}></button>
+                <button className="hours-panel-btn" onClick={this.handleHoursPanel}><FaRegEdit /></button>
                 <ReactModal 
                 ariaHideApp={false}
                 className="hours-modal"
@@ -48,8 +51,8 @@ class HoursPanel extends Component{
                 onRequestClose={this.handleSearchPanel}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
-                    <Hours name="open" onSelect={this.handleChange}/>
-                    <Hours name="close" onSelect={this.handleChange}/>
+                    <Hours name="open" selected={1} onSelect={this.handleChange}/>
+                    <Hours name="close" selected={2} onSelect={this.handleChange}/>
                 <button name={this.props.day} 
                 value={this.state.form}
                 onClick={this.handleSubmit}>Set</button>

@@ -1,0 +1,11 @@
+.hours-panel-btn{
+    border: none;
+    background-color: inherit;
+    outline: none;
+    color: #555;
+    font-size: 1.5rem;
+}
+
+.hours-panel-btn:hover{
+    color: #333;
+}

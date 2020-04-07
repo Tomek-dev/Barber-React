@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Worker from '../barber_form/Worker'
+import './StepWorker.css';
 
 class StepWorker extends Component{
     constructor(props){
@@ -64,24 +66,35 @@ class StepWorker extends Component{
         if(this.props.step !== 4){
             return null;
         }
+        const data = [];
+        if(this.props.worker){
+            data = this.props.worker.map((item, index) => (
+                <Worker worker={item} key={index} onDelete={this.handleDelete} />
+            ))
+        }
         return(
-            <div className="form-step-worker">
-                <div className="worker-error">
-                    {error}
+            <div className="step-worker-container">
+                <div>
+                    <p className="barber-step">Fourth Step</p>
+                    <p className="barber-text-info">Add some worker.</p>
                 </div>
-                <form onSubmit={this.handleSubmit}>
+                <div className="worker-error">
+                    {this.state.error}
+                </div>
+                <form className="form-step-worker" onSubmit={this.handleSubmit}>
                     <input 
                     type="text"
                     name="name"
-                    className="barber-form-element"
+                    placeholder="Name"
+                    className="worker-form-element"
                     value={this.state.name}
                     onChange={this.state.handleChange}/>
-                    <button type="submit">Add</button>
+                    <div className="worker-btn-field">
+                        <button className="worker-submit" type="submit">Add</button>
+                    </div>
                 </form>
                 <div className="worker-list">
-                    {this.props.worker.map(item, index => (
-                        <Worker worker={item} key={index} onDelete={this.handleDelete} />
-                    ))}
+                    {data}
                 </div>
             </div>
         )

@@ -187,6 +187,10 @@ class SignUpForm extends Component{
                         className="signup-submit"
                         >Sign Up</button>
                     </form>
+                    <div className="signup-text">
+                        <p className="signup-text-paragraph">Get Started</p>
+                        <p className="signup-text-info">Our mission is to help companies. Improve the quality of your store according to customer feedback or let them make an appointment online. Get started now, create a page and add features to it</p>
+                    </div>
                 </div>
             </div>
         );
