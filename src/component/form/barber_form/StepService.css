@@ -46,3 +46,12 @@
     background-color: #251710;
     color: #ddd;
 }
+
+.service-list{
+    height: 25vh;
+    width: 80%;
+    margin: 20px auto;
+    border-bottom: 1px solid #777;
+    overflow: auto;
+    overflow-x: hidden;
+}

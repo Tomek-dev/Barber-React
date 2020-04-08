@@ -11,12 +11,15 @@ class StepWorker extends Component{
             },
             error: ''
         }
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange = (event) => {
         this.setState({
             ...this.state,
-            [event.target.name]: event.target.value
+            form: {
+                [event.target.name]: event.target.value
+            }
         });
     }
 
@@ -53,12 +56,12 @@ class StepWorker extends Component{
         }
         let array = [...this.props.worker];
         array.push(form);
-        this.props.onChange(array)
+        this.props.onChange(array, this.props.name)
         this.setState({
+            error: '',
             form: {
                 name: '',
-            },
-            error: ''
+            }
         })
     }
 
@@ -66,7 +69,7 @@ class StepWorker extends Component{
         if(this.props.step !== 4){
             return null;
         }
-        const data = [];
+        let data = [];
         if(this.props.worker){
             data = this.props.worker.map((item, index) => (
                 <Worker worker={item} key={index} onDelete={this.handleDelete} />
@@ -78,21 +81,22 @@ class StepWorker extends Component{
                     <p className="barber-step">Fourth Step</p>
                     <p className="barber-text-info">Add some worker.</p>
                 </div>
-                <div className="worker-error">
+                <div className="error">
                     {this.state.error}
                 </div>
-                <form className="form-step-worker" onSubmit={this.handleSubmit}>
+                <div className="form-step-worker">
                     <input 
+                    autoComplete="off"
                     type="text"
                     name="name"
                     placeholder="Name"
                     className="worker-form-element"
-                    value={this.state.name}
-                    onChange={this.state.handleChange}/>
+                    value={this.state.form.name}
+                    onChange={this.handleChange}/>
                     <div className="worker-btn-field">
-                        <button className="worker-submit" type="submit">Add</button>
+                        <button className="worker-submit" onClick={this.handleSubmit} type="button">Add</button>
                     </div>
-                </form>
+                </div>
                 <div className="worker-list">
                     {data}
                 </div>

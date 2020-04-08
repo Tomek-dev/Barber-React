@@ -22,7 +22,10 @@ class StepService extends Component{
     handleChange = (event) => {
         this.setState({
             ...this.state,
-            [event.target.name]: event.target.value
+            form: {
+                ...this.state.form,
+                [event.target.name]: event.target.value
+            }
         });
     }
 
@@ -65,7 +68,7 @@ class StepService extends Component{
         }
         let array = [...this.props.service];
         array.push(form);
-        this.props.onChange(array)
+        this.props.onChange(array, this.props.name)
         this.setState({
             form: {
                 name: '',
@@ -81,7 +84,7 @@ class StepService extends Component{
         if(this.props.step !== 3){
             return null;
         }
-        const elements = [];
+        let elements = [];
         if(this.props.service){
             elements = this.props.service.map((item, index) => (
                 <Service service={item} key={index} onDelete={this.handleDelete} />
@@ -96,39 +99,43 @@ class StepService extends Component{
                 <div className="service-error">
                     {this.state.error}
                 </div>
-                <form className="form-step-service" onSubmit={this.handleSubmit}>
+                <div className="form-step-service">
                     <input 
+                    autoComplete="off"
                     type="text"
                     name="name"
                     placeholder="Name"
                     className="service-form-element"
-                    value={this.state.name}
-                    onChange={this.state.handleChange}/>
+                    value={this.state.form.name}
+                    onChange={this.handleChange}/>
                     <input 
+                    autoComplete="off"
                     placeholder="Description"
                     type="text"
                     name="description"
                     className="service-form-element"
-                    value={this.state.description}
-                    onChange={this.state.handleChange}/>
+                    value={this.state.form.description}
+                    onChange={this.handleChange}/>
                     <div className="service-props">
                         <input 
+                        autoComplete="off"
                         type="text"
                         name="price"
                         placeholder="Price"
                         className="service-props-element"
-                        value={this.state.price}
-                        onChange={this.state.handleChange}/>
+                        value={this.state.form.price}
+                        onChange={this.handleChange}/>
                         <input 
+                        autoComplete="off"
                         type="text"
                         placeholder="Time"
                         name="time"
                         className="service-props-element"
-                        value={this.state.time}
-                        onChange={this.state.handleChange}/>
+                        value={this.state.form.time}
+                        onChange={this.handleChange}/>
                     </div>
-                    <button className="service-submit" type="submit">Add</button>
-                </form>
+                    <button className="service-submit" onClick={this.handleSubmit} type="button">Add</button>
+                </div>
                 <div className="service-list">
                     {elements}
                 </div>

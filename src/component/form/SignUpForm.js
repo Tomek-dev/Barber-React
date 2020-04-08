@@ -66,7 +66,6 @@ class SignUpForm extends Component{
         event.preventDefault();
         const form = this.state.form;
         const errorMsg = this.validate(form);
-        console.log(errorMsg);
         if(errorMsg){
             this.setState({
                 ...this.state,

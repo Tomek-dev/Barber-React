@@ -1,0 +1,47 @@
+.active{
+    display: none;
+}
+
+.service-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.service-item{
+    box-sizing: border-box;
+}
+
+.service-props-item{
+    color: #777;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.service-element p{
+    margin: 2px 0;
+}
+
+.service-element{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.service-delete{
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: #555;
+}
+
+.service-delete:hover{
+    color: #333;
+}
+
+.service-element-name{
+    color: #362821;
+    font-weight: 700;
+}

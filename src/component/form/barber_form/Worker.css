@@ -1,0 +1,25 @@
+.active{
+    display: none;
+}
+
+.worker-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.worker-props{
+    color: #777;
+}
+
+.worker-delete{
+    font-size: 0.95rem;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: #555;
+}
+
+.worker-delete:hover{
+    color: #333;
+}

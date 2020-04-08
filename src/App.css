@@ -1,7 +1,9 @@
 .error{
     color: #76020b;
+    text-align: center;
 }
 
 .success{
+    text-align: center;
     color: #457d24;
 }
