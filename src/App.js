@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
-import LoginPage from './component/page/LoginPage';
+import LoginPage from './component/common/login/LoginPage';
 import SignUpForm from './component/form/SignUpForm';
 import BarberForm from './component/form/barber_form/BarberForm';
 import './App.css';
+import SettingsPage from './component/common/settings/SettingsPage';
 
 class App extends Component{
   constructor(props){
@@ -62,8 +63,9 @@ class App extends Component{
         <div className="app-container">
           <Header />
           <Route path="/login" component={LoginPage}/>
-          <Route path="/register" component={SignUpForm}/>
+          <Route path="/businesses" component={SignUpForm}/>
           <Route path="/business-create" component={BarberForm}/>
+          <Route path="/settings" component={SettingsPage}/>
         </div>
       </Router>
     );

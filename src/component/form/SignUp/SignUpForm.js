@@ -144,7 +144,7 @@ class SignUpForm extends Component{
         return(
             <div className="signup-container">
                 <div className="signup-content">
-                    <form className="signup-form" onSubmit={this.handleSubmit}>
+                    <form autoComplete="off" className="signup-form" onSubmit={this.handleSubmit}>
                         <div className={this.state.error.status}>
                             {this.state.error.msg}
                         </div>

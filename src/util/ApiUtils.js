@@ -91,3 +91,18 @@ export function get(url){
         method: 'GET',
     });
 }
+
+export function del(url){
+    return request({
+        url: API_BASE_URL + url,
+        method: 'DELETE',
+    });
+}
+
+export function put(json, url){
+    return request({
+        url: API_BASE_URL + url,
+        method: 'PUT',
+        body: JSON.stringify(json)
+    });
+}
