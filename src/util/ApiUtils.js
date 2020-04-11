@@ -1,20 +1,21 @@
 import { ACCESS_TOKEN, API_BASE_URL } from '../constans/Constant';
 
-const request = (options) =>{
-    const headers = new Headers({
-        'Content-Type': 'application/json'
+const request = (options) => {
+    let headers = new Headers({
+        'Content-Type': 'application/json',
     })
-
-    if(localStorage.getItem(ACCESS_TOKEN)){
+    
+    if(localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', localStorage.getItem(ACCESS_TOKEN))
     }
 
-    const defaults = {headers : headers};
+    const defaults = {headers: headers};
     options = Object.assign({}, defaults, options);
 
     return fetch(options.url, options)
-        .then(response => response.json().then(json =>{
-            if(!response.ok){
+    .then(response => 
+        response.json().then(json => {
+            if(!response.ok) {
                 return Promise.reject(json);
             }
             return json;
@@ -23,6 +24,7 @@ const request = (options) =>{
 };
 
 export function login(loginRequest){
+    //localStorage.removeItem(ACCESS_TOKEN);
     return request({
         url: API_BASE_URL + "/auth/login",
         method: 'POST',
@@ -40,7 +42,7 @@ export function signUp(signUpRequest){
 
 export function authenticatedUser(){
     return request({
-        url: API_BASE_URL + "/user",
+        url: API_BASE_URL + "/auth/authenticated",
         method: 'GET',
     });
 }

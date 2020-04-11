@@ -3,14 +3,27 @@ import { FaCalendarAlt, FaStoreAlt, FaUsersCog, FaBookOpen, FaCamera } from 'rea
 import './SettingsPage.css';
 import Services from './service/Services';
 import Worker from './worker/Worker'
+import { get } from '../../../util/ApiUtils'
 
 class SettingsPage extends Component{
     constructor(props){
         super(props);
         this.state = {
-            display: 1
+            display: 1,
+            barber: []
         }
         this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentDidMount(){
+        get('/barber').then(response => {
+            this.setState({
+                ...this.state,
+                barber: response
+            });
+        }).catch(e => {
+            // ??
+        })
     }
 
     handleClick = (event) => {
@@ -21,7 +34,7 @@ class SettingsPage extends Component{
 
     render(){
         const display = this.state.display;
-        const id = this.props.match.params.id;
+        let id = this.state.barber.id;
         return(
             <div className="settings-container">
                 <div className="settings-content">
@@ -43,7 +56,7 @@ class SettingsPage extends Component{
                         </button>
                     </div>
                     <div className="settings-panel">
-                        <Services id={id} display={display}/>
+                        <Services id={this.state.barber.id} display={display}/>
                         <Worker id={id} display={display}/>
                     </div>
                 </div>

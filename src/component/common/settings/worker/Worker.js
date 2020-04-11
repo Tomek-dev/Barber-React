@@ -11,12 +11,18 @@ class Worker extends Component{
             form: {
                 name: ''
             },
-            data: []
+            data: [],
+            services: []
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
-        get('/workers/' + this.props.id).then(response => {
+    fetchData = (id) => {
+        if(!id){
+            return;
+        }
+        get('/workers/' + id).then(response => {
             this.setState({
                 ...this.state,
                 data: response
@@ -24,6 +30,24 @@ class Worker extends Component{
         }).catch(e => {
             // ??
         });
+        get('/service/value?barber=' + id).then(response => {
+            this.setState({
+                ...this.state,
+                services: response
+            });
+        }).catch(e => {
+            // ??
+        });
+    }
+
+    componentDidMount(){
+        this.fetchData();
+    }
+
+    componentDidUpdate(prevProps){
+        if(prevProps.id !== this.props.id){
+            this.fetchData(this.props.id);
+        }
     }
 
     validate = (form) => {
@@ -53,13 +77,17 @@ class Worker extends Component{
                 error: errorMsg
             });
         }
-        post(form, '/worker/add/' + this.props.id).catch(e => {
+        post(form, '/worker/add').catch(e => {
             this.setState({
                 ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
-        this.componentDidMount();
+        this.fetchData(this.props.id);
+    }
+
+    handleEdit = () => {
+        this.fetchData();
     }
 
     handleError = (msg) => {
@@ -70,13 +98,13 @@ class Worker extends Component{
     }
 
     render(){
-        if(this.props.display != 3){
+        if(this.props.display != 4){
             return null;
         }
         let elements = [];
         if(this.state.data.length > 0){
             elements = this.state.data.map((item, index) => (
-                <WorkerItem service={item} key={index} onError={this.handleError}/>
+                <WorkerItem worker={item} service={this.state.services} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any workers yet</p>
@@ -95,7 +123,7 @@ class Worker extends Component{
                             type="text"
                             name="name"
                             value={this.state.form.name}
-                            onChange={this.onChange}
+                            onChange={this.handleChange}
                             className="worker-form-element"
                             />
                         </div>

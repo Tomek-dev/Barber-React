@@ -1,22 +1,23 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from './component/common/header/Header';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
 import LoginPage from './component/common/login/LoginPage';
-import SignUpForm from './component/form/SignUpForm';
-import BarberForm from './component/form/barber_form/BarberForm';
+import SignUpForm from './component/form/SignUp/SignUpForm';
 import './App.css';
 import SettingsPage from './component/common/settings/SettingsPage';
+import PrivateRoute from './component/common/PrivateRoute';
 
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
       user: null,
-      isAuthenticated: false,
+      auth: false,
+      isLoading: false
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -28,44 +29,50 @@ class App extends Component{
 
     this.setState({
       user: null,
-      isAuthenticated: false
+      auth: false,
     });
 
-    this.context.history.push(redirect);
+    //this.context.history.push(redirect);
   }
 
   handleLogin(){
     this.loadUser();
-    this.context.history.push('/')
+    //this.context.history.push('/');
   }
 
   loadUser(){
+    this.setState({
+        ...this.state,
+        isLoading: true
+    });
     authenticatedUser().then(response => {
       this.setState({
         user: response,
-        isAuthenticated: true
+        auth: true,
+        isLoading: false
       });
     }).catch(e => {
-      // ??
+      this.setState({
+        ...this.state,
+        isLoading: false
+    });
     })
   }
 
   componentDidMount(){
-    // this.loadUser();
+    localStorage.removeItem(ACCESS_TOKEN);
+    this.loadUser();
   }
 
 
   render() {
-    const images = [];
-
     return (
       <Router>
         <div className="app-container">
-          <Header />
-          <Route path="/login" component={LoginPage}/>
+          <Header onLogout={this.handleLogout} currentUser={this.state.user} />
+          <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
           <Route path="/businesses" component={SignUpForm}/>
-          <Route path="/business-create" component={BarberForm}/>
-          <Route path="/settings" component={SettingsPage}/>
+          <PrivateRoute authenticated={this.state.auth} path="/settings" component={SettingsPage}/>
         </div>
       </Router>
     );

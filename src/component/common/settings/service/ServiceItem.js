@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { del } from '../../../../util/ApiUtils';
 import { FaTrashAlt } from 'react-icons/fa';
+import ServiceEdit from './ServiceEdit';
 
 class ServiceItem extends Component{
     constructor(props){
@@ -9,9 +10,13 @@ class ServiceItem extends Component{
     }
 
     handleDelete(){
-        del('/service/' + this.props.id).catch(e => {
+        del('/service/' + this.props.service.id).then(response => {
+            console.log("test")
+            this.props.onEdit();
+        }).catch(e => {
             this.props.onError(e.message || 'Sorry! Something went wrong. Please try again!');
         })
+        this.props.onEdit();
     }
 
     render(){
@@ -27,6 +32,7 @@ class ServiceItem extends Component{
                     <p>{service.price}</p>
                 </div>
                 <div>
+                    <ServiceEdit onEdit={this.props.onEdit} service={service} />
                     <button onClick={this.handleDelete}><FaTrashAlt /></button>
                 </div>
             </div>

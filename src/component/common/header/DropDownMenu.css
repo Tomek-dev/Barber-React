@@ -45,3 +45,8 @@
     color: #333;
 }
 
+.drop-down-logout-btn{
+    border: none;
+    outline: none;
+    background-color: inherit;
+}

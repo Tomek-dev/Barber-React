@@ -11,12 +11,11 @@ class DropDownMenu extends Component {
         };
         this.showDropDownMenu = this.showDropDownMenu.bind(this);
         this.hideDropDownMenu = this.hideDropDownMenu.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
-    handleMenuClick({ key }){
-        if(key === "logout"){
-            this.props.onLogout();
-        }
+    handleLogout(){
+        this.props.onLogout();
     }
 
     showDropDownMenu(event) {
@@ -34,7 +33,7 @@ class DropDownMenu extends Component {
 
     render(){
         let items;
-        if(true){   //this.props.user.auth = 'busisness'
+        if(this.props.currentUser.type === 'basic'){  
             items = [
                 <div className="drop-down-item" key="business">
                     <Link className="link" to="/business"><FaBriefcase className="icon"/>Business</Link>
@@ -46,10 +45,10 @@ class DropDownMenu extends Component {
                     <Link className="link" to="/help"><FaQuestionCircle className="icon"/>Help</Link>
                 </div>,
                 <div className="drop-down-item" key="logout">
-                    <Link className="link" to="logout"><FaSignOutAlt className="icon"/> Logout</Link>
+                    <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="icon"/> Logout</button>
                 </div>
             ]
-        }else if(false){ //this.props.user.auth = 'user'
+        }else if(this.props.currentUser.type === 'oauht'){ 
             items = [
                 <div className="drop-down-item">
                     <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
@@ -58,7 +57,7 @@ class DropDownMenu extends Component {
                     <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
                 <div className="drop-down-item">
-                    <Link className="link" to="logout"><FaSignOutAlt className="icon"/>Logout</Link>
+                    <Link className="link"><FaSignOutAlt className="icon"/>Logout</Link>
                 </div>
             ]
         }

@@ -12,7 +12,7 @@ class Header extends Component {
 
     render(){
         let menu;
-        if(true){ //this.props.user
+        if(!this.props.currentUser){ //this.props.user
             menu = [
                 <div className="header-login" key="login">
                     <Link to="/login" className="login-link"><FaRegUserCircle className="icon"/> Login</Link>
@@ -23,7 +23,7 @@ class Header extends Component {
             ];
         }else{
             menu = [
-                <DropDownMenu key="drop-down-menu" />
+                <DropDownMenu onLogout={this.props.onLogout} currentUser={this.props.currentUser} key="drop-down-menu" />
             ];
         }
 

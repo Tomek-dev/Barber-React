@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FaTrashAlt, FaCamera } from 'react-icons/fa';
 import { del } from '../../../../util/ApiUtils';
+import WorkerEdit from './WorkerEdit';
+import WorkerAdd from './WorkerAdd'
 
 class WorkerItem extends Component{
     constructor(props){
@@ -8,7 +10,7 @@ class WorkerItem extends Component{
     }
 
     handleDelete(){
-        del('/worker/' + this.props.id).catch(e => {
+        del('/worker/' + this.props.worker.id).then(() => this.props.onEdit).catch(e => {
             this.props.onError(e.message || 'Sorry! Something went wrong. Please try again!');
         })
     }
@@ -28,6 +30,8 @@ class WorkerItem extends Component{
                     <p>{worker.name}</p>
                 </div>
                 <div className="worker-option">
+                    <WorkerAdd onEdit={this.props.onEdit} service={this.props.service} id={worker.id}/>
+                    <WorkerEdit onEdit={this.props.onEdit} worker={worker} />
                     <button onClick={this.handleDelete}><FaTrashAlt /></button>
                 </div>
             </div>

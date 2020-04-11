@@ -96,7 +96,7 @@ class ForgotForm extends Component{
                         <div>
                             <button className="forgot-close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
-                        <form autocomplete="off" className="forgot-form" onSubmit={this.handleSubmit}>
+                        <form autoComplete="off" className="forgot-form" onSubmit={this.handleSubmit}>
                             <p className="forgot-paragraph">Dont't worry. Type your email and we will send you token to reset password.</p>
                             <input
                             placeholder="Enter your email"

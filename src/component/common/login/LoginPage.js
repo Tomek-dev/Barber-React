@@ -14,7 +14,7 @@ class LoginPage extends Component{
             <div className="login-page-container">
                 <div className="login-page-content">
                     <div className="login-method">
-                        <LoginForm />
+                        <LoginForm onLogin={this.props.onLogin} />
                     </div>
                     <div className="login-method side">
                         <SocialLogin />

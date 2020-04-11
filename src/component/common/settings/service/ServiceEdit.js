@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { get, post } from '../../../../util/ApiUtils';
-import ServiceItem from './ServiceItem';
-import { FaFolder } from 'react-icons/fa';
-import './Services.css';
+import { put } from '../../../../util/ApiUtils';
+import { FaEdit, FaTimes } from 'react-icons/fa';
+import ReactModal from 'react-modal';
 
-class Services extends Component{
+class ServiceEdit extends Component{
     constructor(props){
         super(props);
-        this.state={
+        this.state = {
             form: {
                 name: '',
                 description: '',
@@ -15,40 +14,37 @@ class Services extends Component{
                 time: ''
             },
             error: '',
-            data: [],
+            display: false
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleError = this.handleError.bind(this);
-        }
-
-    fetchData = (id) => {
-        if(!id){
-            return;
-        }
-        get('/service/value?barber=' + id).then(response => {
-            this.setState({
-                ...this.state,
-                data: response
-            });
-        }).catch(e => {
-            // ??
-        });
     }
 
     componentDidMount(){
         this.setState({
             ...this.state,
+            form: this.props.service
         });
-        this.fetchData();
     }
 
-    componentDidUpdate(prevProps){
-        if(prevProps.id !== this.props.id){
-            this.fetchData(this.props.id);
-        }
+    handleOpen(){
+        this.setState({
+            ...this.state,
+            display: true
+        })
     }
 
- 
+    handleClose(){
+        this.setState({
+            ...this.state,
+            display: false
+        })
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            ...this.state,
+            [event.target.name]: event.target.value
+        });
+    }
 
     validate = (form) => {
         if(!form.name){
@@ -63,22 +59,6 @@ class Services extends Component{
         return null;
     }
 
-    handleEdit = () => {
-        console.log("test");
-        this.fetchData(this.props.id);
-        console.log(this.state.data);
-    }
-
-    handleChange = (event) => {
-        this.setState({
-            ...this.state,
-            form: {
-                ...this.state.form,
-                [event.target.name]: event.target.value
-            }
-        });
-    }
-
     handleSubmit = (event) => {
         event.preventDefault();
         const form = this.state.form;
@@ -88,10 +68,10 @@ class Services extends Component{
                 ...this.state,
                 error: errorMsg
             });
+            return;
         }
-        post(form, '/service/add').then(() => {
+        put(form, '/service/' ).then(response => {
             this.setState({
-                ...this.state,
                 form: {
                     name: '',
                     description: '',
@@ -99,38 +79,29 @@ class Services extends Component{
                     time: ''
                 },
                 error: '',
-            })
-        }).catch(e => {
-            this.setState({
-                ...this.state,
-                error: e.message || 'Sorry! Something went wrong. Please try again!'
+                display: false
             });
-        })
-        this.fetchData(this.props.id);
-    }
-
-    handleError = (msg) => {
-        this.setState({
-            ...this.state,
-            error: msg
+            this.props.edit();
+        }).catch(e => {
+            // ??
         });
     }
 
     render(){
-        if(this.props.display != 3){
-            return null;
-        }
-        let elements = [];
-        if(this.state.data.length > 0){
-            elements = this.state.data.map((item, index) => (
-                <ServiceItem service={item} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
-            ))
-        }else{
-            elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any services yet</p>
-        }
         return(
-            <div className="services-container">
-                <div className="services-side-bar">
+            <div>
+                <button className="service-edit-btn" onClick={this.handleOpen}><FaEdit /></button>
+                <ReactModal
+                ariaHideApp={false}
+                className="edit-modal"
+                overlayClassName="edit-modal-overlay"
+                onRequestClose={this.handleClose}
+                shouldCloseOnOverlayClick={true}
+                isOpen={this.state.display}>
+                    <div className="service-edit-modal">
+                    <div>
+                        <button className="service-edit-close" onClick={this.handleClose}><FaTimes /></button>
+                    </div>
                     <form autoComplete="off" onSubmit={this.handleSubmit}>
                         <div className="error">
                             {this.state.error}
@@ -171,13 +142,11 @@ class Services extends Component{
                             <button type="submit" className="service-submit" onClick={this.handleSubmit}>Add</button>
                         </div>
                     </form>
-                </div>
-                <div className="services-content">
-                    {elements}
-                </div>
+                    </div>
+                </ReactModal>
             </div>
         )
     }
 }
 
-export default Services;
+export default ServiceEdit;

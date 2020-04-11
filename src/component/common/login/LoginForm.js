@@ -86,7 +86,7 @@ class LoginForm extends Component{
             <div className="login-container">
                 <p className="login-paragraph">Login as employer</p>
                 <div className="login-content">
-                    <form autocomplete="off" className="login-form" onSubmit={this.handleSubmit}>
+                    <form autoComplete="off" className="login-form" onSubmit={this.handleSubmit}>
                         <div className={this.state.error.status}>
                             {this.state.error.msg}
                         </div>

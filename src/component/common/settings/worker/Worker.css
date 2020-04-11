@@ -26,10 +26,9 @@
     margin: 10px auto;
     border: none;
     border-bottom: 1px solid #777;
-    color: #555;
     outline: none;
     padding: 0 5px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .add-image-btn:hover{
@@ -57,7 +56,7 @@
     color: #eee;
     margin-top: 10px;
     border-radius: 20px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .worker-submit:hover{
