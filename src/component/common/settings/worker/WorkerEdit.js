@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import { FaEdit, FaTimes } from 'react-icons/fa';
 import { put } from '../../../../util/ApiUtils';
+import './WorkerEdit.css';
 
 class WorkerEdit extends Component{
     constructor(props){
@@ -72,7 +73,7 @@ class WorkerEdit extends Component{
     render(){
         return(
             <div className="worker-edit-container">
-                <button className="worker-edit-btn" onClick={this.handleOpen}><FaEdit /></button>
+                <button className="worker-edit-btn btn" onClick={this.handleOpen}><FaEdit /></button>
                 <ReactModal
                 ariaHideApp={false}
                 className="edit-modal"
@@ -82,7 +83,7 @@ class WorkerEdit extends Component{
                 isOpen={this.state.display}>
                 <div className="worker-edit-modal">
                     <div>
-                        <button className="worker-edit-close" onClick={this.handleClose}><FaTimes /></button>
+                        <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                     </div>
                     <form autoComplete="off" onSubmit={this.handleSubmit}>
                         <input 
@@ -92,7 +93,7 @@ class WorkerEdit extends Component{
                         placeholder="Name"
                         value={this.state.form.value}
                         onChange={this.handleChange}/>
-                        <button type="submit" className="worker-edit-submit">Edit</button>
+                        <button type="submit" className="worker-edit-submit btn">Edit</button>
                     </form>
                 </div>
                 </ReactModal>

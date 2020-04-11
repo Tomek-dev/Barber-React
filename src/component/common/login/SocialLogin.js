@@ -12,15 +12,15 @@ class SocialLogin extends Component{
             <div className="social-login">
                 <p className="social-paragraph">Login as user</p>
                 <p className="social-info-paragraph">You will be able to arrange a visit and also rate barber shop's.</p>
-                <a className="btn btn-google" href={GOOGLE_AUTH_URL}>
+                <a className="social-btn" href={GOOGLE_AUTH_URL}>
                     <img src={googleLogo} alt="Google"/>
                     Log in with Google
                 </a>
-                <a className="btn btn-facebook" href={FACEBOOK_AUTH_URL}>
+                <a className="social-btn" href={FACEBOOK_AUTH_URL}>
                     <img src={fbLogo} alt="Facebook"/>
                     Log in with Facebook
                 </a>
-                <a className="btn btn-github" href={GITHUB_AUTH_URL}>
+                <a className="social-btn" href={GITHUB_AUTH_URL}>
                     <img src={githubLogo} alt="Github"/>
                     Log in with Github
                 </a>

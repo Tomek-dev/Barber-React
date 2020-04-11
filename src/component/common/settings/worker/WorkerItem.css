@@ -1,0 +1,40 @@
+.worker-item,.worker-props, .worker-option{
+    display: flex;
+    align-items: center;
+}
+
+.worker-item{
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 0 20px;
+}
+
+.worker-option{
+    width: 25%;
+    justify-content: space-around;
+}
+
+.image-not-found{
+    margin-right: 20px;
+    background-color: #ddd;
+    height: 5vh;
+    width: 5vh;
+    padding: 1.3vh;
+    font-size: 1rem;
+    box-sizing: border-box;
+    border-radius: 5vh;
+    color: #aaa;
+}
+
+.worker-props p{
+    color: #777;
+}
+
+.worker-delete-btn{
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.worker-delete-btn:hover{
+    color: #555;
+}

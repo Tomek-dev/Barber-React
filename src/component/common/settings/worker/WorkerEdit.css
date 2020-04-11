@@ -1,0 +1,8 @@
+.worker-edit-btn{
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.worker-edit-btn:hover{
+    color: #555;
+}

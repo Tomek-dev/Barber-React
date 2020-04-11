@@ -4,22 +4,29 @@ import './SettingsPage.css';
 import Services from './service/Services';
 import Worker from './worker/Worker'
 import { get } from '../../../util/ApiUtils'
+import Loader from '../loader/Loader';
 
 class SettingsPage extends Component{
     constructor(props){
         super(props);
         this.state = {
             display: 1,
-            barber: []
+            barber: [],
+            isLoading: false
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
+        this.setState({
+            ...this.state,
+            isLoading: true
+        });
         get('/barber').then(response => {
             this.setState({
                 ...this.state,
-                barber: response
+                barber: response,
+                isLoading: false
             });
         }).catch(e => {
             // ??
@@ -35,23 +42,26 @@ class SettingsPage extends Component{
     render(){
         const display = this.state.display;
         let id = this.state.barber.id;
+        if(this.state.isLoading){
+            return <Loader isLoading={this.state.isLoading} />;
+        }
         return(
             <div className="settings-container">
                 <div className="settings-content">
                     <div className="settings-nav-bar">
-                        <button value="1" className={`settings-btn ${display == 1 ? 'display': ''}`} onClick={this.handleClick}>
+                        <button value="1" className={`settings-btn btn ${display == 1 ? 'display': ''}`} onClick={this.handleClick}>
                             <FaStoreAlt />
                         </button>
-                        <button value="2" className={`settings-btn ${display == 2 ? 'display': ''}`} onClick={this.handleClick}>
+                        <button value="2" className={`settings-btn btn ${display == 2 ? 'display': ''}`} onClick={this.handleClick}>
                             <FaCalendarAlt />
                         </button>
-                        <button value="3" className={`settings-btn ${display == 3 ? `display`: ``}`} onClick={this.handleClick}>
+                        <button value="3" className={`settings-btn btn ${display == 3 ? `display`: ``}`} onClick={this.handleClick}>
                             <FaBookOpen />
                         </button>
-                        <button value="4" className={`settings-btn ${display == 4 ? `display`: ``}`} onClick={this.handleClick}>
+                        <button value="4" className={`settings-btn btn ${display == 4 ? `display`: ``}`} onClick={this.handleClick}>
                             <FaUsersCog />
                         </button>
-                        <button value="5" className={`settings-btn ${display == 5 ? `display`: ``}`} onClick={this.handleClick}>
+                        <button value="5" className={`settings-btn btn ${display == 5 ? `display`: ``}`} onClick={this.handleClick}>
                             <FaCamera />
                         </button>
                     </div>

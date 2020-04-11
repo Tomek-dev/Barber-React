@@ -35,19 +35,6 @@
     border-radius: 10px;
 }
 
-.search-close-btn{
-    float: right;
-    outline: none;
-    border: none;
-    color: #555;
-    background-color: inherit;
-    font-size: 1.2rem;
-}
-
-.search-close-btn:hover {
-    color: #333;
-}
-
 .search-container{
     display: flex;
     flex-direction: column;

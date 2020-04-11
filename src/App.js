@@ -10,6 +10,8 @@ import SignUpForm from './component/form/SignUp/SignUpForm';
 import './App.css';
 import SettingsPage from './component/common/settings/SettingsPage';
 import PrivateRoute from './component/common/PrivateRoute';
+import Bottom from './component/common/bottom/Bottom';
+import Loader from './component/common/loader/Loader'
 
 class App extends Component{
   constructor(props){
@@ -66,13 +68,19 @@ class App extends Component{
 
 
   render() {
+    if(this.state.isLoading){
+      return <Loader isLoading={this.state.isLoading} />;
+    }
     return (
       <Router>
         <div className="app-container">
           <Header onLogout={this.handleLogout} currentUser={this.state.user} />
-          <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
-          <Route path="/businesses" component={SignUpForm}/>
-          <PrivateRoute authenticated={this.state.auth} path="/settings" component={SettingsPage}/>
+          <div className="app-content">
+            <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
+            <Route path="/businesses" component={SignUpForm}/>
+            <PrivateRoute authenticated={this.state.auth} path="/settings" component={SettingsPage}/>
+          </div>
+          <Bottom />
         </div>
       </Router>
     );

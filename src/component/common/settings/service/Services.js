@@ -3,6 +3,7 @@ import { get, post } from '../../../../util/ApiUtils';
 import ServiceItem from './ServiceItem';
 import { FaFolder } from 'react-icons/fa';
 import './Services.css';
+import MiniLoader from '../../loader/MiniLoader'
 
 class Services extends Component{
     constructor(props){
@@ -16,19 +17,25 @@ class Services extends Component{
             },
             error: '',
             data: [],
+            isLoading: false
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleError = this.handleError.bind(this);
         }
 
-    fetchData = (id) => {
-        if(!id){
-            return;
+    fetchData = () => {
+        if(!this.props.id){
+            return null;
         }
-        get('/service/value?barber=' + id).then(response => {
+        this.setState({
+            ...this.state,
+            isLoading: true
+        });
+        get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
                 ...this.state,
-                data: response
+                data: response,
+                isLoading: false
             });
         }).catch(e => {
             // ??
@@ -36,19 +43,8 @@ class Services extends Component{
     }
 
     componentDidMount(){
-        this.setState({
-            ...this.state,
-        });
         this.fetchData();
     }
-
-    componentDidUpdate(prevProps){
-        if(prevProps.id !== this.props.id){
-            this.fetchData(this.props.id);
-        }
-    }
-
- 
 
     validate = (form) => {
         if(!form.name){
@@ -64,9 +60,7 @@ class Services extends Component{
     }
 
     handleEdit = () => {
-        console.log("test");
         this.fetchData(this.props.id);
-        console.log(this.state.data);
     }
 
     handleChange = (event) => {
@@ -121,7 +115,9 @@ class Services extends Component{
             return null;
         }
         let elements = [];
-        if(this.state.data.length > 0){
+        if(this.state.isLoading){
+            elements = <MiniLoader isLoading={this.state.isLoading} />
+        }else if(this.state.data.length > 0){
             elements = this.state.data.map((item, index) => (
                 <ServiceItem service={item} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
@@ -168,7 +164,7 @@ class Services extends Component{
                             onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <button type="submit" className="service-submit" onClick={this.handleSubmit}>Add</button>
+                            <button type="submit" className="service-submit btn" onClick={this.handleSubmit}>Add</button>
                         </div>
                     </form>
                 </div>

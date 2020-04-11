@@ -6,7 +6,6 @@
 
 .services-side-bar{
     width: 30%;
-    height: 100%;
     border-right: 1px solid #eee;
     padding: 40px 40px 40px 0;
 }
@@ -44,8 +43,6 @@
 .service-submit{
     padding: 6px 14px;
     background-color: #362821;
-    border: none;
-    outline: none;
     color: #eee;
     margin-top: 10px;
     border-radius: 20px;

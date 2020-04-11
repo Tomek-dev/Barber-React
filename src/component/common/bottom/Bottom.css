@@ -1,0 +1,28 @@
+.bottom-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #362821;
+    display: flex;
+    align-items: center;
+}
+
+.bottom-element{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+    color: #eee;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.bottom-name{
+    color: #eee !important;
+}
+
+.bottom-logo{
+    width: 20%;
+    text-align: center;
+}

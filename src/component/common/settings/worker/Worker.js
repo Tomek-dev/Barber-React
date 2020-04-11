@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { get, post } from '../../../../util/ApiUtils';
 import WorkerItem from './WorkerItem';
-import { FaFolder, FaCamera } from 'react-icons/fa';
+import { FaFolder, FaImages } from 'react-icons/fa';
 import './Worker.css';
+import MiniLoader from '../../loader/MiniLoader';
 
 class Worker extends Component{
     constructor(props){
@@ -12,25 +13,31 @@ class Worker extends Component{
                 name: ''
             },
             data: [],
-            services: []
+            services: [],
+            isLoading: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    fetchData = (id) => {
-        if(!id){
-            return;
+    fetchData = () => {
+        if(!this.props.id){
+            return null;
         }
-        get('/workers/' + id).then(response => {
+        this.setState({
+            ...this.state,
+            isLoading: true
+        });
+        get('/workers/' + this.props.id).then(response => {
             this.setState({
                 ...this.state,
-                data: response
+                data: response,
+                isLoading: false
             });
         }).catch(e => {
             // ??
         });
-        get('/service/value?barber=' + id).then(response => {
+        get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
                 ...this.state,
                 services: response
@@ -42,12 +49,6 @@ class Worker extends Component{
 
     componentDidMount(){
         this.fetchData();
-    }
-
-    componentDidUpdate(prevProps){
-        if(prevProps.id !== this.props.id){
-            this.fetchData(this.props.id);
-        }
     }
 
     validate = (form) => {
@@ -102,7 +103,9 @@ class Worker extends Component{
             return null;
         }
         let elements = [];
-        if(this.state.data.length > 0){
+        if(this.state.isLoading){
+            elements = <MiniLoader isLoading={this.state.isLoading} />
+        }else if(this.state.data.length > 0){
             elements = this.state.data.map((item, index) => (
                 <WorkerItem worker={item} service={this.state.services} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
@@ -117,7 +120,7 @@ class Worker extends Component{
                     </div>
                     <form autoComplete="off" className="worker-form" onSubmit={this.handleSubmit}>
                         <div className="worker-form-object">
-                            <button className="add-image-btn"><FaCamera /></button>
+                            <button className="add-image-btn btn"><FaImages /></button>
                             <input 
                             placeholder="Name"
                             type="text"
@@ -128,7 +131,7 @@ class Worker extends Component{
                             />
                         </div>
                         <div>
-                            <button className="worker-submit" type="submit">Add</button>
+                            <button className="worker-submit btn" type="submit">Add</button>
                         </div>
                     </form>
                 </div>

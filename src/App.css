@@ -7,3 +7,35 @@
     text-align: center;
     color: #457d24;
 }
+
+.btn{
+    background-color: inherit;
+    outline: none;
+    border: none;
+}
+
+.close-btn{
+    float: right;
+    outline: none;
+    border: none;
+    color: #555;
+    background-color: inherit;
+    font-size: 1.2rem;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.app-container{
+    position: relative;
+    min-height: 100vh;
+}
+
+.app-content{
+    padding: 10vh 0;
+    margin: 0 auto;
+    width: 80%;
+    min-width: 600px;
+    min-height: 80vh;
+}

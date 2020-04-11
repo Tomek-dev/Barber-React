@@ -13,10 +13,7 @@ class LoginForm extends Component{
                 username: '',
                 password: ''
             },
-            error: {
-                msg: '',
-                status: ''
-            }
+            error: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -48,10 +45,7 @@ class LoginForm extends Component{
         if(errorMsg){
             this.setState({
                 ...this.state,
-                error: {
-                    msg: errorMsg,
-                    status: 'error'
-                }
+                error: ''
             });
             return;
         }
@@ -59,22 +53,23 @@ class LoginForm extends Component{
         login(loginRequest).then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.token);
             this.props.onLogin();
+            this.setState({
+                form: {
+                    username: '',
+                    password: ''
+                },
+                error: ''
+            });
         }).catch(e => {
             if(e.status === 401){
                 this.setState({
                     ...this.state,
-                    error: {
-                        msg: errorMsg,
-                        status: 'error'
-                    }
+                    error: e.message
                 });
             }else{
                 this.setState({
                     ...this.state,
-                    error: {
-                        msg: e.message || 'Sorry! Something went wrong. Please try again!',
-                        status: 'error'
-                    }
+                    error: e.message || 'Sorry! Something went wrong. Please try again!'
                 });
             }
         });        
@@ -87,8 +82,8 @@ class LoginForm extends Component{
                 <p className="login-paragraph">Login as employer</p>
                 <div className="login-content">
                     <form autoComplete="off" className="login-form" onSubmit={this.handleSubmit}>
-                        <div className={this.state.error.status}>
-                            {this.state.error.msg}
+                        <div className="error">
+                            {this.state.error}
                         </div>
                         <input 
                         placeholder="Username"

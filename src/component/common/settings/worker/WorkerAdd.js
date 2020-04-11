@@ -3,6 +3,7 @@ import { FaPlus, FaFolder, FaTimes } from 'react-icons/fa';
 import { post } from '../../../../util/ApiUtils';
 import Service from './Service';
 import ReactModal from 'react-modal';
+import './WorkerAdd.css';
 
 class WorkerAdd extends Component{
     constructor(props){
@@ -75,7 +76,7 @@ class WorkerAdd extends Component{
         }
         return(
             <div className="worker-add-container">
-                <button type="button" className="worker-add-btn" onClick={this.handleOpen}><FaPlus /></button>
+                <button type="button" className="worker-add-btn btn" onClick={this.handleOpen}><FaPlus /></button>
                 <ReactModal
                 ariaHideApp={false}
                 className="add-modal"
@@ -85,13 +86,13 @@ class WorkerAdd extends Component{
                 isOpen={this.state.display}>
                     <div className="worker-add-modal">
                         <div>
-                            <button className="search-close-btn" onClick={this.handleClose}><FaTimes /></button>
+                            <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
                         <form className="worker-add-form" onSubmit={this.handleSubmit}>
                             <div className="worker-add-service">
                                 {elements}
                             </div>
-                            <button className="worker-add-submit" type="submit">Save</button>
+                            <button className="worker-add-submit btn" type="submit">Save</button>
                         </form>
                     </div>
                 </ReactModal>

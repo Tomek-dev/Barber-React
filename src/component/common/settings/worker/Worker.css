@@ -11,14 +11,12 @@
 }
 
 .add-image-btn{
-    border: none;
-    outline: none;
-    background-color: #bbb;
-    color: #999;
+    background-color: #ddd;
+    color: #aaa;
     height: 8vh;
     width: 8vh;
     font-size: 1.5rem;
-    border-radius: 15px;
+    border-radius: 20px;
     margin-right: 20px;
 }
 
@@ -32,8 +30,8 @@
 }
 
 .add-image-btn:hover{
-    color: #888;
-    background-color: #aaa;
+    color: #999;
+    background-color: #ccc;
 }
 
 .worker-form{
@@ -51,8 +49,6 @@
 .worker-submit{
     padding: 6px 14px;
     background-color: #362821;
-    border: none;
-    outline: none;
     color: #eee;
     margin-top: 10px;
     border-radius: 20px;

@@ -94,7 +94,10 @@ class ForgotForm extends Component{
                 isOpen={this.state.display}>
                     <div className="forgot-content">
                         <div>
-                            <button className="forgot-close-btn" onClick={this.handleClose}><FaTimes /></button>
+                            <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
+                        </div>
+                        <div className={this.state.error.status}>
+                            {this.state.error.msg}
                         </div>
                         <form autoComplete="off" className="forgot-form" onSubmit={this.handleSubmit}>
                             <p className="forgot-paragraph">Dont't worry. Type your email and we will send you token to reset password.</p>

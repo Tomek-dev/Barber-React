@@ -1,0 +1,53 @@
+.service-item, .service-option{
+    display: flex;
+    align-items: center;
+}
+
+.service-item{
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 0 20px;
+    margin: 0 20px;
+}
+
+.service-option{
+    width: 15%;
+    justify-content: space-around;
+}
+
+.service-delete-btn{
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.service-delete-btn:hover{
+    color: #555;
+}
+
+.service-element p{
+    margin: 4px 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.service-item-props{
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.service-item-name{
+    color: #362821 !important;
+    font-weight: 700;
+    font-size: 1rem !important;
+}
+
+.service-left{
+    text-align: left;
+}
+
+.service-right{
+    text-align: right;
+}

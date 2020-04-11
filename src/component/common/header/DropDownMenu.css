@@ -34,10 +34,7 @@
     font-size: 1.1rem;
     align-items: center;
     display: flex;
-    background-color: inherit;
-    border: none;
     color: #555;
-    outline: none;
     cursor: pointer;
 }
 

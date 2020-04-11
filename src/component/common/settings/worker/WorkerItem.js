@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import { FaTrashAlt, FaCamera } from 'react-icons/fa';
+import { FaTrashAlt, FaUserAlt } from 'react-icons/fa';
 import { del } from '../../../../util/ApiUtils';
 import WorkerEdit from './WorkerEdit';
 import WorkerAdd from './WorkerAdd'
+import './WorkerItem.css'
 
 class WorkerItem extends Component{
     constructor(props){
         super(props);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleDelete(){
+        console.log(this.props.worker)
         del('/worker/' + this.props.worker.id).then(() => this.props.onEdit).catch(e => {
             this.props.onError(e.message || 'Sorry! Something went wrong. Please try again!');
         })
@@ -21,7 +24,7 @@ class WorkerItem extends Component{
         if(worker.image){
             element = <img />
         }else{
-            element = <div className="image-not-found"><FaCamera /></div>
+            element = <div className="image-not-found"><FaUserAlt /></div>
         }
         return(
             <div className="worker-item">
@@ -32,7 +35,7 @@ class WorkerItem extends Component{
                 <div className="worker-option">
                     <WorkerAdd onEdit={this.props.onEdit} service={this.props.service} id={worker.id}/>
                     <WorkerEdit onEdit={this.props.onEdit} worker={worker} />
-                    <button onClick={this.handleDelete}><FaTrashAlt /></button>
+                    <button className="worker-delete-btn btn" onClick={this.handleDelete}><FaTrashAlt /></button>
                 </div>
             </div>
         )

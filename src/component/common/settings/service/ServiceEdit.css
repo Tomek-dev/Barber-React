@@ -1,0 +1,8 @@
+.service-edit-btn{
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.service-edit-btn:hover{
+    color: #555;
+}

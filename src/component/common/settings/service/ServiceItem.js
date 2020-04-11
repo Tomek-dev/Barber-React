@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { del } from '../../../../util/ApiUtils';
 import { FaTrashAlt } from 'react-icons/fa';
 import ServiceEdit from './ServiceEdit';
+import './ServiceItem.css'
 
 class ServiceItem extends Component{
     constructor(props){
@@ -23,17 +24,19 @@ class ServiceItem extends Component{
         const service = this.props.service;
         return(
             <div className="service-item">
-                <div className="service-element">
-                    <p>{service.name}</p>
-                    <p>{service.time}</p>
+                <div className="service-item-props">
+                    <div className="service-element">
+                        <p className="service-item-name service-left">{service.name}</p>
+                        <p>{service.description}</p>
+                    </div>
+                    <div className="service-element service-right">
+                        <p>{service.time} min</p>
+                        <p>{service.price} $</p>
+                    </div>
                 </div>
-                <div className="service-element">
-                    <p>{service.description}</p>
-                    <p>{service.price}</p>
-                </div>
-                <div>
+                <div className="service-option">
                     <ServiceEdit onEdit={this.props.onEdit} service={service} />
-                    <button onClick={this.handleDelete}><FaTrashAlt /></button>
+                    <button className="btn service-delete-btn" onClick={this.handleDelete}><FaTrashAlt /></button>
                 </div>
             </div>
         )

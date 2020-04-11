@@ -93,7 +93,7 @@ class SearchForm extends Component{
                 isOpen={this.state.display}>
                     <div className="search-container">
                         <div>
-                            <button className="search-close-btn" onClick={this.handleClose}><FaTimes /></button>
+                            <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
                         <div className="search-content">
                             <form autocomplete="off" onSubmit={this.handleSubmit} className="search-form">

@@ -1,0 +1,8 @@
+.worker-add-btn{
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.worker-add-btn:hover{
+    color: #555;
+}

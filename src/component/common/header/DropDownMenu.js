@@ -35,28 +35,28 @@ class DropDownMenu extends Component {
         let items;
         if(this.props.currentUser.type === 'basic'){  
             items = [
-                <div className="drop-down-item" key="business">
+                <div className="drop-down-item btn" key="business">
                     <Link className="link" to="/business"><FaBriefcase className="icon"/>Business</Link>
                 </div>,
-                <div className="drop-down-item" key="settings">
+                <div className="drop-down-item btn" key="settings">
                     <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item" key="help">
+                <div className="drop-down-item btn" key="help">
                     <Link className="link" to="/help"><FaQuestionCircle className="icon"/>Help</Link>
                 </div>,
-                <div className="drop-down-item" key="logout">
+                <div className="drop-down-item btn" key="logout">
                     <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="icon"/> Logout</button>
                 </div>
             ]
         }else if(this.props.currentUser.type === 'oauht'){ 
             items = [
-                <div className="drop-down-item">
+                <div className="drop-down-item btn">
                     <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
                 </div>,
-                <div className="drop-down-item">
+                <div className="drop-down-item btn">
                     <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item">
+                <div className="drop-down-item btn">
                     <Link className="link"><FaSignOutAlt className="icon"/>Logout</Link>
                 </div>
             ]
@@ -64,7 +64,7 @@ class DropDownMenu extends Component {
 
         return(
             <div className="drop-down">
-                <button className="drop-down-btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>Account</button>
+                <button className="drop-down-btn btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>Account</button>
                 <div className="drop-down-list">
                 {this.state.displayMenu ? (
                     <div>

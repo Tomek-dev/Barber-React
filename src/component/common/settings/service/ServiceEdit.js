@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { put } from '../../../../util/ApiUtils';
 import { FaEdit, FaTimes } from 'react-icons/fa';
 import ReactModal from 'react-modal';
+import './ServiceEdit.css';
 
 class ServiceEdit extends Component{
     constructor(props){
@@ -90,7 +91,7 @@ class ServiceEdit extends Component{
     render(){
         return(
             <div>
-                <button className="service-edit-btn" onClick={this.handleOpen}><FaEdit /></button>
+                <button className="service-edit-btn btn" onClick={this.handleOpen}><FaEdit /></button>
                 <ReactModal
                 ariaHideApp={false}
                 className="edit-modal"
@@ -100,7 +101,7 @@ class ServiceEdit extends Component{
                 isOpen={this.state.display}>
                     <div className="service-edit-modal">
                     <div>
-                        <button className="service-edit-close" onClick={this.handleClose}><FaTimes /></button>
+                        <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                     </div>
                     <form autoComplete="off" onSubmit={this.handleSubmit}>
                         <div className="error">

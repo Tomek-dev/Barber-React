@@ -1,12 +1,15 @@
 .settings-nav-bar{
+    margin-top: 5px;
     display: flex;
     align-items: center;
 }
 
+.settings-container{
+    padding-bottom: 6vh;
+}
+
 .settings-content{
-    padding-top: 10vh;
-    margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 
 .settings-panel{
@@ -14,9 +17,6 @@
 }
 
 .settings-btn{
-    border: none;
-    outline: none;
-    background-color: inherit;
     color: #777;
     font-size: 2rem;
     padding: 20px 0;
