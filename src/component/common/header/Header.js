@@ -12,7 +12,7 @@ class Header extends Component {
 
     render(){
         let menu;
-        if(!this.props.currentUser){ //this.props.user
+        if(!this.props.currentUser){ 
             menu = [
                 <div className="header-login" key="login">
                     <Link to="/login" className="login-link"><FaRegUserCircle className="icon"/> Login</Link>

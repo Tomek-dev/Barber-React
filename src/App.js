@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from './component/common/header/Header';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
@@ -76,9 +76,10 @@ class App extends Component{
         <div className="app-container">
           <Header onLogout={this.handleLogout} currentUser={this.state.user} />
           <div className="app-content">
+            <Route exact path="/" />
             <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
             <Route path="/businesses" component={SignUpForm}/>
-            <PrivateRoute authenticated={this.state.auth} path="/settings" component={SettingsPage}/>
+            <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
           </div>
           <Bottom />
         </div>

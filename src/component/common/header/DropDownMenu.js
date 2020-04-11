@@ -64,7 +64,7 @@ class DropDownMenu extends Component {
 
         return(
             <div className="drop-down">
-                <button className="drop-down-btn btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>Account</button>
+                <button className="drop-down-btn btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>{this.props.currentUser.name}</button>
                 <div className="drop-down-list">
                 {this.state.displayMenu ? (
                     <div>
@@ -75,7 +75,6 @@ class DropDownMenu extends Component {
             </div>
         );
     }
-    //Accoutn to username
 }
 
 export default DropDownMenu;

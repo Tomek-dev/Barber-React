@@ -8,7 +8,7 @@ import {
     <Route {...rest} render={(props) => {
         if(authenticated === true){
             return(
-                <Component {...props} />
+                <Component {...rest} {...props} />
             )
         }else{
             return(

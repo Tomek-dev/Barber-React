@@ -92,7 +92,7 @@ class SignUpForm extends Component{
             this.setState({
                ...this.state,
                error: {
-                   msg: 'Sorry! Something went wrong. Please try again!',
+                   msg: e.message || 'Sorry! Something went wrong. Please try again!',
                    status: 'error' 
                }
             });

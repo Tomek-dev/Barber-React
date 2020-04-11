@@ -1,0 +1,8 @@
+.profile-edit-btn{
+    color: #777;
+    font-size: 1.3rem;
+}
+
+.profile-edit-btn:hover{
+    color: #555;
+}

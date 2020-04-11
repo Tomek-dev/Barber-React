@@ -1,0 +1,35 @@
+.barber-edit-element{
+    margin: 12px auto;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    padding: 0 5px;
+    width: 100%;
+}
+
+.barber-edit-form{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 10px auto;
+}
+
+.barber-edit-submit{
+    color: #eee;
+    background-color: #362821;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 1.1rem;
+}
+
+.barber-edit-submit:hover{
+    background-color: #251710;
+    color: #ddd;
+}
+
+.barber-edit-warn p{
+    color: #76020b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

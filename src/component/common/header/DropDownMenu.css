@@ -19,6 +19,7 @@
 
 
 .link{
+    font-size: 1rem;
     text-decoration: none;
     color: #555;
     display: flex;
@@ -43,6 +44,7 @@
 }
 
 .drop-down-logout-btn{
+    font-size: 1rem;
     border: none;
     outline: none;
     background-color: inherit;

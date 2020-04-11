@@ -3,6 +3,7 @@ import { FaCalendarAlt, FaStoreAlt, FaUsersCog, FaBookOpen, FaCamera } from 'rea
 import './SettingsPage.css';
 import Services from './service/Services';
 import Worker from './worker/Worker'
+import Barber from './barber/Barber'
 import { get } from '../../../util/ApiUtils'
 import Loader from '../loader/Loader';
 
@@ -66,7 +67,8 @@ class SettingsPage extends Component{
                         </button>
                     </div>
                     <div className="settings-panel">
-                        <Services id={this.state.barber.id} display={display}/>
+                        <Barber currentUser={this.props.currentUser} barber={this.state.barber} id={id} display={display}/>
+                        <Services id={id} display={display}/>
                         <Worker id={id} display={display}/>
                     </div>
                 </div>

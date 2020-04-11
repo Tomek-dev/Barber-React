@@ -1,0 +1,20 @@
+.barber-owner-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.barber-owner-props{
+    display: flex;
+    align-items: center;
+}
+
+.barber-owner-props p{
+    color: #777;
+}
+
+.barber-owner-name{
+    margin-left: 20px;
+    color: #362821 !important;
+    font-weight: 700;
+}
