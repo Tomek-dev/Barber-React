@@ -17,6 +17,10 @@ class ServiceEdit extends Component{
             error: '',
             display: false
         }
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
@@ -43,7 +47,9 @@ class ServiceEdit extends Component{
     handleChange = (event) => {
         this.setState({
             ...this.state,
-            [event.target.name]: event.target.value
+            form: {
+                [event.target.name]: event.target.value
+            }
         });
     }
 
@@ -94,12 +100,12 @@ class ServiceEdit extends Component{
                 <button className="service-edit-btn btn" onClick={this.handleOpen}><FaEdit /></button>
                 <ReactModal
                 ariaHideApp={false}
-                className="edit-modal"
-                overlayClassName="edit-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
-                    <div className="service-edit-modal">
+                <div className="service-edit-modal">
                     <div>
                         <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                     </div>
@@ -111,14 +117,14 @@ class ServiceEdit extends Component{
                         type="text"
                         name="name"
                         placeholder="Name"
-                        className="service-form-element"
+                        className="service-modal-element"
                         value={this.state.form.name}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Description"
                         type="text"
                         name="description"
-                        className="service-form-element"
+                        className="service-modal-element"
                         value={this.state.form.description}
                         onChange={this.handleChange}/>
                         <div className="service-props">
@@ -127,7 +133,7 @@ class ServiceEdit extends Component{
                             name="price"
                             pattern="\d*"
                             placeholder="Price"
-                            className="service-props-element"
+                            className="service-modal-props"
                             value={this.state.form.price}
                             onChange={this.handleChange}/>
                             <input 
@@ -135,15 +141,15 @@ class ServiceEdit extends Component{
                             placeholder="Time"
                             name="time"
                             pattern="\d*"
-                            className="service-props-element"
+                            className="service-modal-props"
                             value={this.state.form.time}
                             onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <button type="submit" className="service-submit" onClick={this.handleSubmit}>Add</button>
+                            <button type="submit" className="service-submit btn service-edit-submit" onClick={this.handleSubmit}>Add</button>
                         </div>
                     </form>
-                    </div>
+                </div>
                 </ReactModal>
             </div>
         )

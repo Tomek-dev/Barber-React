@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Service.css';
 
 class Service extends Component{
     constructor(props){
@@ -13,8 +14,8 @@ class Service extends Component{
     render(){
         let service = this.props.service;
         return(
-            <button className="worker-add-service-btn" onClick={this.handleClick}>
-                <p>{service.name}</p>
+            <button type="button" className="worker-add-service-btn btn" onClick={this.handleClick}>
+                <p className="worker-add-service-name">{service.name}</p>
                 <p>{service.description}</p>
             </button>  
         )

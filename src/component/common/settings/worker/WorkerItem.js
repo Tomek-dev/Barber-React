@@ -32,7 +32,7 @@ class WorkerItem extends Component{
                     <p>{worker.name}</p>
                 </div>
                 <div className="worker-option">
-                    <WorkerAdd onEdit={this.props.onEdit} service={this.props.service} id={worker.id}/>
+                    <WorkerAdd onEdit={this.props.onEdit} worker={worker} service={this.props.service} id={worker.id}/>
                     <WorkerEdit onEdit={this.props.onEdit} worker={worker} />
                     <button className="worker-delete-btn btn" onClick={this.handleDelete}><FaTrashAlt /></button>
                 </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { post } from '../../../../util/ApiUtils';
-import { FaCogs } from 'react-icons/fa';
+import { FaCogs, FaTimes } from 'react-icons/fa';
 import ReactModal from 'react-modal';
 import { PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN } from '../../../../constans/Constant';
 import './ProfileEdit.css'
@@ -21,6 +21,11 @@ class ProfileEdit extends Component{
                 status: ''
             }
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSuccess = this.handleSuccess.bind(this);
     }
 
     handleOpen(){
@@ -127,36 +132,47 @@ class ProfileEdit extends Component{
                 <button type="button" onClick={this.handleSuccess}>Ok</button>
             </div>
         }else{
-            elements = <form onSubmit={this.handleSubmit} className="profile-edit-form">
+            elements = <div className="profile-edit-container">
+                <div>
+                    <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
+                </div>
+                <form autoComplete="off" onSubmit={this.handleSubmit} className="profile-edit-form">
                 <div className="error">
                     {this.state.error.status === 'error' ? this.state.error.msg : null}
                 </div>
                 <input 
+                placeholder="Password"
                 type="password"
                 name="password"
                 className="profile-edit-element"
                 value={this.state.form.password}
                 onChange={this.handleChange}/>
                 <input 
+                placeholder="New Password"
                 type="password"
                 name="newPass"
                 className="profile-edit-element"
                 value={this.state.form.newPass}
                 onChange={this.handleChange}/>
                 <input 
+                placeholder="Confirm New Password"
                 type="password"
                 name="conNewPass"
                 className="profile-edit-element"
                 value={this.state.form.conNewPass}
                 onChange={this.handleChange}/>
-            </form>
+                <div className="profile-submit">
+                    <button type="submit" className="profile-edit-submit btn">Change</button>
+                </div>
+                </form>
+            </div>
         }
         return(
             <div className="profile-edit-container">
                 <button className="profile-edit-btn btn" onClick={this.handleOpen}><FaCogs /></button>
                 <ReactModal
                 ariaHideApp={false}
-                className="profile-edit-modal"
+                className="modal"
                 overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}

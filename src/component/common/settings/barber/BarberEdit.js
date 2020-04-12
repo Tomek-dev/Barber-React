@@ -89,7 +89,7 @@ class BarberEdit extends Component{
         }
         return(
             <div className="barber-edit-container">
-                <form onSubmit={this.handleSubmit} className="barber-edit-form">
+                <form autoComplete="off" onSubmit={this.handleSubmit} className="barber-edit-form">
                     <input 
                     type="text"
                     name="name"

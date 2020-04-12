@@ -86,8 +86,8 @@ class SearchForm extends Component{
                 <button className="search-btn" onClick={this.handleOpen}><FaSearch /></button>
                 <ReactModal 
                 ariaHideApp={false}
-                className="search-modal"
-                overlayClassName="search-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
@@ -96,7 +96,7 @@ class SearchForm extends Component{
                             <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
                         <div className="search-content">
-                            <form autocomplete="off" onSubmit={this.handleSubmit} className="search-form">
+                            <form autoComplete="off" onSubmit={this.handleSubmit} className="search-form">
                                 <div className="search-form-bar">
                                     <p className="search-paragraph">Search</p>
                                     <input 

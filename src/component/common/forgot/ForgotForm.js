@@ -87,8 +87,8 @@ class ForgotForm extends Component{
                 <button onClick={this.handleOpen} className="forgot-btn" type="button">Forgot password</button>
                 <ReactModal
                 ariaHideApp={false}
-                className="forgot-modal"
-                overlayClassName="forgot-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>

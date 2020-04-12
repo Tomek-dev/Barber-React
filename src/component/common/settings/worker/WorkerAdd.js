@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FaPlus, FaFolder, FaTimes } from 'react-icons/fa';
-import { post } from '../../../../util/ApiUtils';
+import { FaPlus, FaFolder, FaTimes, FaExchangeAlt } from 'react-icons/fa';
+import { get, post } from '../../../../util/ApiUtils';
 import Service from './Service';
 import ReactModal from 'react-modal';
 import './WorkerAdd.css';
@@ -10,9 +10,23 @@ class WorkerAdd extends Component{
         super(props);
         this.state = {
             display: false,
-            selected: [],
-            error: ''
+            selected: '',
+            data: [],
+            error: '',
+            option: false
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOption = this.handleOption.bind(this);
+    }
+
+    componentDidMount(){
+        this.setState({
+            ...this.state,
+            data: this.props.service
+        });
     }
 
     handleOpen(){
@@ -46,14 +60,28 @@ class WorkerAdd extends Component{
             });
             return;
         }
-        post(null, '/worker/' + this.props.id + '/add/' + this.state.selected).then(response => {
+        let url;
+        if(this.state.option){
+            url = '/worker/' + this.props.worker.id + '/add/' + this.state.selected
+        }else{
+            url = '/worker/' + this.props.worker.id + '/remove/' + this.state.selected
+        }
+        post(null, url).then(() => {
             this.setState({
+                ...this.state,
                 display: false,
                 selected: '',
                 error: ''
             });
         }).catch(e => {
             // ??
+        });
+    }
+
+    handleOption=()=>{
+        this.setState({
+            ...this.state,
+            option: !this.state.option
         });
     }
 
@@ -65,10 +93,16 @@ class WorkerAdd extends Component{
     }
 
     render(){
-        const service = this.props.service;
+        const service = this.state.data;
+        let remove = service.filter(value => value.workers.includes(this.props.worker.name));
+        let add = service.filter(value => !value.workers.includes(this.props.worker.name));
         let elements = [];
-        if(service.length > 0){
-            elements = service.map((item, index) => (
+        if(service.length > 0 && !this.state.option){
+            elements = remove.map((item, index) => (
+                <Service service={item} key={index} onClick={this.handleChange}/>
+            ))
+        }else if(service.length > 0 && this.state.option){
+            elements = add.map((item, index) => (
                 <Service service={item} key={index} onClick={this.handleChange}/>
             ))
         }else{
@@ -79,8 +113,8 @@ class WorkerAdd extends Component{
                 <button type="button" className="worker-add-btn btn" onClick={this.handleOpen}><FaPlus /></button>
                 <ReactModal
                 ariaHideApp={false}
-                className="add-modal"
-                overlayClassName="add-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
@@ -89,6 +123,10 @@ class WorkerAdd extends Component{
                             <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                         </div>
                         <form className="worker-add-form" onSubmit={this.handleSubmit}>
+                            <div className="worker-add-select">
+                                <p>{this.state.option ? 'Select to add: ': 'Select to remove: '}</p>
+                                <button type="button" className="btn worker-option-btn" onClick={this.handleOption}><FaExchangeAlt /></button>
+                            </div>
                             <div className="worker-add-service">
                                 {elements}
                             </div>

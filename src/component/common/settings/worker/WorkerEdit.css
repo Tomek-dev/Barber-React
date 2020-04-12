@@ -6,3 +6,35 @@
 .worker-edit-btn:hover{
     color: #555;
 }
+
+.worker-edit-modal{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.worker-edit-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.worker-edit-element{
+    margin: 20px auto;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    padding: 0 5px;
+    width: 80%;
+}
+
+.worker-edit-submit{
+    background-color: #362821;
+    color: #eee;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.worker-edit-submit:hover{
+    background-color: #251710;
+    color: #ddd;
+}

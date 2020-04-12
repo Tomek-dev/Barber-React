@@ -76,8 +76,8 @@ class WorkerEdit extends Component{
                 <button className="worker-edit-btn btn" onClick={this.handleOpen}><FaEdit /></button>
                 <ReactModal
                 ariaHideApp={false}
-                className="edit-modal"
-                overlayClassName="edit-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleClose}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
@@ -85,7 +85,7 @@ class WorkerEdit extends Component{
                     <div>
                         <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                     </div>
-                    <form autoComplete="off" onSubmit={this.handleSubmit}>
+                    <form autoComplete="off" className="worker-edit-form" onSubmit={this.handleSubmit}>
                         <input 
                         type="text"
                         className="worker-edit-element"
@@ -93,7 +93,9 @@ class WorkerEdit extends Component{
                         placeholder="Name"
                         value={this.state.form.value}
                         onChange={this.handleChange}/>
-                        <button type="submit" className="worker-edit-submit btn">Edit</button>
+                        <div>
+                            <button type="submit" className="worker-edit-submit btn">Edit</button>
+                        </div>
                     </form>
                 </div>
                 </ReactModal>

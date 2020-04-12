@@ -6,3 +6,49 @@
 .worker-add-btn:hover{
     color: #555;
 }
+
+.worker-add-modal{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.worker-add-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.worker-add-select p{
+    color: #777;
+    margin: 0;
+}
+
+.worker-option-btn{
+    color: #777;
+    font-size: 1.3rem;
+}
+
+.worker-option-btn:hover{
+    color: #555;
+}
+
+.worker-add-submit{
+    background-color: #362821;
+    color: #eee;
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+.worker-add-submit:hover{
+    background-color: #251710;
+    color: #ddd;
+}
+
+.worker-add-service{
+    margin: 10px;
+    height: 30vh;
+    overflow-x: hidden;
+    border-bottom: 1px solid #ccc;
+}
