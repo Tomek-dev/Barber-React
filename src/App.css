@@ -12,9 +12,11 @@
     background-color: inherit;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 .close-btn{
+    cursor: pointer;
     float: right;
     outline: none;
     border: none;

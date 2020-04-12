@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ProfileEdit from './ProfileEdit';
 import BarberEdit from './BarberEdit';
 import './Barber.css';
+import SocialEdit from './social/SocialEdit';
+import BarberSocial from './social/BarberSocial';
 
 class Barber extends Component{
     constructor(props){
@@ -21,8 +23,13 @@ class Barber extends Component{
                     </div>
                     <ProfileEdit />
                 </div>
-                <div>
-                    <BarberEdit barber={this.props.barber}/>
+                <div className="barber-content">
+                    <div className="barber-content-element barber-left">
+                        <BarberEdit barber={this.props.barber}/>
+                    </div>
+                    <div className="barber-content-element">
+                        <BarberSocial id={this.props.barber.id} />
+                    </div>
                 </div>
             </div>
         )

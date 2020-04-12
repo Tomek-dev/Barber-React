@@ -1,0 +1,32 @@
+.social-item, .social-props, .social-option{
+    display: flex;
+    align-items: center;
+}
+
+.social-item{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.social-delete-btn{
+    color: #777;
+    font-size: 1.1rem;
+}
+
+.social-delete-btn:hover{
+    color: #555;
+}
+
+.social-props{
+    width: 80%;
+}
+
+.social-props p{
+    margin: 6px 0 6px 10px;
+}
+
+.social-option{
+    width: 20%;
+}

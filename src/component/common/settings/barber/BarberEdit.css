@@ -10,7 +10,7 @@
 .barber-edit-form{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 80%;
     margin: 10px auto;
 }
 

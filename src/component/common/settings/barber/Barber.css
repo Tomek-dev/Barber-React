@@ -18,3 +18,18 @@
     color: #362821 !important;
     font-weight: 700;
 }
+
+.barber-content{
+    display: flex;
+    align-items: center;
+}
+
+.barber-content-element{
+    width: 50%;
+    padding: 0 20px;
+}
+
+.barber-left{
+    border-right: 1px solid #eee;
+
+}

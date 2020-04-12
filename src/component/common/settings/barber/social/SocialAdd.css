@@ -1,0 +1,63 @@
+.social-add-btn{
+    color: #777;
+    font-size: 1rem;
+}
+
+.social-add-btn:hover{
+    color: #555;
+}
+
+.social-add-modal{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.social-add-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.social-add-element{
+    margin: 20px auto;
+    border: none;
+    border-bottom: 1px solid #777;
+    outline: none;
+    padding: 0 5px;
+    width: 80%;
+}
+
+.social-type-btn{
+    color: #777;
+    font-size: 1.3rem;
+}
+
+.social-type-btn:hover{
+    color: #555;
+}
+
+.social-add-submit{
+    background-color: #362821;
+    color: #eee;
+    padding: 8px 14px;
+    border-radius: 20px;
+    float: right;
+    margin-right: 20px;
+}
+
+.social-add-submit:hover{
+    background-color: #251710;
+    color: #ddd;
+}
+
+.social-type-option{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.selected{
+    color: #555;
+}
