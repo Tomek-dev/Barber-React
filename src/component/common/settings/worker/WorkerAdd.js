@@ -66,16 +66,16 @@ class WorkerAdd extends Component{
         }else{
             url = '/worker/' + this.props.worker.id + '/remove/' + this.state.selected
         }
-        post(null, url).then(() => {
-            this.setState({
-                ...this.state,
-                display: false,
-                selected: '',
-                error: ''
-            });
-        }).catch(e => {
+        post(null, url).catch(e => {
             // ??
         });
+        this.setState({
+            ...this.state,
+            display: false,
+            selected: '',
+            error: ''
+        });
+        this.props.onEdit();
     }
 
     handleOption=()=>{
@@ -99,11 +99,11 @@ class WorkerAdd extends Component{
         let elements = [];
         if(service.length > 0 && !this.state.option){
             elements = remove.map((item, index) => (
-                <Service service={item} key={index} onClick={this.handleChange}/>
+                <Service service={item} key={index} selected={this.state.selected} onClick={this.handleChange}/>
             ))
         }else if(service.length > 0 && this.state.option){
             elements = add.map((item, index) => (
-                <Service service={item} key={index} onClick={this.handleChange}/>
+                <Service service={item} key={index} selected={this.state.selected} onClick={this.handleChange}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any services yet</p>

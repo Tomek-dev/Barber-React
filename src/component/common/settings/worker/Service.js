@@ -14,7 +14,7 @@ class Service extends Component{
     render(){
         let service = this.props.service;
         return(
-            <button type="button" className="worker-add-service-btn btn" onClick={this.handleClick}>
+            <button type="button" className={`worker-add-service-btn btn ${this.props.selected === this.props.service.id ? `selected`: ``}`} onClick={this.handleClick}>
                 <p className="worker-add-service-name">{service.name}</p>
                 <p>{service.description}</p>
             </button>  

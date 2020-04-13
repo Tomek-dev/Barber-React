@@ -23,12 +23,14 @@ class WorkerEdit extends Component{
     componentDidMount(){
         this.setState({
             ...this.state,
-            form: this.props.worker.name
+            form: {
+                name: this.props.worker.name
+            }
         });
     }
 
     validate = (form) => {
-        if(form.name){
+        if(!form.name){
             return 'Name may not be empty!'
         }
         return null;
@@ -50,7 +52,10 @@ class WorkerEdit extends Component{
 
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value
+            ...this.state,
+            form: {
+                [event.target.name]: event.target.value
+            }
         });
     }
 
@@ -65,9 +70,18 @@ class WorkerEdit extends Component{
             });
             return;
         }
-        put(form, '/worker/' + this.params.barber.id).catch(e => {
+        put(form, '/worker/' + this.props.worker.id).catch(e => {
             // ??
         });
+        this.setState({
+            form: {
+                name: ''
+            },
+            error: '',
+            display: false
+        });
+
+        this.props.onEdit();
     }
 
     render(){
@@ -86,12 +100,15 @@ class WorkerEdit extends Component{
                         <button className="close-btn" onClick={this.handleClose}><FaTimes /></button>
                     </div>
                     <form autoComplete="off" className="worker-edit-form" onSubmit={this.handleSubmit}>
+                        <div className="error">
+                            {this.state.error}
+                        </div>
                         <input 
                         type="text"
                         className="worker-edit-element"
                         name="name"
                         placeholder="Name"
-                        value={this.state.form.value}
+                        value={this.state.form.name}
                         onChange={this.handleChange}/>
                         <div>
                             <button type="submit" className="worker-edit-submit btn">Edit</button>

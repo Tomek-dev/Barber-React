@@ -29,7 +29,7 @@
 
 .social-type-btn{
     color: #777;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
 }
 
 .social-type-btn:hover{
@@ -60,4 +60,20 @@
 
 .selected{
     color: #555;
+}
+
+.facebook{
+    color: #4267b2;
+}
+
+.messenger{
+    color: #0084FF;
+}
+
+.twitter{
+    color: #38A1F3;
+}
+
+.instagram{
+    color: #231F20;
 }

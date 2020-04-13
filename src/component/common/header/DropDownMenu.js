@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './DropDownMenu.css';
-import { FaUser, FaSlidersH, FaSignOutAlt, FaQuestionCircle, FaBriefcase, FaRegUserCircle } from 'react-icons/fa' 
+import { FaUser, FaSlidersH, FaSignOutAlt, FaBriefcase, FaRegUserCircle } from 'react-icons/fa' 
 
 class DropDownMenu extends Component {
     constructor(props){
@@ -36,13 +36,10 @@ class DropDownMenu extends Component {
         if(this.props.currentUser.type === 'basic'){  
             items = [
                 <div className="drop-down-item btn" key="business">
-                    <Link className="link" to="/business"><FaBriefcase className="icon"/>Business</Link>
+                    <Link className="link" to={'/barber/' + this.props.id}><FaBriefcase className="icon"/>Business</Link>
                 </div>,
                 <div className="drop-down-item btn" key="settings">
                     <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
-                </div>,
-                <div className="drop-down-item btn" key="help">
-                    <Link className="link" to="/help"><FaQuestionCircle className="icon"/>Help</Link>
                 </div>,
                 <div className="drop-down-item btn" key="logout">
                     <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="icon"/> Logout</button>

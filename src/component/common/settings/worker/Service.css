@@ -18,3 +18,7 @@
     font-weight: 700;
     color: #362821 !important;
 }
+
+.selected{
+    background-color: #eee;
+}

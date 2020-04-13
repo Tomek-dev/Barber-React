@@ -69,19 +69,19 @@ class SocialAdd extends Component{
             });
             return;
         }
-        post(form, '/social/add').then(() => {
-            this.setState({
-                form: {
-                    url: '',
-                    socialType: ''
-                },
-                error: '',
-                display: false
-            });
-            this.props.onEdit();
-        }).catch(e => {
+        post(form, '/social/add').catch(e => {
             // ??
         })
+        this.setState({
+            form: {
+                url: '',
+                socialType: ''
+            },
+            error: '',
+            display: false
+        });
+        console.log(this.state)
+        this.props.onEdit();
     }
 
     render(){
@@ -105,22 +105,22 @@ class SocialAdd extends Component{
                                 {this.state.error}
                             </div>
                             <div className="social-type-option">
-                                <button className={`btn social-type-btn ${type == 'messenger' ? `selected`: ``}`} 
+                                <button className={`btn social-type-btn ${type == 'messenger' ? `messenger`: ``}`} 
                                 name="socialType" 
                                 value="messenger" onClick={this.handleChange} type="button">
                                     <FaFacebookMessenger />
                                 </button>
-                                <button className={`btn social-type-btn ${type == 'twitter' ? `selected`: ``}`} 
+                                <button className={`btn social-type-btn ${type == 'twitter' ? `twitter`: ``}`} 
                                 name="socialType" 
                                 value="twitter" onClick={this.handleChange} type="button">
                                     <FaTwitterSquare />
                                 </button>
-                                <button className={`btn social-type-btn ${type == 'instagram' ? `selected`: ``}`} 
+                                <button className={`btn social-type-btn ${type == 'instagram' ? `instagram`: ``}`} 
                                 name="socialType" 
                                 value="instagram" onClick={this.handleChange} type="button">
                                     <FaInstagram />
                                 </button>
-                                <button className={`btn social-type-btn ${type == 'facebook' ? `selected`: ``}`} 
+                                <button className={`btn social-type-btn ${type == 'facebook' ? `facebook`: ``}`} 
                                 name="socialType" 
                                 value="facebook" onClick={this.handleChange} type="button">
                                     <FaFacebook />

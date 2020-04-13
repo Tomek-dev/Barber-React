@@ -48,6 +48,7 @@ class ServiceEdit extends Component{
         this.setState({
             ...this.state,
             form: {
+                ...this.state.form,
                 [event.target.name]: event.target.value
             }
         });
@@ -77,21 +78,20 @@ class ServiceEdit extends Component{
             });
             return;
         }
-        put(form, '/service/' ).then(response => {
-            this.setState({
-                form: {
-                    name: '',
-                    description: '',
-                    price: '',
-                    time: ''
-                },
-                error: '',
-                display: false
-            });
-            this.props.edit();
-        }).catch(e => {
+        put(form, '/service/' + this.props.service.id).catch(e => {
             // ??
         });
+        this.setState({
+            form: {
+                name: '',
+                description: '',
+                price: '',
+                time: ''
+            },
+            error: '',
+            display: false
+        });
+        this.props.onEdit();
     }
 
     render(){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { post } from '../../../../util/ApiUtils';
+import { put } from '../../../../util/ApiUtils';
 import './BarberEdit.css';
 import { FaExclamationCircle } from 'react-icons/fa';
 
@@ -54,7 +54,7 @@ class BarberEdit extends Component{
             });
             return;
         }
-        post(form, '/barber/').then(() => {
+        put(form, '/barber').then(() => {
             this.setState({
                 ...this.state,
                 error: {
@@ -77,6 +77,7 @@ class BarberEdit extends Component{
         this.setState({
             ...this.state,
             form: {
+                ...this.state.form,
                 [event.target.name]: event.target.value
             }
         });
@@ -90,6 +91,9 @@ class BarberEdit extends Component{
         return(
             <div className="barber-edit-container">
                 <form autoComplete="off" onSubmit={this.handleSubmit} className="barber-edit-form">
+                    <div className={this.state.error.status}>
+                        {this.state.error.msg}
+                    </div>
                     <input 
                     type="text"
                     name="name"

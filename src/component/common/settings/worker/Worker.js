@@ -14,7 +14,8 @@ class Worker extends Component{
             },
             data: [],
             services: [],
-            isLoading: false
+            isLoading: false,
+            error: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,7 +79,15 @@ class Worker extends Component{
                 error: errorMsg
             });
         }
-        post(form, '/worker/add').catch(e => {
+        post(form, '/worker/add').then(() => {
+            this.setState({
+                ...this.state,
+                form: {
+                    name: ''
+                },
+                error: ''
+            });
+        }).catch(e => {
             this.setState({
                 ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'

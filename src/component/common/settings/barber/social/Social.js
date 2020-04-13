@@ -21,13 +21,13 @@ class Social extends Component{
         const social = this.props.social;
         let logo;
         if(social.socialType === 'Facebook'){
-            logo = <FaFacebook />
+            logo = <FaFacebook className="facebook"/>
         }else if(social.socialType === 'Instagram'){
-            logo = <FaInstagram />
+            logo = <FaInstagram className="instagram"/>
         }else if(social.socialType === 'Twitter'){
-            logo = <FaTwitterSquare />
+            logo = <FaTwitterSquare className="twitter"/>
         }else if(social.socialType === 'Messenger'){
-            logo = <FaFacebookMessenger />
+            logo = <FaFacebookMessenger className="messenger"/>
         }
         return(
             <div className="social-item">

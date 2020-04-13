@@ -103,7 +103,7 @@ class ProfileEdit extends Component{
                 error: errorMsg
             });
         }
-        post(form, '').then(() => {
+        post(form, '/password/change').then(() => {
             this.setState({
                 ...this.state,
                 error: {

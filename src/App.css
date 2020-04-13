@@ -64,3 +64,19 @@
     outline: transparent;
     border-radius: 10px;
 }
+
+.facebook{
+    color: #4267b2;
+}
+
+.messenger{
+    color: #0084FF;
+}
+
+.twitter{
+    color: #38A1F3;
+}
+
+.instagram{
+    color: #231F20;
+}
