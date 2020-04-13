@@ -10,6 +10,7 @@
     box-sizing: border-box;
     background-color: #fff;
     z-index: 1;
+    height: 10vh;
 }
 
 .header-logo{

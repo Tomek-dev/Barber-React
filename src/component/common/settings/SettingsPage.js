@@ -6,6 +6,7 @@ import Worker from './worker/Worker'
 import Barber from './barber/Barber'
 import { get } from '../../../util/ApiUtils'
 import Loader from '../loader/Loader';
+import CreateBarber from './CreateBarber';
 
 class SettingsPage extends Component{
     constructor(props){
@@ -18,7 +19,7 @@ class SettingsPage extends Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentDidMount(){
+    fetchData = () => {
         this.setState({
             ...this.state,
             isLoading: true
@@ -30,8 +31,23 @@ class SettingsPage extends Component{
                 isLoading: false
             });
         }).catch(e => {
+            if(e.status === 404){
+                this.setState({
+                    ...this.state,
+                    isLoading: false,
+                    barber: null
+                })
+            }
             // ??
         })
+    }
+
+    handleEdit =() => {
+        this.fetchData();
+    }
+
+    componentDidMount(){
+        this.fetchData();
     }
 
     handleClick = (event) => {
@@ -41,11 +57,18 @@ class SettingsPage extends Component{
     }
 
     render(){
-        const display = this.state.display;
-        let id = this.state.barber.id;
         if(this.state.isLoading){
             return <Loader isLoading={this.state.isLoading} />;
         }
+        if(!this.state.barber){
+            return( 
+                <div className="settings-container">
+                    <CreateBarber onEdit={this.handleEdit}/>
+                </div>
+            )
+        }
+        const display = this.state.display;
+        let id = this.state.barber.id;
         return(
             <div className="settings-container">
                 <div className="settings-content">

@@ -3,6 +3,13 @@
     flex-direction: column;
 }
 
+.worker-content{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    height: 40vh;
+}
+
 .workers-nav-bar{
     border-bottom: 1px solid #eee;
     padding-bottom: 5vh;

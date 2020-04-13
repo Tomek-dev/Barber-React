@@ -39,7 +39,8 @@ class WorkerAdd extends Component{
     handleClose(){
         this.setState({
             ...this.state,
-            display: false
+            display: false,
+            selected: ''
         })
     }
 

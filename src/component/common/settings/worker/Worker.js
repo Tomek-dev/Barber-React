@@ -15,7 +15,7 @@ class Worker extends Component{
             data: [],
             services: [],
             isLoading: false,
-            error: ''
+            error: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -79,6 +79,18 @@ class Worker extends Component{
                 error: errorMsg
             });
         }
+        get('/worker/available/' + form.name).then(response => {
+            if(!response.available){
+                this.setState({
+                    ...this.state,
+                    error: 'This name is already taken.'
+                });
+                return;
+            }
+        }).catch(e => {
+            //??
+            return;
+        })
         post(form, '/worker/add').then(() => {
             this.setState({
                 ...this.state,
