@@ -14,7 +14,9 @@ const request = (options) => {
 
     return fetch(options.url, options)
     .then(response => 
-        response.json().then(json => {
+        response.text()
+        .then((data) => data ? JSON.parse(data) : {})
+        .then(json => {
             if(!response.ok) {
                 return Promise.reject(json);
             }

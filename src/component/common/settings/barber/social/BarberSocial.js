@@ -15,6 +15,7 @@ class BarberSocial extends Component{
             error: ''
         }
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleError = this.handleError.bind(this);
     }
 
     fetchData = () => {
@@ -38,6 +39,13 @@ class BarberSocial extends Component{
         })
     }
 
+    handleError = (msg) => {
+        this.setState({
+            ...this.state,
+            error: msg
+        })
+    }
+
     componentDidMount(){
         this.fetchData();
     }
@@ -52,7 +60,7 @@ class BarberSocial extends Component{
             elements = <MiniLoader isLoading={this.state.isLoading} />
         }else if(this.state.data.length > 0){
             elements = this.state.data.map((item, index) => (
-                <Social social={item} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
+                <Social social={item} key={index} onError={this.handleError} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any socials yet</p>

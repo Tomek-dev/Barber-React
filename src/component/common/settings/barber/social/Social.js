@@ -11,10 +11,9 @@ class Social extends Component{
     }
 
     handleDelete = () => {
-        del('/social/' + this.props.social.id).catch(e => {
-            // ?? 
+        del('/social/' + this.props.social.id).then(() => this.props.onEdit()).catch(e => {
+            this.props.onError(e.message);
         })
-        this.props.onEdit();
     }
 
     render(){

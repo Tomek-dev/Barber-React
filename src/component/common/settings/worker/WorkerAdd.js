@@ -29,6 +29,15 @@ class WorkerAdd extends Component{
         });
     }
 
+    componentDidUpdate(prevProps){
+        if(this.props.service !== prevProps.service){
+            this.setState({
+                ...this.state,
+                data: this.props.service
+            });
+        }
+    }
+
     handleOpen(){
         this.setState({
             ...this.state,
@@ -67,16 +76,20 @@ class WorkerAdd extends Component{
         }else{
             url = '/worker/' + this.props.worker.id + '/remove/' + this.state.selected
         }
-        post(null, url).catch(e => {
-            // ??
+        post(null, url).then(() => {
+            this.setState({
+                ...this.state,
+                display: false,
+                selected: '',
+                error: ''
+            });
+            this.props.onEdit();
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: e.message
+            })
         });
-        this.setState({
-            ...this.state,
-            display: false,
-            selected: '',
-            error: ''
-        });
-        this.props.onEdit();
     }
 
     handleOption=()=>{

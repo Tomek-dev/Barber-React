@@ -44,8 +44,8 @@ class SignUpForm extends Component{
             return 'Username is too long (Maximum ' + USERNAME_MAX_LENGTH + ' characters is allowed).';
         }else if(!form.email){
             return 'Email may not be empty.';
-        }else if(!EMAIL_REGEX.test(form.email)){
-            return 'Email is invalid.';
+        //}else if(!EMAIL_REGEX.test(form.email)){
+        //    return 'Email is invalid.';
         }else if(!form.password){
             return 'Password may not be empty.';
         }else if(form.password.length < PASSWORD_MIN_LENGTH){
@@ -62,7 +62,7 @@ class SignUpForm extends Component{
     }
 
 
-    handleSubmit(event){
+    handleSubmit = async(event) => {
         event.preventDefault();
         const form = this.state.form;
         const errorMsg = this.validate(form);
@@ -77,7 +77,8 @@ class SignUpForm extends Component{
             console.log(this.state);
             return;
         }
-        checkUsernameAvailability(form.username).then(response => {
+        let available = true;
+        await checkUsernameAvailability(form.username).then(response => {
             if(!response.available){
                 this.setState({
                     ...this.state,
@@ -86,7 +87,7 @@ class SignUpForm extends Component{
                         status: 'error'
                     }
                 });
-                return;
+                available = response.available;
             }
         }).catch(e => {
             this.setState({
@@ -96,7 +97,7 @@ class SignUpForm extends Component{
                    status: 'error' 
                }
             });
-            return;
+            available = false;
         })
         checkEmailAvailability(form.email).then(response => {
             if(!response.available){
@@ -107,7 +108,7 @@ class SignUpForm extends Component{
                         status: 'error'
                     }
                 });
-                return;
+                available = response.available;
             }
         }).catch(e => {
             this.setState({
@@ -117,11 +118,20 @@ class SignUpForm extends Component{
                    status: 'error' 
                 }
             });
-            return;
+            available = false;
         })
+        if(!available){
+            return;
+        }
         const signUpRequest = form;
-        signUp(signUpRequest).then(response => {
+        signUp(signUpRequest).then(() => {
             this.setState({
+                form: {
+                    username: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                },
                 error: {
                     msg: 'Thank you! You\'re successfully registered. Please Login to continue!',
                     status: 'success'
@@ -137,7 +147,6 @@ class SignUpForm extends Component{
                 }
             });
         });
-        console.log(signUpRequest);
     }
 
     render(){

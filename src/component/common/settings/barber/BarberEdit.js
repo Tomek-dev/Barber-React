@@ -16,14 +16,16 @@ class BarberEdit extends Component{
             error: {
                 msg: '',
                 status: ''
-            }
+            },
+            edit: ''
         }
     }
 
     componentDidMount(){
         this.setState({
             ...this.state,
-            form: this.props.barber
+            form: this.props.barber,
+            edit: this.props.barber
         });
     }
 
@@ -60,7 +62,8 @@ class BarberEdit extends Component{
                 error: {
                     msg: 'Successfully update data.',
                     status: 'success'
-                }
+                },
+                edit: this.state.form
             });
         }).catch(e => {
             this.setState({
@@ -85,7 +88,7 @@ class BarberEdit extends Component{
 
     render(){
         let element;
-        if(this.props.barber !== this.state.form){
+        if(this.state.edit !== this.state.form){
             element = <p><FaExclamationCircle className="icon"/>This data is edited. Click edit to save.</p>
         }
         return(

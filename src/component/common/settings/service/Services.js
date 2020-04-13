@@ -94,13 +94,13 @@ class Services extends Component{
                 },
                 error: '',
             })
+            this.fetchData();
         }).catch(e => {
             this.setState({
                 ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
-        this.fetchData(this.props.id);
     }
 
     handleError = (msg) => {

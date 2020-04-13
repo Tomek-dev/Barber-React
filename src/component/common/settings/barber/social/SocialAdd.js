@@ -69,19 +69,22 @@ class SocialAdd extends Component{
             });
             return;
         }
-        post(form, '/social/add').catch(e => {
-            // ??
+        post(form, '/social/add').then(() => {
+            this.setState({
+                form: {
+                    url: '',
+                    socialType: ''
+                },
+                error: '',
+                display: false
+            });
+            this.props.onEdit();
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: e.message
+            })
         })
-        this.setState({
-            form: {
-                url: '',
-                socialType: ''
-            },
-            error: '',
-            display: false
-        });
-        console.log(this.state)
-        this.props.onEdit();
     }
 
     render(){

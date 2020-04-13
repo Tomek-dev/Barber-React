@@ -69,7 +69,9 @@ class Worker extends Component{
         });
     }
 
-    handleSubmit = (event) => {
+
+
+    handleSubmit = async(event) => {
         event.preventDefault();
         const form = this.state.form;
         const errorMsg = this.validate(form);
@@ -79,18 +81,25 @@ class Worker extends Component{
                 error: errorMsg
             });
         }
-        get('/worker/available/' + form.name).then(response => {
+        let available = true;
+        await get('/worker/available/' + form.name).then(response => {
             if(!response.available){
                 this.setState({
                     ...this.state,
-                    error: 'This name is already taken.'
+                    error: 'This name is already taken.',
                 });
-                return;
             }
+            available = response.available
         }).catch(e => {
-            //??
-            return;
+            this.setState({
+                ...this.state,
+                error: e.message
+            });
+            available = false;
         })
+        if(!available){
+            return;
+        }
         post(form, '/worker/add').then(() => {
             this.setState({
                 ...this.state,
@@ -99,13 +108,13 @@ class Worker extends Component{
                 },
                 error: ''
             });
+            this.fetchData();
         }).catch(e => {
             this.setState({
                 ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
-        this.fetchData(this.props.id);
     }
 
     handleEdit = () => {

@@ -78,20 +78,24 @@ class ServiceEdit extends Component{
             });
             return;
         }
-        put(form, '/service/' + this.props.service.id).catch(e => {
-            // ??
+        put(form, '/service/' + this.props.service.id).then(() => {
+            this.setState({
+                form: {
+                    name: '',
+                    description: '',
+                    price: '',
+                    time: ''
+                },
+                error: '',
+                display: false
+            });
+            this.props.onEdit();
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: e.message
+            })
         });
-        this.setState({
-            form: {
-                name: '',
-                description: '',
-                price: '',
-                time: ''
-            },
-            error: '',
-            display: false
-        });
-        this.props.onEdit();
     }
 
     render(){

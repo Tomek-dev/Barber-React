@@ -12,8 +12,8 @@ class WorkerItem extends Component{
     }
 
     handleDelete(){
-        del('/worker/' + this.props.worker.id).then(() => this.props.onEdit).catch(e => {
-            this.props.onError(e.message || 'Sorry! Something went wrong. Please try again!');
+        del('/worker/' + this.props.worker.id).then(() => this.props.onEdit()).catch(e => {
+            this.props.onError(e.message);
         })
     }
 

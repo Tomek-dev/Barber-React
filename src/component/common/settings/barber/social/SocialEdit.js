@@ -65,14 +65,18 @@ class SocialEdit extends Component{
             });
             return;
         }
-        put(url,'/social/' + this.props.social.id).catch(e => {
-            // ??
-        });
-        this.props.onEdit();
-        this.setState({
-            url: '',
-            error: '',
-            display: false
+        put(url,'/social/' + this.props.social.id).then(() => {
+            this.props.onEdit();
+            this.setState({
+                url: '',
+                error: '',
+                display: false
+            });
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: e.message
+            })
         });
     }
 

@@ -11,13 +11,11 @@ class ServiceItem extends Component{
     }
 
     handleDelete(){
-        del('/service/' + this.props.service.id).then(response => {
-            console.log("test")
+        del('/service/' + this.props.service.id).then(() => {
             this.props.onEdit();
         }).catch(e => {
             this.props.onError(e.message || 'Sorry! Something went wrong. Please try again!');
         })
-        this.props.onEdit();
     }
 
     render(){

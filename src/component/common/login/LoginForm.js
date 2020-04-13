@@ -64,7 +64,7 @@ class LoginForm extends Component{
             if(e.status === 401){
                 this.setState({
                     ...this.state,
-                    error: e.message
+                    error: 'Your Username or Password is incorrect. Please try again!'
                 });
             }else{
                 this.setState({

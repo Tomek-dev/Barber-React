@@ -6,7 +6,6 @@
 
 .services-side-bar{
     width: 30%;
-    border-right: 1px solid #eee;
     padding: 40px 40px 40px 0;
 }
 
@@ -16,6 +15,7 @@
     justify-content: center;
     overflow-x: hidden;
     height: 50vh;
+    border-left: 1px solid #eee;
 }
 
 .service-form-element{

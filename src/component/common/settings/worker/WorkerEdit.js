@@ -70,18 +70,21 @@ class WorkerEdit extends Component{
             });
             return;
         }
-        put(form, '/worker/' + this.props.worker.id).catch(e => {
-            // ??
+        put(form, '/worker/' + this.props.worker.id).then(() =>{
+            this.setState({
+                form: {
+                    name: ''
+                },
+                error: '',
+                display: false
+            });
+            this.props.onEdit();
+        }).catch(e => {
+            this.setState({
+                ...this.state,
+                error: e.message
+            })
         });
-        this.setState({
-            form: {
-                name: ''
-            },
-            error: '',
-            display: false
-        });
-
-        this.props.onEdit();
     }
 
     render(){
