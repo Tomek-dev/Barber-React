@@ -89,7 +89,7 @@ class LoginForm extends Component{
                         placeholder="Username"
                         type="text"
                         name="username"
-                        className="login-form-element"
+                        className="element"
                         value={this.state.form.username}
                         onChange={this.handleChange}
                         />
@@ -97,7 +97,7 @@ class LoginForm extends Component{
                         placeholder="Password"
                         type="password"
                         name="password"
-                        className="login-form-element"
+                        className="element"
                         value={this.state.form.password}
                         onChange={this.handleChange}
                         />
@@ -106,7 +106,9 @@ class LoginForm extends Component{
                             <Link className="account-link" to="/register">Create account</Link>
                             <p>Any trouble with login? <ForgotForm /></p> 
                         </div>
-                        <button type="submit" className="login-submit">Login</button>
+                        <div>
+                            <button type="submit" className="submit">Login</button>
+                        </div>
                     </form>
                 </div>
             </div>

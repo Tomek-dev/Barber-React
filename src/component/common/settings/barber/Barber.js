@@ -24,7 +24,7 @@ class Barber extends Component{
                     <ProfileEdit />
                 </div>
                 <div className="barber-content">
-                    <div className="barber-content-element barber-left">
+                    <div className="barber-content-element barber-bottom">
                         <BarberEdit barber={this.props.barber}/>
                     </div>
                     <div className="barber-content-element">

@@ -35,7 +35,9 @@ class Header extends Component {
                 </div>
                 <div className="header-menu">
                     <SearchForm />
-                    {menu}
+                    <div className="header-option">
+                        {menu}
+                    </div>
                 </div>
             </div>
         );

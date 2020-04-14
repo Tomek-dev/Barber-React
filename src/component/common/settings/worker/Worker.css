@@ -8,6 +8,7 @@
     flex-direction: column;
     overflow-x: hidden;
     height: 40vh;
+    margin-bottom: 40px;
 }
 
 .workers-nav-bar{
@@ -20,20 +21,11 @@
 .add-image-btn{
     background-color: #ddd;
     color: #aaa;
-    height: 8vh;
-    width: 8vh;
-    font-size: 1.5rem;
-    border-radius: 20px;
-    margin-right: 20px;
-}
-
-.worker-form-element{
-    margin: 10px auto;
-    border: none;
-    border-bottom: 1px solid #777;
-    outline: none;
-    padding: 0 5px;
-    font-size: 1.1rem;
+    height: 12vh;
+    width: 12vh;
+    font-size: 2rem;
+    border-radius: 30px;
+    margin-right: 10px;
 }
 
 .add-image-btn:hover{
@@ -42,10 +34,15 @@
 }
 
 .worker-form{
+    box-sizing: border-box;
+    padding: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
+}
+
+.worker-element{
+    width: 60% !important;
 }
 
 .worker-form-object{
@@ -53,16 +50,33 @@
     align-items: center;
 }
 
-.worker-submit{
-    padding: 6px 14px;
-    background-color: #362821;
-    color: #eee;
-    margin-top: 10px;
-    border-radius: 20px;
-    font-size: 1.1rem;
+
+@media only screen and (min-width: 480px) {
+    .add-image-btn{
+        height: 24vh;
+        width: 24vh;
+    }
 }
 
-.worker-submit:hover{
-    background-color: #251710;
-    color: #ddd;
+@media only screen and (min-width: 900px) {
+    .add-image-btn{
+        height: 8vh;
+        width: 8vh;
+        font-size: 1.5rem;
+        border-radius: 20px;
+        margin-right: 20px;
+    }
+    
+    .worker-form{
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: initial;
+        padding: 0 40px;
+    }
+
+    .worker-content{
+        width: 80%;
+        margin: 10px auto 30px auto;
+        border-bottom: 1px solid #eee;
+    }
 }

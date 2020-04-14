@@ -23,8 +23,8 @@ class ServiceItem extends Component{
         return(
             <div className="service-item">
                 <div className="service-item-props">
-                    <div className="service-element">
-                        <p className="service-item-name service-left">{service.name}</p>
+                    <div className="service-element service-left">
+                        <p className="service-item-name">{service.name}</p>
                         <p>{service.description}</p>
                     </div>
                     <div className="service-element service-right">

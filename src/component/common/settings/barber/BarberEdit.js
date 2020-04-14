@@ -100,32 +100,32 @@ class BarberEdit extends Component{
                     <input 
                     type="text"
                     name="name"
-                    className="barber-edit-element"
+                    className="element"
                     value={this.state.form.name}
                     onChange={this.handleChange}/>
                     <input 
                     type="text"
                     name="city"
-                    className="barber-edit-element"
+                    className="element"
                     value={this.state.form.city}
                     onChange={this.handleChange}/>
                     <input 
                     type="text"
                     name="address"
-                    className="barber-edit-element"
+                    className="element"
                     value={this.state.form.address}
                     onChange={this.handleChange}/>
                     <input 
                     type="text"
                     name="local"
-                    className="barber-edit-element"
+                    className="element"
                     value={this.state.form.local}
                     onChange={this.handleChange}/>
                     <div className="barber-edit-warn">
                         {element}
                     </div>
                     <div>
-                        <button className="barber-edit-submit btn" type="submit">Edit</button>
+                        <button className="submit" type="submit">Edit</button>
                     </div>
                 </form>
             </div>

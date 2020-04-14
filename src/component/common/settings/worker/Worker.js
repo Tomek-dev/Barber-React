@@ -157,11 +157,11 @@ class Worker extends Component{
                             name="name"
                             value={this.state.form.name}
                             onChange={this.handleChange}
-                            className="worker-form-element"
+                            className="element worker-element"
                             />
                         </div>
                         <div>
-                            <button className="worker-submit btn" type="submit">Add</button>
+                            <button className="submit" type="submit">Add</button>
                         </div>
                     </form>
                 </div>

@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 20px;
 }
 
 .barber-owner-props{
@@ -10,6 +11,7 @@
 }
 
 .barber-owner-props p{
+    font-size: 1.4rem;
     color: #777;
 }
 
@@ -21,15 +23,30 @@
 
 .barber-content{
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
 .barber-content-element{
-    width: 50%;
-    padding: 0 20px;
+    width: 100%;
 }
 
-.barber-left{
-    border-right: 1px solid #eee;
+.barber-bottom{
+    border-bottom: 1px solid #eee;
+}
 
+@media only screen and (min-width: 900px) {
+    .barber-content{
+        flex-direction: initial;
+    }
+
+    .barber-bottom{
+        border-bottom: initial;
+        border-right: 1px solid #eee;
+    }
+    
+
+    .barber-owner-props p{
+        font-size: 1.2rem;
+    }
 }

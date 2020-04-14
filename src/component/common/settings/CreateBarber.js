@@ -94,7 +94,9 @@ class CreateBarber extends Component{
     render(){
         return(
             <div>
-                <button className="create-barber-btn btn" onClick={this.handleOpen}><FaPlus /> Create barbershop</button>
+                <div className="create-barber-btn-container">
+                    <button className="create-barber-btn btn" onClick={this.handleOpen}><FaPlus /> Create barbershop</button>
+                </div>
                 <ReactModal
                 ariaHideApp={false}
                 className="modal"
@@ -114,32 +116,32 @@ class CreateBarber extends Component{
                         placeholder="Name"
                         type="text"
                         name="name"
-                        className="barber-create-element"
+                        className="element"
                         value={this.state.form.name}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="City"
                         type="text"
                         name="city"
-                        className="barber-create-element"
+                        className="element"
                         value={this.state.form.city}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Address"
                         type="text"
                         name="address"
-                        className="barber-create-element"
+                        className="element"
                         value={this.state.form.address}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Local"
                         type="text"
                         name="local"
-                        className="barber-create-element"
+                        className="element"
                         value={this.state.form.local}
                         onChange={this.handleChange}/>
                         <div>
-                            <button className="barber-create-submit btn" type="submit">Create</button>
+                            <button className="submit" type="submit">Create</button>
                         </div>
                     </form>
                 </div>

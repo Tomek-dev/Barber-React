@@ -1,5 +1,5 @@
 .worker-add-btn{
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #777;
 }
 
@@ -23,27 +23,16 @@
 .worker-add-select p{
     color: #777;
     margin: 0;
+    font-size: 1.4rem;
 }
 
 .worker-option-btn{
     color: #777;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
 }
 
 .worker-option-btn:hover{
     color: #555;
-}
-
-.worker-add-submit{
-    background-color: #362821;
-    color: #eee;
-    padding: 8px 14px;
-    border-radius: 20px;
-}
-
-.worker-add-submit:hover{
-    background-color: #251710;
-    color: #ddd;
 }
 
 .worker-add-service{
@@ -51,4 +40,18 @@
     height: 30vh;
     overflow-x: hidden;
     border-bottom: 1px solid #ccc;
+}
+
+@media only screen and (min-width: 900px) {
+    .worker-option-btn{
+        font-size: 1.3rem;
+    }
+
+    .worker-add-btn{
+        font-size: 1.1rem;
+    }
+    
+    .worker-add-select p{
+        font-size: 1rem;
+    }
 }

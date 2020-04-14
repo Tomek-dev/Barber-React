@@ -1,11 +1,9 @@
 .settings-nav-bar{
-    margin-top: 5px;
     display: flex;
     align-items: center;
 }
 
 .settings-container{
-    height: 75vh;
     box-sizing: border-box;
 }
 
@@ -19,7 +17,7 @@
 
 .settings-btn{
     color: #777;
-    font-size: 2rem;
+    font-size: 2.4rem;
     padding: 20px 0;
     width: 20%;
     box-sizing: border-box;

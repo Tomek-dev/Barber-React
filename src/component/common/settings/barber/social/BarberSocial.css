@@ -1,7 +1,9 @@
 .social-container{
     display: flex;
     flex-direction: column;
-    padding: 0 5px;
+    padding: 20px 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .social-info{
@@ -13,12 +15,25 @@
 .social-info p{
     color: #777;
     margin: 4px;
+    font-size: 1.4rem;
 }
 
 .social-list{
     display: flex;
     flex-direction: column;
-    height: 20vh;
+    height: 30vh;
     overflow-x: hidden;
     border-bottom: 1px solid #ddd;
+}
+
+@media only screen and (min-width: 768px) {
+    .social-container{
+        padding: 50px;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .social-info p{
+        font-size: 1.2rem;
+    }
 }

@@ -1,28 +1,65 @@
 .bottom-container{
-    position: absolute;
-    bottom: 0;
+    align-self: flex-end;
     width: 100%;
-    height: 10vh;
     background-color: #362821;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    height: 30vh;
+    justify-content: center;
 }
 
 .bottom-element{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 40%;
     color: #eee;
     font-weight: 700;
     font-size: 0.9rem;
+    width: 100%;
 }
 
 .bottom-name{
+    font-size: 2.4rem;
     color: #eee !important;
 }
 
 .bottom-logo{
-    width: 20%;
+    width: 100%;
     text-align: center;
+}
+
+@media only screen and (min-width: 480px) {
+    .bottom-container{
+        height: 50vh;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .bottom-container{
+        height: 55vh;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .bottom-container{
+        height: 60vh;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .bottom-container{
+        height: 10vh;
+        display: flex;
+        flex-direction: initial;
+        align-items: center;
+    }
+
+    .bottom-logo{
+        width: 20%;
+    }
+
+    .bottom-element{
+        width: 40%;
+    }
 }

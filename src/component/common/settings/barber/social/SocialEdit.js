@@ -98,13 +98,13 @@ class SocialEdit extends Component{
                         <form autoComplete="off" className="social-edit-form" onSubmit={this.handleSubmit}>
                             <input 
                             type="text"
-                            className="social-edit-element"
+                            className="element"
                             name="url"
                             placeholder="Url"
                             value={this.state.url}
                             onChange={this.handleChange}/>
                             <div>
-                                <button type="submit" className="social-edit-submit btn">Edit</button>
+                                <button type="submit" className="submit">Edit</button>
                             </div>
                         </form>
                     </div>

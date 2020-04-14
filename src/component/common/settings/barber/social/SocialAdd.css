@@ -1,6 +1,6 @@
 .social-add-btn{
     color: #777;
-    font-size: 1rem;
+    font-size: 1.4rem;
 }
 
 .social-add-btn:hover{
@@ -58,9 +58,6 @@
     justify-content: space-around;
 }
 
-.selected{
-    color: #555;
-}
 
 .facebook{
     color: #4267b2;
@@ -76,4 +73,10 @@
 
 .instagram{
     color: #231F20;
+}
+
+@media only screen and (min-width: 900px) {
+    .social-add-btn{
+        font-size: 1.2rem;
+    }
 }

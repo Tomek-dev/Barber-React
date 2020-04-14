@@ -3,18 +3,26 @@
     align-items: center;
 }
 
+.social-edit-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .social-item{
     width: 100%;
     border-bottom: 1px solid #eee;
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     color: #777;
     box-sizing: border-box;
     padding: 0 10px;
+    display: flex;
+    align-items: center;
 }
 
 .social-delete-btn{
     color: #777;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
 }
 
 .social-delete-btn:hover{
@@ -26,10 +34,21 @@
 }
 
 .social-props p{
-    font-size: 0.9rem;
+    font-size: 1.6rem;
     margin: 6px 0 6px 10px;
 }
 
 .social-option{
     width: 20%;
+    align-items: center;
+}
+
+@media only screen and (min-width: 900px) {
+    .social-props p{
+        font-size: 1.2rem;
+    }
+
+    .social-delete-btn{
+        font-size: 1.2rem;
+    }
 }

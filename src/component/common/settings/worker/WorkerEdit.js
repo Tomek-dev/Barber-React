@@ -108,13 +108,13 @@ class WorkerEdit extends Component{
                         </div>
                         <input 
                         type="text"
-                        className="worker-edit-element"
+                        className="element"
                         name="name"
                         placeholder="Name"
                         value={this.state.form.name}
                         onChange={this.handleChange}/>
                         <div>
-                            <button type="submit" className="worker-edit-submit btn">Edit</button>
+                            <button type="submit" className="submit">Edit</button>
                         </div>
                     </form>
                 </div>

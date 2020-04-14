@@ -3,8 +3,8 @@
     border: none;
     background-color: inherit;
     color: #555;
-    font-size: 1.1rem;
-    margin-right: 10px;
+    font-size: 1.4rem;
+    margin: 10px;
     cursor: pointer;
 }
 
@@ -36,24 +36,13 @@
 
 .search-paragraph{
     margin: 0 0 8px 0px;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: #555;
     font-weight: 700;
 }
 
-.search-btn-submit{
-    background-color: #362821;
-    color: #eee;
-    border: none;
-    outline: none;
-    float: right;
-    padding: 10px 16px;
-    border-radius: 20px;
-    font-size: 1.05rem;
-    margin: 0 30px 10px 0;
-}
-
-.search-btn-submit:hover{
-    background-color: #251710;
-    color: #ddd;
+@media only screen and (min-width: 900px) {
+    .search-btn{
+        font-size: 1.2rem;
+    }
 }

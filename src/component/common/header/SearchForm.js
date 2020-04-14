@@ -102,7 +102,7 @@ class SearchForm extends Component{
                                     <input 
                                     type="text"
                                     name="query"
-                                    className="search-form-element"
+                                    className="element"
                                     placeholder="What are you looking for?"
                                     value={this.state.form.query}
                                     onChange={this.handleChange}/>
@@ -110,11 +110,11 @@ class SearchForm extends Component{
                                     placeholder="Where?"
                                     type="text"
                                     name="city"
-                                    className="search-form-element"
+                                    className="element"
                                     value={this.state.form.city}
                                     onChange={this.handleChange}/>
                                 </div>
-                                <button type="submit" className="search-btn-submit">Search</button>
+                                <button type="submit" className="submit">Search</button>
                             </form>
                         </div>
                     </div>

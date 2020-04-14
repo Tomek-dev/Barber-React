@@ -1,6 +1,6 @@
 .profile-edit-btn{
     color: #777;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
 }
 
 .profile-edit-btn:hover{
@@ -44,4 +44,10 @@
 .profile-submit{
     display: flex;
     justify-content: center;
+}
+
+@media only screen and (min-width: 900px) {
+    .profile-edit-btn{
+        font-size: 1.4rem;
+    }    
 }

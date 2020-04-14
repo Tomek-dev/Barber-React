@@ -17,7 +17,7 @@
 
 .service-delete-btn{
     color: #777;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 
 .service-delete-btn:hover{
@@ -27,7 +27,7 @@
 .service-element p{
     margin: 4px 0;
     color: #777;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
 }
 
 .service-item-props{
@@ -41,13 +41,13 @@
 .service-item-name{
     color: #362821 !important;
     font-weight: 700;
-    font-size: 1rem !important;
+    font-size: 1.3rem !important;
 }
 
-.service-left{
+.service-left p{
     text-align: left;
 }
 
-.service-right{
+.service-right p{
     text-align: right;
 }

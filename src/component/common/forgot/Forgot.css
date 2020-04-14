@@ -4,7 +4,7 @@
     background-color: inherit;
     color: #362821;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1.4rem;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -65,4 +65,10 @@
 .forgot-paragraph{
     text-align: center;
     color: #777;
+}
+
+@media only screen and (min-width: 900px) {
+    .forgot-btn{
+        font-size: 1.1rem;
+    }
 }

@@ -117,27 +117,29 @@ class ServiceEdit extends Component{
                         <div className="error">
                             {this.state.error}
                         </div>
-                        <input 
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        className="service-modal-element"
-                        value={this.state.form.name}
-                        onChange={this.handleChange}/>
-                        <input 
-                        placeholder="Description"
-                        type="text"
-                        name="description"
-                        className="service-modal-element"
-                        value={this.state.form.description}
-                        onChange={this.handleChange}/>
+                        <div className="services-edit-element">
+                            <input 
+                            type="text"
+                            name="name"
+                            placeholder="Name"
+                            className="element"
+                            value={this.state.form.name}
+                            onChange={this.handleChange}/>
+                            <input 
+                            placeholder="Description"
+                            type="text"
+                            name="description"
+                            className="element"
+                            value={this.state.form.description}
+                            onChange={this.handleChange}/>
+                        </div>
                         <div className="service-props">
                             <input 
                             type="text"
                             name="price"
                             pattern="\d*"
                             placeholder="Price"
-                            className="service-modal-props"
+                            className="service-props-element"
                             value={this.state.form.price}
                             onChange={this.handleChange}/>
                             <input 
@@ -145,12 +147,12 @@ class ServiceEdit extends Component{
                             placeholder="Time"
                             name="time"
                             pattern="\d*"
-                            className="service-modal-props"
+                            className="service-props-element"
                             value={this.state.form.time}
                             onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <button type="submit" className="service-submit btn service-edit-submit" onClick={this.handleSubmit}>Add</button>
+                            <button type="submit" className="submit" onClick={this.handleSubmit}>Add</button>
                         </div>
                     </form>
                 </div>

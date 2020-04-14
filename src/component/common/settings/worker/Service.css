@@ -11,7 +11,7 @@
 .worker-add-service-btn p{
     margin: 0;
     color: #777;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .worker-add-service-name{
@@ -21,4 +21,10 @@
 
 .selected{
     background-color: #eee;
+}
+
+@media only screen and (min-width: 900px) {
+    .worker-add-service-btn p{
+        font-size: 1rem;
+    }
 }

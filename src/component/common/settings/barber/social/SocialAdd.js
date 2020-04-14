@@ -131,13 +131,13 @@ class SocialAdd extends Component{
                             </div>
                             <input 
                             type="text"
-                            className="social-add-element"
+                            className="element"
                             name="url"
                             placeholder="Url"
                             value={this.state.url}
                             onChange={this.handleChange}/>
                             <div>
-                                <button type="submit" className="social-add-submit btn">Add</button>
+                                <button type="submit" className="submit">Add</button>
                             </div>
                         </form>
                     </div>

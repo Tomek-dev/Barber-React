@@ -1,0 +1,38 @@
+html { 
+    font-size:100%; 
+    min-width: 100vw;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    height: 100%;
+    width: 100%;
+}
+head{
+    height: 100%;
+    width: 100%;
+}
+
+#root{
+    min-height: 100vh;
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    html{
+        font-size: 120%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    html{
+        font-size: 140%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    html{
+        font-size: 100%;
+    }
+}

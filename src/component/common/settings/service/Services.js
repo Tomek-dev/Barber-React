@@ -127,7 +127,7 @@ class Services extends Component{
         return(
             <div className="services-container">
                 <div className="services-side-bar">
-                    <form autoComplete="off" onSubmit={this.handleSubmit}>
+                    <form className="services-form"autoComplete="off" onSubmit={this.handleSubmit}>
                         <div className="error">
                             {this.state.error}
                         </div>
@@ -135,14 +135,14 @@ class Services extends Component{
                         type="text"
                         name="name"
                         placeholder="Name"
-                        className="service-form-element"
+                        className="element"
                         value={this.state.form.name}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Description"
                         type="text"
                         name="description"
-                        className="service-form-element"
+                        className="element"
                         value={this.state.form.description}
                         onChange={this.handleChange}/>
                         <div className="service-props">
@@ -164,7 +164,7 @@ class Services extends Component{
                             onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <button type="submit" className="service-submit btn" onClick={this.handleSubmit}>Add</button>
+                            <button type="submit" className="submit" onClick={this.handleSubmit}>Add</button>
                         </div>
                     </form>
                 </div>

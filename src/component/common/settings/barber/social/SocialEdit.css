@@ -1,6 +1,6 @@
 .social-edit-btn{
     color: #777;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
 }
 
 .social-edit-btn:hover{
@@ -39,4 +39,10 @@
 .social-edit-submit:hover{
     background-color: #251710;
     color: #ddd;
+}
+
+@media only screen and (min-width: 900px) {
+    .social-edit-btn{
+        font-size: 1.2rem;
+    }
 }

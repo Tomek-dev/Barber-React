@@ -153,6 +153,10 @@ class SignUpForm extends Component{
         return(
             <div className="signup-container">
                 <div className="signup-content">
+                    <div className="signup-text">
+                        <p className="signup-text-paragraph">Get Started</p>
+                        <p className="signup-text-info">Our mission is to help companies. Improve the quality of your store according to customer feedback or let them make an appointment online. Get started now, create a page and add features to it</p>
+                    </div>
                     <form autoComplete="off" className="signup-form" onSubmit={this.handleSubmit}>
                         <div className={this.state.error.status}>
                             {this.state.error.msg}
@@ -161,28 +165,28 @@ class SignUpForm extends Component{
                         type="text" 
                         placeholder="Username"
                         name="username"
-                        className="signup-form-element"
+                        className="element"
                         value={this.state.form.username}
                         onChange={this.handleChange}/>
                         <input 
                         type="text"
                         placeholder="Email"
                         name="email"
-                        className="signup-form-element"
+                        className="element"
                         value={this.state.form.email}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Password"
                         type="password"
                         name="password"
-                        className="signup-form-element"
+                        className="element"
                         value={this.state.form.password}
                         onChange={this.handleChange}/>
                         <input 
                         placeholder="Confirm password"
                         type="password"
                         name="confirmPassword"
-                        className="signup-form-element"
+                        className="element"
                         value={this.state.form.confirmPassword}
                         onChange={this.handleChange}
                         />
@@ -190,15 +194,13 @@ class SignUpForm extends Component{
                             <p>Already have an account? <Link className="signup-link" to="/login">Login</Link></p>
                             <p>Clicking "Get Started" above to accept  <Link to="" className="signup-link">Terms of Service</Link> & <Link to="" className="signup-link">Privacy Policy.</Link></p>
                         </div>
-                        <button 
-                        type="submit"
-                        className="signup-submit"
-                        >Sign Up</button>
+                        <div>
+                            <button 
+                            type="submit"
+                            className="submit"
+                            >Sign Up</button>
+                        </div>
                     </form>
-                    <div className="signup-text">
-                        <p className="signup-text-paragraph">Get Started</p>
-                        <p className="signup-text-info">Our mission is to help companies. Improve the quality of your store according to customer feedback or let them make an appointment online. Get started now, create a page and add features to it</p>
-                    </div>
                 </div>
             </div>
         );

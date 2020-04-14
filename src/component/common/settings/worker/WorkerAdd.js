@@ -144,7 +144,7 @@ class WorkerAdd extends Component{
                             <div className="worker-add-service">
                                 {elements}
                             </div>
-                            <button className="worker-add-submit btn" type="submit">Save</button>
+                            <button className="submit" type="submit">Save</button>
                         </form>
                     </div>
                 </ReactModal>

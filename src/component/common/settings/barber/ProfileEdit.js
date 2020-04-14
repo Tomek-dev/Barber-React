@@ -144,25 +144,25 @@ class ProfileEdit extends Component{
                 placeholder="Password"
                 type="password"
                 name="password"
-                className="profile-edit-element"
+                className="element"
                 value={this.state.form.password}
                 onChange={this.handleChange}/>
                 <input 
                 placeholder="New Password"
                 type="password"
                 name="newPass"
-                className="profile-edit-element"
+                className="element"
                 value={this.state.form.newPass}
                 onChange={this.handleChange}/>
                 <input 
                 placeholder="Confirm New Password"
                 type="password"
                 name="conNewPass"
-                className="profile-edit-element"
+                className="element"
                 value={this.state.form.conNewPass}
                 onChange={this.handleChange}/>
                 <div className="profile-submit">
-                    <button type="submit" className="profile-edit-submit btn">Change</button>
+                    <button type="submit" className="submit btn">Change</button>
                 </div>
                 </form>
             </div>
