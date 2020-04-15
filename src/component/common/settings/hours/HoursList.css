@@ -1,0 +1,21 @@
+.hours-item{
+    font-size: 1.8rem;
+    padding: 4px;
+    color: #777;   
+}
+
+.active{
+    background-color: #eee;
+    outline: none;
+}
+
+@media only screen and (min-width: 900px) {
+    .hours-item{
+        font-size: 1.1rem; 
+    }
+
+    .hours-horizontal-menu{
+        width: 80%;
+        margin: 0 auto;
+    }
+}

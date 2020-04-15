@@ -1,0 +1,20 @@
+.hours-step-element{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hours-step-element p{
+    margin: 2px 0;
+    color: #777;
+    font-size: 1.2rem;
+} 
+
+.hours-day{
+    color: #362821 !important; 
+    font-weight: 700;
+}
+
+.hours-day::first-letter{
+    text-transform: capitalize;
+}

@@ -1,0 +1,27 @@
+.set-hours-container{
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.set-btn{
+    font-size: 1.6rem;
+    color: #777;
+}
+
+.set-btn:hover{
+    color: #555;
+}
+
+.set-hours-form{
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+.set-hours-modal{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}

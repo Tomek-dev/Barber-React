@@ -38,7 +38,11 @@ class Services extends Component{
                 isLoading: false
             });
         }).catch(e => {
-            // ??
+            this.setState({
+                ...this.state,
+                isLoading: false
+            });
+            //redirect
         });
     }
 

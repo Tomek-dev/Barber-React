@@ -1,0 +1,10 @@
+.hours-change{
+    padding: 0 20px 20px 20px;
+}
+
+@media only screen and (min-width: 900px) {
+    .hours-change{
+        width: 60%;
+        margin: 0 auto;
+    }
+}

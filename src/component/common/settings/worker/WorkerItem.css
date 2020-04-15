@@ -54,7 +54,6 @@
     .image-not-found{
         height: 5vh;
         width: 5vh;
-        padding: 1.3vh;
         font-size: 1rem;
     }
 
@@ -64,5 +63,13 @@
 
     .worker-delete-btn{
         font-size: 1.1rem;
+    }
+}
+
+@media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
+    .image-not-found{
+        height: 6vh;
+        width: 6vh;
+        font-size: 1.5rem;
     }
 }

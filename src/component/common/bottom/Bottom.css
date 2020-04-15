@@ -1,4 +1,5 @@
 .bottom-container{
+    padding-bottom: 1px;
     align-self: flex-end;
     width: 100%;
     background-color: #362821;
@@ -49,7 +50,7 @@
 
 @media only screen and (min-width: 900px) {
     .bottom-container{
-        height: 10vh;
+        height: 9.90vh;
         display: flex;
         flex-direction: initial;
         align-items: center;
@@ -61,5 +62,11 @@
 
     .bottom-element{
         width: 40%;
+    }
+}
+
+@media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
+    .bottom-container{
+        height: 25vh;
     }
 }

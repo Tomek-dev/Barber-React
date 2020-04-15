@@ -7,6 +7,7 @@ import Barber from './barber/Barber'
 import { get } from '../../../util/ApiUtils'
 import Loader from '../loader/Loader';
 import CreateBarber from './CreateBarber';
+import Hours from './hours/Hours';
 
 class SettingsPage extends Component{
     constructor(props){
@@ -31,14 +32,12 @@ class SettingsPage extends Component{
                 isLoading: false
             });
         }).catch(e => {
-            if(e.status === 404){
-                this.setState({
-                    ...this.state,
-                    isLoading: false,
-                    barber: null
-                })
-            }
-            // ??
+            this.setState({
+                ...this.state,
+                barber: null,
+                isLoading: false
+            });
+            //redirect
         })
     }
 
@@ -91,6 +90,7 @@ class SettingsPage extends Component{
                     </div>
                     <div className="settings-panel">
                         <Barber currentUser={this.props.currentUser} barber={this.state.barber} id={id} display={display}/>
+                        <Hours id={id} display={display}/>
                         <Services id={id} display={display}/>
                         <Worker id={id} display={display}/>
                     </div>

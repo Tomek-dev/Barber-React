@@ -36,7 +36,11 @@ class Worker extends Component{
                 isLoading: false
             });
         }).catch(e => {
-            // ??
+            this.setState({
+                ...this.state,
+                isLoading: false
+            });
+            //redirect
         });
         get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
@@ -44,7 +48,11 @@ class Worker extends Component{
                 services: response
             });
         }).catch(e => {
-            // ??
+            this.setState({
+                ...this.state,
+                isLoading: false
+            });
+            //redirect
         });
     }
 

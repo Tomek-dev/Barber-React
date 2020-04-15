@@ -121,6 +121,11 @@
         margin-top: 25vh;
         min-height: 35vh;
     }
+
+    .modal{
+        max-height: 100vh;
+        overflow-x: auto;
+    }
 }
 
 @media only screen and (min-width: 900px) {
@@ -164,5 +169,12 @@
 
     .not-yet{
         font-size: 1.3rem;
+    }
+}
+
+@media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
+    .app-content{
+        margin-top: 10vh;
+        min-height: 65vh;
     }
 }

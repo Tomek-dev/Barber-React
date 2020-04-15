@@ -76,7 +76,18 @@
 
     .worker-content{
         width: 80%;
+        height: 30vh;
         margin: 10px auto 30px auto;
         border-bottom: 1px solid #eee;
+    }
+}
+
+@media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
+    .add-image-btn{
+        height: 10vh;
+        width: 10vh;
+        font-size: 1.5rem;
+        border-radius: 20px;
+        margin-right: 20px;
     }
 }

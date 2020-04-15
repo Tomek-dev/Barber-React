@@ -1,0 +1,59 @@
+.hours-btn{
+    font-size: 1.7rem;
+    color: #777;
+}
+
+.hours-btn:hover{
+    color: #555;
+}
+
+.hours-modal-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.hours-info{
+    margin: 2px 0;
+    font-size: 2rem;
+    color: #362821;
+    font-weight: 700;
+}
+
+.hours-panel-btn{
+    display: flex;
+    flex-direction: column;
+}
+
+.hours-closed {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    color: #777;
+}
+
+.hours-closed:hover{
+    color: #555;
+}
+
+.hours-modal-overlay{
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0,0,0,.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 900px) {
+    .hours-closed {
+        font-size: 1rem;
+    }    
+
+    .hours-info{
+        font-size: 1.2rem;
+    }
+}

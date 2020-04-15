@@ -12,7 +12,6 @@
 }
 
 .create-barber-btn{
-    padding-top: 50%;
     font-size: 1.4rem;
     color: #777;
     display: flex;
@@ -23,5 +22,11 @@
 
 .create-barber-btn:hover{
     color: #555;
+}
+
+.create-barber-btn-container{
+    height: 55vh;
+    display: flex;
+    align-items: center;
 }
 

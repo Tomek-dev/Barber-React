@@ -5,6 +5,7 @@ import Social from './Social';
 import { FaFolder } from 'react-icons/fa';
 import SocialAdd from './SocialAdd';
 import './BarberSocial.css';
+import { Redirect } from 'react-router-dom';
 
 class BarberSocial extends Component{
     constructor(props){
@@ -34,8 +35,10 @@ class BarberSocial extends Component{
             })
         }).catch(e => {
             this.setState({
-                // ??
+                ...this.state,
+                isLoading: false
             });
+            //redirect
         })
     }
 

@@ -35,25 +35,25 @@ class DropDownMenu extends Component {
         let items;
         if(this.props.currentUser.type === 'basic'){  
             items = [
-                <div className="drop-down-item btn" key="business">
-                    <Link className="link" to={'/barber/' + this.props.id}><FaBriefcase className="icon"/>Business</Link>
+                <div className="drop-down-item" key="business">
+                    <Link className="link" to={'/barber/' + this.props.id}><FaBriefcase className="drop-icon"/>Business</Link>
                 </div>,
-                <div className="drop-down-item btn" key="settings">
-                    <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
+                <div className="drop-down-item" key="settings">
+                    <Link className="link" to="/settings"><FaSlidersH className="drop-icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item btn" key="logout">
-                    <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="icon"/> Logout</button>
+                <div className="drop-down-item" key="logout">
+                    <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="drop-icon"/> Logout</button>
                 </div>
             ]
-        }else if(this.props.currentUser.type === 'oauht'){ 
+        }else if(this.props.currentUser.type === 'oauth'){ 
             items = [
-                <div className="drop-down-item btn">
+                <div className="drop-down-item">
                     <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
                 </div>,
-                <div className="drop-down-item btn">
+                <div className="drop-down-item">
                     <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item btn">
+                <div className="drop-down-item">
                     <Link className="link"><FaSignOutAlt className="icon"/>Logout</Link>
                 </div>
             ]

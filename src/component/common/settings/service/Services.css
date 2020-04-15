@@ -51,12 +51,15 @@
     
     .services-side-bar{
         width: 30%;
-        padding: 40px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        border-right: 1px solid #eee;
     }
     
     .services-content{
-        width: 70%;
-        border-left: 1px solid #eee;
+        box-sizing: border-box;
+        width: 50%;
+        margin: 0 auto;
         border-bottom: initial;
     }
  
@@ -66,5 +69,7 @@
 
     .services-form{
         padding: 0;
+        width: 70%;
+        margin: 0 auto;
     }
 }

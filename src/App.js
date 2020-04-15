@@ -11,7 +11,8 @@ import './App.css';
 import SettingsPage from './component/common/settings/SettingsPage';
 import PrivateRoute from './component/common/PrivateRoute';
 import Bottom from './component/common/bottom/Bottom';
-import Loader from './component/common/loader/Loader'
+import Loader from './component/common/loader/Loader';
+import Error from './component/common/error/Error';
 
 class App extends Component{
   constructor(props){
@@ -79,6 +80,7 @@ class App extends Component{
             <Route exact path="/" />
             <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
             <Route path="/businesses" component={SignUpForm}/>
+            <Route path="/error/:status" component={Error}/>
             <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
           </div>
           <Bottom />
