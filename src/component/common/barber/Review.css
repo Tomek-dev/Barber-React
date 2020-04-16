@@ -20,3 +20,8 @@
 .review-show p{
     margin: 1px 0;
 }
+
+.review-text{
+    font-size: 1.2rem;
+    margin: 2px 0;
+}

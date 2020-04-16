@@ -13,3 +13,7 @@
 .hours-day-name{
     color: #555 !important;
 }
+
+.hours-step-hours{
+    text-align: right;
+}

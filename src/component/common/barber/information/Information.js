@@ -30,7 +30,7 @@ class Information extends Component{
         }).catch(e => {
             // redirect
         });
-        await get('/workers/' + this.props.id).then(response => {
+        await get('/worker/value?barber=' + this.props.id).then(response => {
             this.setState({
                 ...this.state,
                 workers: response

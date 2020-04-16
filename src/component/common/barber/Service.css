@@ -22,3 +22,19 @@
     font-size: 1.1rem;
     color: #777;
 }
+
+@media only screen and (min-width: 480px){
+    .service-reservation{
+        width: 15%;
+    }
+
+    .service-info{
+        width: 85%;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .service{
+        margin: 10px 0;
+    }
+}

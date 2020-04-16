@@ -39,3 +39,58 @@
     display: flex;
     flex-direction: column;
 }
+
+@media only screen and (min-width: 480px){
+    .barber-image{
+        height: 60vh;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .barber-image{
+        height: 40vh;
+    }
+
+    .barber-navbar{
+        position: absolute;
+        left: 70%;
+        width: 25%;
+        margin-top: 20px;
+        min-height: 80vh;
+    }
+
+    .barber-container{
+        width: 50%;
+        margin: 0 45% 0 18%;
+        min-height: 80vh;
+    }
+
+    .barber-name{
+        font-size: 2.2rem !important;
+        padding: 0 10px;
+    }
+
+    .barber-info{
+        padding: 0 10px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .barber-container{
+        width: 80%;
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 0 auto;
+    }
+
+    .barber-navbar{
+        position: initial;
+        width: 30%;
+        margin-top: 20px;
+    }
+
+    .barber-content{
+        width: 65%;
+        margin: 0 auto;
+    }
+}

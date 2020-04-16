@@ -8,20 +8,21 @@ class Service extends Component{
     }
 
     render(){
+        const service = this.props.service;
         return(
             <div className="service">
                 <div className="service-info">
                     <div className="service-panel-element service-left">
-                        <p>{this.props.service.name}</p>
-                        <p>{this.props.service.description}</p>
+                        <p>{service.name}</p>
+                        <p>{service.description}</p>
                     </div>
                     <div className="service-panel-element service-right">
-                        <p>{this.props.service.time} min</p>
-                        <p>{this.props.service.price} $</p>
+                        <p>{service.time} min</p>
+                        <p>{service.price} $</p>
                     </div>
                 </div>
                 <div className="service-reservation">
-                    <Reservation />
+                    <Reservation service={service.id} id={this.props.id}/>
                 </div>
             </div>
         );

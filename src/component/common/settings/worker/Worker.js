@@ -29,7 +29,7 @@ class Worker extends Component{
             ...this.state,
             isLoading: true
         });
-        get('/workers/' + this.props.id).then(response => {
+        get('/worker/value?barber=' + this.props.id).then(response => {
             this.setState({
                 ...this.state,
                 data: response,

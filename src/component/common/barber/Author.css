@@ -18,6 +18,7 @@
 .author-props p{
     margin: 2px 0;
     color: #777;
+    font-size: 0.9rem;
 }
 
 .author-props{
@@ -31,5 +32,26 @@
 
 .star-review{
     color: #777;
-    font-size: 1rem;
+    font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 480px){
+    .author-image{
+        width: 11vh;
+        height: 11vh;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .author-image{
+        width: 8vh;
+        height: 8vh;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .author-image{
+        width: 4vh;
+        height: 4vh;
+    }
 }

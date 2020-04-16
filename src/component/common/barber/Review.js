@@ -27,7 +27,7 @@ class Review extends Component{
                     <button className="btn review-report"><FaExclamation /></button>
                 </div>
                 <div className="review-content">
-                    {review.review}
+                    <p className="review-text">{review.review}</p>
                     <div className="review-info"> 
                         <button className="btn review-btn" onClick={this.handleShow} >
                             {this.state.displayShow ? 'Show less' : 'Show more'}
