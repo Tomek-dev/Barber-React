@@ -1,0 +1,30 @@
+.worker-list{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.worker-list-image{
+    background-color: #ddd;
+    color: #aaa;
+    width: 8vh;
+    height: 8vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.4rem;
+    border-radius: 30px;
+}
+
+.worker-list-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.worker-list-item p{
+    text-align: center;
+    margin: 2px 0;
+    color: #777;
+}

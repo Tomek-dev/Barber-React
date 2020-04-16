@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { post } from '../../util/ApiUtils';
+import { post, get } from '../../../util/ApiUtils';
 import ReactModal from 'react-modal';
-import VisitForm from './VisitForm';
+import Visit from './Visit';
 
 class ReviewForm extends Component{
     constructor(props){
@@ -10,24 +10,43 @@ class ReviewForm extends Component{
             form: {
                 review: '',
                 star: '',
-                worker: '',
-                service: ''
             },
-            error: {
-                msg: '',
-                status: ''
-            },
+            selected: '',
+            data: [],
+            error: '',
             display: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.handleReviewPanel = this.handleReviewPanel.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
     }
 
-    handleReviewPanel(){
+    componentDidMount(){
+        get('/oauth/visit').then(response => { 
+            this.setState({
+                ...this.state,
+                data: response
+            }); 
+        }).catch(e => [
+            this.setState({
+                ...this.state,
+                error: e.message || 'Sorry! Something went wrong. Please try again!'
+            })
+        ]);
+    }
+
+    handleOpen() {
         this.setState({ 
             ...this.state, 
-            display: !this.state.display
+            display: true
+        });
+    }
+
+    handleClose() {
+        this.setState({ 
+            ...this.state, 
+            display: false
         });
     }
 
@@ -58,6 +77,13 @@ class ReviewForm extends Component{
         });
     }
 
+    handleSelect = (id) => {
+        this.setState({
+            ...this.state,
+            selected: id
+        })
+    }
+
     handleSubmit = (event) =>{
         event.preventDefault();
         const form = this.state.form;
@@ -65,33 +91,23 @@ class ReviewForm extends Component{
         if(errorMsg){
             this.setState({
                 ...this.state,
-                error: {
-                    msg: errorMsg,
-                    status: 'error'
-                }
+                error: errorMsg
             });
             return;
         }
-        post(form, '/review/').then(response => {   // set id barber
+        post(form, '/review/' + this.state.selected).then(response => {
             this.setState({
                 form: {
                     review: '',
                     star: '',
-                    worker: '',
-                    service: ''
                 },
-                error: {
-                    msg: 'Successfully added review',
-                    status: 'success'
-                }
+                error: '',
+                display: false
             });
         }).catch(e => {
             this.setState({
                 ...this.state,
-                error: {
-                    msg: e.message || 'Sorry! Something went wrong. Please try again!',
-                    status: 'error'
-                }
+                error: e.message
             });
         });
     }
@@ -104,14 +120,18 @@ class ReviewForm extends Component{
                 </button>
                 <ReactModal
                 ariaHideApp={false}
-                className="search-modal"
-                overlayClassName="search-modal-overlay"
+                className="modal"
+                overlayClassName="modal-overlay"
                 onRequestClose={this.handleReviewPanel}
                 shouldCloseOnOverlayClick={true}
                 isOpen={this.state.display}>
                     <div className="review-content-form">
                         <form className="review-form" onSubmit={this.onSubmit}>
-                            <VisitForm onClick={this.handleVisit}/>
+                            <div className="review-visit">
+                                {this.state.data.map(element => (
+                                    <Visit review={element} onClick={this.handleSelect}/>
+                                ))}
+                            </div>
                             <div className="review-form-content">
                                 <input 
                                 type=""

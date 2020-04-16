@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Author } from './Author';
+import Author from '../barber/Author';
+import { FaExclamation } from 'react-icons/fa';
+import './Review.css';
 
 class Review extends Component{
     constructor(props){
@@ -17,22 +19,23 @@ class Review extends Component{
     }
 
     render(){
+        const review = this.props.review;
         return(
             <div className="review">
                 <div className="review-header">
-                    <Author review={this.props.review}/>
-                    <button className="review-report">Report</button>
+                    <Author review={review}/>
+                    <button className="btn review-report"><FaExclamation /></button>
                 </div>
                 <div className="review-content">
-                    {this.props.review.review}
+                    {review.review}
                     <div className="review-info"> 
-                        <button onClick={this.handleShow} className="review-show-button">
+                        <button className="btn review-btn" onClick={this.handleShow} >
                             {this.state.displayShow ? 'Show less' : 'Show more'}
                         </button>
-                        {displayShow ? (
+                        {this.state.displayShow ? (
                         <div className="review-show">
-                            <p>Worker: {this.props.review.worker}</p>
-                            <p>Service: {this.props.review.service}</p>
+                            <p>Worker: {review.workerName}</p>
+                            <p>Service: {review.serviceName}</p>
                         </div>
                         ): null}
                     </div>

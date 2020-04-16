@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH, PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_PATTERN, EMAIL_PATTERN } from '../../../constans/Constant';
 import { checkUsernameAvailability, checkEmailAvailability, signUp } from '../../../util/ApiUtils';
-import './SignUpForm.css';
 import { Link } from 'react-router-dom';
+import '../signup/SignUpForm.css';
 
 class SignUpForm extends Component{
     constructor(props){

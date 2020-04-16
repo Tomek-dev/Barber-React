@@ -1,0 +1,35 @@
+.author-image{
+    background-color: #ddd;
+    color: #aaa;
+    width: 6vh;
+    height: 6vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.1rem;
+    border-radius: 30px;
+}
+
+.author{
+    display: flex;
+    align-items: center;
+}
+
+.author-props p{
+    margin: 2px 0;
+    color: #777;
+}
+
+.author-props{
+    margin-left: 5px;
+}
+
+.review-star{
+    display: flex;
+    align-items: center;
+}
+
+.star-review{
+    color: #777;
+    font-size: 1rem;
+}

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './Service.css';
+import Reservation from './Reservation';
 
 class Service extends Component{
     constructor(props){
@@ -9,16 +11,18 @@ class Service extends Component{
         return(
             <div className="service">
                 <div className="service-info">
-                    <div className="service-element">
+                    <div className="service-panel-element service-left">
                         <p>{this.props.service.name}</p>
-                        <p>{this.props.service.price}</p>
-                    </div>
-                    <div className="service-element">
                         <p>{this.props.service.description}</p>
-                        <p>{this.props.service.time}</p>
+                    </div>
+                    <div className="service-panel-element service-right">
+                        <p>{this.props.service.time} min</p>
+                        <p>{this.props.service.price} $</p>
                     </div>
                 </div>
-                <button className="service-button">Reservation</button>
+                <div className="service-reservation">
+                    <Reservation />
+                </div>
             </div>
         );
     }

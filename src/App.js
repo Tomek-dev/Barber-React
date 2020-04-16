@@ -6,13 +6,14 @@ import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
 import LoginPage from './component/common/login/LoginPage';
-import SignUpForm from './component/form/SignUp/SignUpForm';
+import SignUpForm from './component/form/signup/SignUpForm';
 import './App.css';
 import SettingsPage from './component/common/settings/SettingsPage';
 import PrivateRoute from './component/common/PrivateRoute';
 import Bottom from './component/common/bottom/Bottom';
 import Loader from './component/common/loader/Loader';
 import Error from './component/common/error/Error';
+import Barber from './component/common/barber/Barber';
 
 class App extends Component{
   constructor(props){
@@ -81,6 +82,7 @@ class App extends Component{
             <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
             <Route path="/businesses" component={SignUpForm}/>
             <Route path="/error/:status" component={Error}/>
+            <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
             <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
           </div>
           <Bottom />

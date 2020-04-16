@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import './Map.css';
 
 class Map extends Component{
     constructor(props){
@@ -11,7 +12,7 @@ class Map extends Component{
 
     render(){
         const barber = this.props.barber;
-        const position = [barber.lat, barber.lng];
+        const position = [barber.latitude, barber.longitude];
         return(
             <LeafletMap center={position} zoom={this.state.zoom}>
                 <TileLayer
@@ -19,13 +20,6 @@ class Map extends Component{
                     url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 />
                 <Marker position={position}>
-                    <Popup>
-                        <img />
-                        <div>
-                            {barber.name}
-                            {barber.address}
-                        </div>
-                    </Popup>
                 </Marker>
             </LeafletMap>
         )

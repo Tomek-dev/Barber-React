@@ -1,0 +1,41 @@
+.barber-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.barber-image{
+    height: 30vh;
+    background-color: #ddd;
+    color: #aaa;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    margin: 20px 0;
+}
+
+.barber-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.barber-info p{
+    margin: 4px 0;
+    color: #777;
+    font-size: 1.3rem;
+}
+
+.barber-name{
+    font-size: 1.8rem !important;
+    color: #444 !important;
+    font-weight: 700;
+}
+
+.barber-content{
+    display: flex;
+    flex-direction: column;
+}

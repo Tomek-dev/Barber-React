@@ -1,0 +1,54 @@
+.opinion-panel-info{
+    margin: 4px 10px;
+    color: #362821;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.opinion{
+    padding: 0 10px;
+}
+
+.opinion-about{
+    color: #777;
+    font-size: 1.2rem;
+}
+
+.average-info{
+    border: 1px solid #eee;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.average-info p{
+    margin: 4px 0;
+    color: #777;
+    text-align: center;
+}
+
+.opinion-max{
+    font-size: 1.6rem;
+}
+
+.opinion-average{
+    font-size: 1.3rem !important;
+}
+
+.star-element{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.star{
+    color: #f5e342 !important;
+}
+
+.star-icon{
+    font-size: 1.4rem;
+    color: #777;
+}

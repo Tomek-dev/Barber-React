@@ -1,0 +1,10 @@
+.social-logo{
+    font-size: 2.4rem;
+}
+
+.social-info-container{
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

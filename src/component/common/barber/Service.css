@@ -1,0 +1,24 @@
+.service, .service-info{
+    display: flex;
+    align-items: center;
+}
+
+.service{
+    width: 100%;
+}
+
+.service-info{
+    justify-content: space-between;
+    width: 80%;
+}
+
+.service-reservation{
+    width: 20%;
+    text-align: center;
+}
+
+.service-panel-element p{
+    margin: 2px 0;
+    font-size: 1.1rem;
+    color: #777;
+}

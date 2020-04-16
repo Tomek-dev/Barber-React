@@ -1,0 +1,22 @@
+.review-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.review-report{
+    color: #76020b;
+    font-size: 1.2rem;
+}
+
+.review-content{
+    color: #777;
+}
+
+.review-btn{
+    color: #999 !important;
+}
+
+.review-show p{
+    margin: 1px 0;
+}

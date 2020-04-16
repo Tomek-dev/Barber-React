@@ -1,0 +1,15 @@
+.day-hours{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.day-hours p{
+    margin: 4px 0;
+    font-size: 1.2rem;
+    color: #777;
+}
+
+.hours-day-name{
+    color: #555 !important;
+}

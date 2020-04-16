@@ -1,0 +1,14 @@
+.service-panel-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.service-panel-info{
+    margin: 4px 10px;
+    color: #362821;
+    font-weight: 700;
+    font-size: 1.5rem;
+}

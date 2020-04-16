@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { ReviewForm } from '../../form/ReviewForm';
+import ReviewForm from '../../form/review/ReviewForm';
 import { get } from '../../../util/ApiUtils';
+import './Opinion.css';
+import { FaStar } from 'react-icons/fa';
 
 class Opinion extends Component{
     constructor(props){
@@ -14,27 +16,32 @@ class Opinion extends Component{
         get('/review/info/' + this.props.id).then(respone => {
             this.setState({
                 data: respone
-            }).catch(error => {
-                // ??
             })
+        }).catch(e => {
+            // redirect
         })
     }
 
     render(){
         const opinion = this.state.data;
+        const currentUser = this.props.currentUser;
         return(
             <div className="opinion">
                 <div className="opinion-element">
-                    <p>Opinion</p>
-                    <p>...</p>
+                    <p className="opinion-panel-info">Opinion</p>
+                    <p className="opinion-about">Our opinions are 100% authentic because only customers can write reviews</p>
+                    {currentUser && currentUser.type === 'oauth' ? (<ReviewForm />):null}
                 </div>
-                <div className="opinion-element">
-                    <div>
-                        <p><span>{opinion.average}</span>5</p>
-                        <p></p>
-                        <p>{opinion.count}</p>
+                <div className="opinion-element average-info">
+                    <p className="opinion-max"><span className="opinion-average">{opinion.average}</span>/5 Stars</p>
+                    <div className="star-element">
+                            <FaStar className={`star-icon ${opinion.average > 0.5 ? `star`: ``}`} />
+                            <FaStar className={`star-icon ${opinion.average > 1.5 ? `star`: ``}`} />
+                            <FaStar className={`star-icon ${opinion.average > 2.5 ? `star`: ``}`} />
+                            <FaStar className={`star-icon ${opinion.average > 3.5 ? `star`: ``}`} />
+                            <FaStar className={`star-icon ${opinion.average > 4.5 ? `star`: ``}`} />
                     </div>
-                    <ReviewForm />
+                    <p>{opinion.count} reviews</p>
                 </div>
             </div>
         );

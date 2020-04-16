@@ -77,6 +77,8 @@ class HoursEdit extends Component{
             return 'Set open!';
         }else if(!form.close){
             return 'Set close!';
+        }else if(Date.parse("Thu, 01 Jan 1970 " + form.open + ":00 GMT-0400") > Date.parse("Thu, 01 Jan 1970 " + form.close + ":00 GMT-0400")){
+            return 'Close hours should be higher than open.'
         }
         return null;
     }

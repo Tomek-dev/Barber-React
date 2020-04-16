@@ -1,0 +1,16 @@
+.info-loading{
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+}
+
+.info-contact p, .info-open-paragraph{
+    margin: 4px 10px;
+    color: #362821;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.info-contact, .info-open, .info-open-element{
+    padding: 0 10px;
+}
