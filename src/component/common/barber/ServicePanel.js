@@ -28,7 +28,7 @@ class ServicePanel extends Component {
                 <p className="service-panel-info">Services</p>
                 <div className="service-panel">
                     {this.state.services.map(element => {
-                        return <Service id={this.props.id} key={element.id} service={element}/>
+                        return <Service currentUser={this.props.currentUser} id={this.props.id} key={element.id} service={element}/>
                     })}
                 </div>
             </div>

@@ -1,0 +1,69 @@
+.barber-top-image{
+    height: 30vh;
+    background-color: #ddd;
+    color: #aaa;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    margin: 10px 0;
+}
+
+.barber-link{
+    text-decoration: none;
+    color: #777;
+    display: flex;
+    flex-direction: column;
+}
+
+.barber-top-name{
+    font-size: 1.6rem !important;
+    font-weight: 700;
+}
+
+.barber-props{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.barber-top-element{
+    width: 50%;
+}
+
+.barber-top-element p{
+    color: #777;
+    margin: 2px 0;
+    font-size: 1.2rem;
+}
+
+.star-barber{
+    font-size: 1.4rem;
+    color: #777;
+}
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}
+
+.barber-top{
+    padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 480px){
+    .barber-top-image{
+        height: 60vh;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .barber-top-image{
+        height: 40vh;
+    }
+}

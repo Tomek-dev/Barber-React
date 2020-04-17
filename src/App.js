@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from './component/common/header/Header';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import Images from './component/common/images/Images';
@@ -14,6 +14,7 @@ import Bottom from './component/common/bottom/Bottom';
 import Loader from './component/common/loader/Loader';
 import Error from './component/common/error/Error';
 import Barber from './component/common/barber/Barber';
+import Main from './component/common/main/Main';
 
 class App extends Component{
   constructor(props){
@@ -77,13 +78,15 @@ class App extends Component{
       <Router>
         <div className="app-container">
           <Header onLogout={this.handleLogout} currentUser={this.state.user} />
-          <div className="app-content">
-            <Route exact path="/" />
-            <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
-            <Route path="/businesses" component={SignUpForm}/>
-            <Route path="/error/:status" component={Error}/>
-            <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
-            <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
+          <div className="app-content">   
+            <Switch>
+              <Route exact path="/" component={Main}/>
+              <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
+              <Route path="/businesses" component={SignUpForm}/>
+              <Route path="/error/:status" component={Error}/>
+              <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
+              <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
+            </Switch>                                             
           </div>
           <Bottom />
         </div>

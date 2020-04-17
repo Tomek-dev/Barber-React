@@ -1,0 +1,17 @@
+.report-btn{
+    font-size: 1.4rem;
+    color: #777;
+}
+
+.report-modal{
+    display: flex;
+    flex-direction: column;
+}
+
+.report-option{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

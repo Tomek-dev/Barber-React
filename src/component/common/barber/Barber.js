@@ -66,7 +66,7 @@ class Barber extends Component{
                         <p className="barber-name">{barber.name}</p>
                         <p>{barber.address} {barber.local} {barber.city}</p>
                     </div>
-                    <ServicePanel id={this.props.match.params.id}/>
+                    <ServicePanel currentUser={this.props.currentUser} id={this.props.match.params.id}/>
                     <Opinion id={this.props.match.params.id} currentUser={this.props.currentUser}/>
                     <ReviewPanel id={this.props.match.params.id}/>
                 </div>

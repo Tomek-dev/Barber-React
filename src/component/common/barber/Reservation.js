@@ -4,6 +4,7 @@ import { get, post } from './../../../util/ApiUtils';
 import { FaTimes, FaUserAlt } from 'react-icons/fa';
 import ReactModal from 'react-modal';
 import MiniLoader from '../loader/MiniLoader'
+import { Redirect } from 'react-router-dom';
 
 export function formatDate(date) {
     var format = new Date(date),
@@ -88,12 +89,15 @@ class Reservation extends Component{
     }
 
     handleChange(event){
+        console.log(this.state.form)
         this.setState({
             ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
             }
+        }, function(){
+            console.log(this.state.form)
         })
     }
 
@@ -107,7 +111,7 @@ class Reservation extends Component{
         }
         return null;
     }
- 
+    
     handleSubmit(event){
         event.preventDefault();
         const form = this.state.form;
@@ -119,9 +123,7 @@ class Reservation extends Component{
             })
             return;
         }
-        console.log(form)
         form.date = this.state.date + 'T' + form.date + ':00.0';
-        console.log(form)
         post(form, '/oauth/visit/add').then(() => {
             this.setState({
                 ...this.state,
@@ -166,13 +168,13 @@ class Reservation extends Component{
                                 </button>
                             )): <p>Not found any available time</p> }
                         </div>
+                        <p className="list-worker">Available worker:</p>
                         <div className="list-list">
                             {list.length > 0 ? list.map(element => (
                                 <button name="worker" className="btn list-btn" type="button" value={element.id} onClick={this.handleChange}>
-                                    {!element.url ? (<div className="worker-resercation-image"><FaUserAlt /></div>):(<img />)}
-                                    <p>{element.name}</p>
+                                    {element.name}
                                 </button>
-                            )): <p>Not found any worker</p> } 
+                            )): <p>Not found any available worker</p> } 
                         </div>
                         <form className="reservation-form" onSubmit={this.handleSubmit}>
                             <input 

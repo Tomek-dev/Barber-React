@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Author from '../barber/Author';
 import { FaExclamation } from 'react-icons/fa';
 import './Review.css';
+import Report from './report/Report';
 
 class Review extends Component{
     constructor(props){
@@ -24,7 +25,7 @@ class Review extends Component{
             <div className="review">
                 <div className="review-header">
                     <Author review={review}/>
-                    <button className="btn review-report"><FaExclamation /></button>
+                    <Report id={review.id}/>
                 </div>
                 <div className="review-content">
                     <p className="review-text">{review.review}</p>

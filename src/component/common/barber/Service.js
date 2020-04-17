@@ -22,7 +22,7 @@ class Service extends Component{
                     </div>
                 </div>
                 <div className="service-reservation">
-                    <Reservation service={service.id} id={this.props.id}/>
+                    <Reservation currentUser={this.props.currentUser} service={service.id} id={this.props.id}/>
                 </div>
             </div>
         );
