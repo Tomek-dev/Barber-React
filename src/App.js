@@ -15,6 +15,7 @@ import Loader from './component/common/loader/Loader';
 import Error from './component/common/error/Error';
 import Barber from './component/common/barber/Barber';
 import Main from './component/common/main/Main';
+import Panel from './component/common/panel/Panel';
 
 class App extends Component{
   constructor(props){
@@ -86,6 +87,7 @@ class App extends Component{
               <Route path="/error/:status" component={Error}/>
               <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
               <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
+              <PrivateRoute authenticated={this.state.auth} path="/visit" component={Panel}/>
             </Switch>                                             
           </div>
           <Bottom />

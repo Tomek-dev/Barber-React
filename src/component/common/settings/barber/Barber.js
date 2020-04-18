@@ -15,7 +15,7 @@ class Barber extends Component{
             return null;
         }
         return(
-            <div className="barber-container">
+            <div className="barber-settings-container">
                 <div className="barber-owner-info">
                     <div className="barber-owner-props">
                         <p>Username: </p>
@@ -23,7 +23,7 @@ class Barber extends Component{
                     </div>
                     <ProfileEdit />
                 </div>
-                <div className="barber-content">
+                <div className="barber-settings-content">
                     <div className="barber-content-element barber-bottom">
                         <BarberEdit barber={this.props.barber}/>
                     </div>

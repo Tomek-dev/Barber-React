@@ -1,0 +1,40 @@
+.panel-container{
+    height: 55vh;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.panel-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visit-paragraph{
+    color: #362821;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 4px 0;
+}
+
+@media only screen and (max-width: 1024px) and (min-height: 900px) and (min-width: 600px){
+    .panel-container{
+        height: 65vh;
+    }
+
+    .panel-center{
+        height: 55vh;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    .panel-container{
+        height: 80vh;
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .panel-center{
+        height: 80vh;
+    }
+}
