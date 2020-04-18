@@ -32,11 +32,12 @@ class DropDownMenu extends Component {
     }
 
     render(){
+        const currentUser = this.props.currentUser;
         let items;
-        if(this.props.currentUser.type === 'basic'){  
+        if(currentUser.type === 'basic'){  
             items = [
                 <div className="drop-down-item" key="business">
-                    <Link className="link" to={'/barber/' + this.props.currentUser.barberId}><FaBriefcase className="drop-icon"/>Business</Link>
+                    <Link className="link" to={'/barber/' + currentUser.barberId}><FaBriefcase className="drop-icon"/>Business</Link>
                 </div>,
                 <div className="drop-down-item" key="settings">
                     <Link className="link" to="/settings"><FaSlidersH className="drop-icon"/>Settings</Link>
@@ -48,23 +49,20 @@ class DropDownMenu extends Component {
                     <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="drop-icon"/> Logout</button>
                 </div>
             ]
-        }else if(this.props.currentUser.type === 'oauth'){ 
+        }else if(currentUser.type === 'oauth'){ 
             items = [
                 <div className="drop-down-item">
                     <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
                 </div>,
-                <div className="drop-down-item">
-                    <Link className="link" to="/settings"><FaSlidersH className="icon"/>Settings</Link>
-                </div>,
-                <div className="drop-down-item">
-                    <Link className="link"><FaSignOutAlt className="icon"/>Logout</Link>
+                <div className="drop-down-item" key="logout">
+                    <button onClick={this.handleLogout} className="link drop-down-logout-btn"><FaSignOutAlt className="drop-icon"/> Logout</button>
                 </div>
             ]
         }
 
         return(
             <div className="drop-down">
-                <button className="drop-down-btn btn" onClick={this.showDropDownMenu}><FaRegUserCircle className="icon"/>{this.props.currentUser.name}</button>
+                <button className="drop-down-btn btn" onClick={this.showDropDownMenu}>{currentUser.type === 'oauth' && currentUser.imageUrl ? (<img className="profile-image" src={currentUser.imageUrl} alt={currentUser.name}/>):(<FaRegUserCircle className="icon"/>)}{currentUser.name}</button>
                 <div className="drop-down-list">
                 {this.state.displayMenu ? (
                     <div>

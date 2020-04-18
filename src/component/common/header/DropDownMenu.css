@@ -96,6 +96,11 @@
     }
 }
 
+.profile-image{
+    height: 32px;
+    margin-right: 10px;
+}
+
 @media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
     .link{
         height: 5vh

@@ -4,11 +4,11 @@ import {
     Redirect
   } from "react-router-dom";
 
-  const PrivateRoute = ({ component: Component, authenticated, ...rest}) => (
+  const PrivateRoute = ({ component: Component, authenticated, currentUser, type, ...rest}) => (
     <Route {...rest} render={(props) => {
-        if(authenticated === true){
+        if(authenticated === true && currentUser.type === type){
             return(
-                <Component {...rest} {...props} />
+                <Component currentUser={currentUser} {...rest} {...props} />
             )
         }else{
             return(

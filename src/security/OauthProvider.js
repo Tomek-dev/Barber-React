@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ACCESS_TOKEN } from '../constans/Constant'
 import { Redirect } from 'react-router-dom';
 
-class OauthProvider extends Component {
+class OAuthProvider extends Component {
     getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -14,9 +14,9 @@ class OauthProvider extends Component {
     render(){
         const token = this.getUrlParameter('token');
         const error = this.getUrlParameter('error');
-
         if(token){
             localStorage.setItem(ACCESS_TOKEN, token);
+            this.props.onLogin();
             return <Redirect to={{
                 pathname: "/",
                 state: { from: this.props.location }
@@ -33,4 +33,4 @@ class OauthProvider extends Component {
     }
 }
 
-export default OauthProvider;
+export default OAuthProvider;

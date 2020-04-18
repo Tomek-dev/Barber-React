@@ -16,6 +16,7 @@ import Error from './component/common/error/Error';
 import Barber from './component/common/barber/Barber';
 import Main from './component/common/main/Main';
 import Panel from './component/common/panel/Panel';
+import OAuthProvider from './security/OAuthProvider';
 
 class App extends Component{
   constructor(props){
@@ -57,6 +58,7 @@ class App extends Component{
         auth: true,
         isLoading: false
       });
+      console.log(response)
     }).catch(e => {
       this.setState({
         ...this.state,
@@ -66,7 +68,6 @@ class App extends Component{
   }
 
   componentDidMount(){
-    localStorage.removeItem(ACCESS_TOKEN);
     this.loadUser();
   }
 
@@ -85,9 +86,10 @@ class App extends Component{
               <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
               <Route path="/businesses" component={SignUpForm}/>
               <Route path="/error/:status" component={Error}/>
+              <Route path="/oauth/redirect" render={(props) => <OAuthProvider onLogin={this.handleLogin} {...props} />}/>
               <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
-              <PrivateRoute authenticated={this.state.auth} path="/settings" currentUser={this.state.user} component={SettingsPage}/>
-              <PrivateRoute authenticated={this.state.auth} path="/visit" component={Panel}/>
+              <PrivateRoute authenticated={this.state.auth} path="/settings" type="basic" currentUser={this.state.user} component={SettingsPage}/>
+              <PrivateRoute authenticated={this.state.auth} path="/visit" type="basic" currentUser={this.state.user} component={Panel}/>
             </Switch>                                             
           </div>
           <Bottom />

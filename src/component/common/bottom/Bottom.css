@@ -1,12 +1,11 @@
 .bottom-container{
-    padding-bottom: 1px;
     align-self: flex-end;
     width: 100%;
     background-color: #362821;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 30vh;
+    height: 35vh;
     justify-content: center;
 }
 
@@ -28,6 +27,7 @@
 .bottom-logo{
     width: 100%;
     text-align: center;
+    box-sizing: border-box;
 }
 
 @media only screen and (min-width: 480px) {
@@ -50,7 +50,7 @@
 
 @media only screen and (min-width: 900px) {
     .bottom-container{
-        height: 9.90vh;
+        height: 15vh;
         display: flex;
         flex-direction: initial;
         align-items: center;

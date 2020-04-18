@@ -128,7 +128,7 @@
 @media only screen and (min-width: 900px) {
     .app-content{
         margin-top: 10vh;
-        min-height: 80vh;
+        min-height: 75vh;
     }
 
     .error{
