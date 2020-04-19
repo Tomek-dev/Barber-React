@@ -44,3 +44,16 @@
     color: #777;
     font-size: 1.4rem;
 }
+
+.select-date{
+    font-size: 1.4rem;
+    color: #777;
+    display: flex;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.actual-date{
+    text-align: center;
+    margin: 0;
+}

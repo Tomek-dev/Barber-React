@@ -23,11 +23,11 @@ class HoursList extends Component{
         }
     }
 
-    handleSelect = (key) => {
+    handleSelect = (value) => {
         this.setState({
-            selected: key
+            selected: value
         });
-        this.props.onSelect(key, this.props.name)
+        this.props.onSelect(value, this.props.name)
     }
 
     render(){

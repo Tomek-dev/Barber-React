@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PanelItem from './PanelItem';
+import Visit from '../visit/Visit';
 import { get } from '../../../util/ApiUtils';
 import Loader from '../loader/Loader';
 import './Panel.css';
@@ -37,7 +37,7 @@ class Panel extends Component{
             <div className="panel-container">
                 <p className="visit-paragraph">Visits: </p>
                 {this.state.data.length > 0 ? this.state.data.map(element => (
-                    <PanelItem key={element.id} visit={element}/>
+                    <Visit key={element.id} visit={element}/>
             )): (<div className="panel-center"><p className="not-yet"><FaCalendarAlt className="icon" />Not found any visit.</p></div>)}
             </div>
         )

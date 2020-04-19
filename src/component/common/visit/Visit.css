@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .visit-item p{
@@ -12,6 +13,14 @@
 }
 
 .visit-item{
-    padding: 0 10px;
+    margin: 0 10px;
     border-bottom: 1px solid #eee;
 }
+
+.visit-option{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    align-items: center;
+}
+

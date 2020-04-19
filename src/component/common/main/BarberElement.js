@@ -44,7 +44,7 @@ class BarberElement extends Component{
         }
         return(
             <div className="barber-top">
-                <Link className="barber-link" to={'/barber/' + this.props.barber.id}>
+                <Link className="barber-link barber-element-image" to={'/barber/' + this.props.barber.id}>
                     {this.state.images.length > 0 ? null : 
                     (<div className="barber-top-image">
                         <FaImages />

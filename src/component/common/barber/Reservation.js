@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './Reservation.css';
 import { get, post } from './../../../util/ApiUtils';
-import { FaTimes, FaUserAlt } from 'react-icons/fa';
+import { FaTimes, FaUserAlt, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import ReactModal from 'react-modal';
 import MiniLoader from '../loader/MiniLoader'
-import { Redirect } from 'react-router-dom';
 
 export function formatDate(date) {
     var format = new Date(date),
@@ -41,6 +40,8 @@ class Reservation extends Component{
         this.handleClose = this.handleClose.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNext = this.handleNext.bind(this);
+        this.handlePrev = this.handlePrev.bind(this);
     }
 
     handleOpen() {
@@ -89,15 +90,12 @@ class Reservation extends Component{
     }
 
     handleChange(event){
-        console.log(this.state.form)
         this.setState({
             ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
             }
-        }, function(){
-            console.log(this.state.form)
         })
     }
 
@@ -123,7 +121,7 @@ class Reservation extends Component{
             })
             return;
         }
-        form.date = this.state.date + 'T' + form.date + ':00.0';
+        form.date = formatDate(this.state.date) + 'T' + form.date + ':00.0';
         post(form, '/oauth/visit/add').then(() => {
             this.setState({
                 ...this.state,
@@ -145,6 +143,51 @@ class Reservation extends Component{
         })
     }
 
+    handlePrev(){
+        let newDate = new Date(this.state.date)
+        newDate.setDate(newDate.getDate() - 1)
+        this.setState({
+            ...this.state,
+            date: newDate
+        }, function(){
+            this.fetchData();
+        })
+    }
+
+    handleNext(){
+        let newDate = new Date(this.state.date)
+        newDate.setDate(newDate.getDate() + 1)
+        this.setState({
+            ...this.state,
+            date: newDate
+        }, function(){
+            this.fetchData();
+        })
+    }
+
+    get prevBtn(){
+        let newDate = new Date(this.state.date)
+        newDate.setDate(newDate.getDate() - 1)
+        if(newDate.getDate() >= new Date().getDate()){
+            return <button onClick={this.handlePrev} className="btn date-btn">
+                <FaAngleLeft />
+            </button>
+        }
+        return null;
+    }
+
+    get nextBtn(){
+        let newDate = new Date(this.state.date)
+        newDate.setDate(newDate.getDate() + 1)
+        let date = new Date();
+        if(newDate > new Date(date.setMonth(date.getMonth()+1))){
+            return null;
+        }
+        return <button onClick={this.handleNext} className="btn date-btn">
+            <FaAngleRight />
+        </button>
+    }
+
     render(){
         let element;
         if(this.state.isLoading){
@@ -161,6 +204,11 @@ class Reservation extends Component{
                         <div className="error">
                             {this.state.error}
                         </div>
+                        <div className="select-date">
+                            {this.prevBtn}
+                            <p className="actual-date">{formatDate(this.state.date)}</p>
+                            {this.nextBtn}
+                        </div>
                         <div className="date-list">
                             {available.length > 0 ? available.map(element => (
                                 <button name="date" className={`btn date-btn ${this.state.form.date === element.time? `selected`:``}`} type="button" value={element.time} onClick={this.handleChange}>
@@ -171,12 +219,12 @@ class Reservation extends Component{
                         <p className="list-worker">Available worker:</p>
                         <div className="list-list">
                             {list.length > 0 ? list.map(element => (
-                                <button name="worker" className="btn list-btn" type="button" value={element.id} onClick={this.handleChange}>
+                                <button name="worker" className={`btn list-btn ${this.state.form.worker == element.id? `selected`:``}`} type="button" value={element.id} onClick={this.handleChange}>
                                     {element.name}
                                 </button>
-                            )): <p>Not found any available worker</p> } 
+                            )): <p className="not-yet">Not found any available worker</p> } 
                         </div>
-                        <form className="reservation-form" onSubmit={this.handleSubmit}>
+                        <form autoComplete="off" className="reservation-form" onSubmit={this.handleSubmit}>
                             <input 
                             placeholder="Your Name"
                             type="text"

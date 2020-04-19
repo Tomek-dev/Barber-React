@@ -4,6 +4,7 @@ import Header from './component/common/header/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
+import User from './component/common/user/User';
 import Images from './component/common/images/Images';
 import LoginPage from './component/common/login/LoginPage';
 import SignUpForm from './component/form/signup/SignUpForm';
@@ -58,7 +59,6 @@ class App extends Component{
         auth: true,
         isLoading: false
       });
-      console.log(response)
     }).catch(e => {
       this.setState({
         ...this.state,
@@ -68,6 +68,7 @@ class App extends Component{
   }
 
   componentDidMount(){
+    //localStorage.removeItem(ACCESS_TOKEN)
     this.loadUser();
   }
 
@@ -90,6 +91,7 @@ class App extends Component{
               <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
               <PrivateRoute authenticated={this.state.auth} path="/settings" type="basic" currentUser={this.state.user} component={SettingsPage}/>
               <PrivateRoute authenticated={this.state.auth} path="/visit" type="basic" currentUser={this.state.user} component={Panel}/>
+              <PrivateRoute authenticated={this.state.auth} path="/profile" type="oauth" currentUser={this.state.user} component={User}/>
             </Switch>                                             
           </div>
           <Bottom />

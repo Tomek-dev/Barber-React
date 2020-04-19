@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { del } from '../../../util/ApiUtils';
+import '../visit/Visit.css'
 import { FaTrashAlt } from 'react-icons/fa';
+import { del } from '../../../util/ApiUtils';
 
 class Visit extends Component{
     constructor(props){
         super(props);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleDelete(){
-        del('/oauth/visit/' + this.props.visit.id).then(() => {
-            this.props.onEdit();
-        }).catch(e => {
+        del('/oauth/visit/' + this.props.visit.id).then(() => this.fetchData).catch(e => {
             this.props.onError(e.message);
         })
     }
@@ -19,18 +19,16 @@ class Visit extends Component{
         const visit = this.props.visit;
         return(
             <div className="visit-item">
-                <div className="visit-props">
-                    <div>
+                <div className="visit-option">
+                    <div className="visit-props">
                         <p>{visit.name}</p>
-                        <p>{visit.date}</p>
-                        <p>{visit.price}</p>
+                        <p>{visit.servicePrice} $</p>
                     </div>
-                    <button onClick={this.handleDelete} className="btn visit-delete"><FaTrashAlt /></button>
+                    <button onClick={this.handleDelete} onError={this.props.onError} onEdit={this.handleEdit} className="btn reservation-delete"><FaTrashAlt /></button>
                 </div>
-                <div className="visit-info">
-                    <p>{visit.workerName}</p>
-                    <p>{visit.serviceName}</p>
-                </div>
+                <p>{visit.beginning}</p>
+                <p>{visit.workerName}</p>
+                <p>{visit.serviceName}</p>
             </div>
         )
     }

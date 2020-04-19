@@ -58,6 +58,11 @@
     background-color: inherit;
 }
 
+.profile-image{
+    height: 32px;
+    margin-right: 10px;
+}
+
 @media only screen and (min-width: 480px) {
     .drop-down-list{
         top: 25vh;
@@ -94,11 +99,11 @@
     .drop-down-logout-btn{
         font-size: 1rem;
     }
-}
 
-.profile-image{
-    height: 32px;
-    margin-right: 10px;
+    .profile-image{
+        height: 20px;
+        margin-right: 8px;
+    }
 }
 
 @media only screen and (min-height: 900px) and (min-width: 600px) and (max-width: 1024px){
@@ -110,3 +115,5 @@
         top: 10vh;
     }
 }
+
+                    

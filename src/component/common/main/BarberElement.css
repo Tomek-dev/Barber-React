@@ -63,7 +63,25 @@
 }
 
 @media only screen and (min-width: 900px){
+    .barber-element-image{
+        width: 50%;
+        height: 30vh;
+    }
+
     .barber-top-image{
-        height: 40vh;
+        font-size: 3rem;
+    }
+
+    .barber-top{
+        display: flex;
+        align-items: center;
+    }
+
+    .barber-props{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        justify-content: initial;
+        flex-direction: initial;
     }
 }

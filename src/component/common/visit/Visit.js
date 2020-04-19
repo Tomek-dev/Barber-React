@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './PanelItem.css';
+import './Visit.css';
 
-class PanelItem extends Component{
+class Visit extends Component{
     constructor(props){
         super(props);
     }
@@ -10,9 +10,11 @@ class PanelItem extends Component{
         const visit = this.props.visit;
         return(
             <div className="visit-item">
-                <div className="visit-props">
-                    <p>{visit.name}</p>
-                    <p>{visit.servicePrice} $</p>
+                <div>
+                    <div className="visit-props">
+                        <p>{visit.name}</p>
+                        <p>{visit.servicePrice} $</p>
+                    </div>
                 </div>
                 <p>{visit.beginning}</p>
                 <p>{visit.workerName}</p>
@@ -22,4 +24,4 @@ class PanelItem extends Component{
     }
 }
 
-export default PanelItem;
+export default Visit;

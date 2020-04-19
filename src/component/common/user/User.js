@@ -1,38 +1,19 @@
 import React, { Component } from 'react';
-import Visit from './Visit';
+import { FaHistory, FaCalendarAlt } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
+import Reservation from './Reservation';
+import History from './History';
+import './User.css';
 
 class User extends Component{
     constructor(props){
         super(props);
         this.state = {
-            data: [],
-            isLoading: true,
-            error: ''
+            error: '',
+            display: 1
         }
-    }
-
-    fetchData(){
-        this.setState({
-            ...this.state,
-            isLoading: true,
-        })
-        get('/oauth/visit').then(response => {
-            this.setState({
-                ...this.state,
-                data: response,
-                isLoading: false
-            })
-        }).catch(e => {
-            // redirect
-        })
-    }
-
-    componentDidMount(){
-        this.fetchData();
-    }
-
-    handleEdit(){
-        this.fetchData();
+        this.handleError = this.handleError.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleError(msg){
@@ -42,24 +23,36 @@ class User extends Component{
         })
     }
 
-    redner(){
+    handleClick = (event) => {
+        this.setState({
+            display: event.target.value
+        });
+    }
+
+    render(){
         const currentUser = this.props.currentUser;
-        if(this.state.isLoading){
-            return <Loader isLoading={this.state.isLoading} />;
-        }
+        const display = this.state.display;
         return(
             <div className="user-container">
-                <div>
-                    {currentUser.url ? (<img />):(<div className="author-image"><FaUserAlt /></div>)}
-                    <div>
-                        <p>{currentUser.name}</p>
-                        <p>{currentUser.email}</p>
+                <div className="user-sidebar">
+                    <div className="user-props">
+                        {currentUser.url ? (<img />):(<div className="user-image"><FaUserAlt /></div>)}
+                        <div>
+                            <p>{currentUser.name}</p>
+                            <p>{currentUser.email}</p>
+                        </div>
+                    </div>
+                    <div className="user-option">
+                        <button value={1} className={`user-btn btn ${display == 5 ? `display`: ``}`} onClick={this.handleClick}><FaCalendarAlt className="icon" />Reservation</button>
+                        <button value={2} className={`user-btn btn ${display == 5 ? `display`: ``}`} onClick={this.handleClick}><FaHistory className="icon" />History</button>
+                    </div>
+                    <div className="error">
+                        {this.state.error}
                     </div>
                 </div>
-                <div className="user-history">
-                    {this.state.data.length > 0? (this.state.data.map(element => (
-                         <Visit key={element.id} visit={element} onError={this.handleError} onEdit={this.handleEdit}/>
-                    ))):(<p>Not found any visit.</p>)}
+                <div className="user-content">
+                    <History display={this.state.display}/>
+                    <Reservation onError={this.handleError} display={this.state.display}/>
                 </div>
             </div>
         )
