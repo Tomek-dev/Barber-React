@@ -1,11 +1,10 @@
 import React from 'react';
 import { Component } from 'react';
 import Header from './component/common/header/Header';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
 import { authenticatedUser, signUp } from "./util/ApiUtils";
 import User from './component/common/user/User';
-import Images from './component/common/images/Images';
 import LoginPage from './component/common/login/LoginPage';
 import SignUpForm from './component/form/signup/SignUpForm';
 import './App.css';
@@ -18,6 +17,7 @@ import Barber from './component/common/barber/Barber';
 import Main from './component/common/main/Main';
 import Panel from './component/common/panel/Panel';
 import OAuthProvider from './security/OAuthProvider';
+import Search from './component/common/search/Search';
 
 class App extends Component{
   constructor(props){
@@ -68,7 +68,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    //localStorage.removeItem(ACCESS_TOKEN)
+    localStorage.removeItem(ACCESS_TOKEN)
     this.loadUser();
   }
 
@@ -87,11 +87,16 @@ class App extends Component{
               <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
               <Route path="/businesses" component={SignUpForm}/>
               <Route path="/error/:status" component={Error}/>
+              <Route path="/search" component={Search}/>
               <Route path="/oauth/redirect" render={(props) => <OAuthProvider onLogin={this.handleLogin} {...props} />}/>
               <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
               <PrivateRoute authenticated={this.state.auth} path="/settings" type="basic" currentUser={this.state.user} component={SettingsPage}/>
               <PrivateRoute authenticated={this.state.auth} path="/visit" type="basic" currentUser={this.state.user} component={Panel}/>
               <PrivateRoute authenticated={this.state.auth} path="/profile" type="oauth" currentUser={this.state.user} component={User}/>
+              <Route render={(props) => <Redirect to={{
+                    pathname: '/error/404',
+                    state: { from: props.location }
+                }}/>}/>
             </Switch>                                             
           </div>
           <Bottom />

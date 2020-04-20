@@ -48,18 +48,20 @@ class SearchForm extends Component{
     }
 
     validate = (form) => {
-        if(!form.city){
-            return 'This field may not be empty.';
+        if(!form.city && !form.query){
+            return 'This fields may not be empty.';
         }
         return null;
     }
 
     url = (form) => {
-        let search = '/search?=' + form.city;
+        let params;
         if(!form.query){
-            search += '&query=' + form.query;
+            params += '&query=' + form.query;
+        }else if(!form.city){
+            params += '&city=' + form.city;
         }
-        return search;
+        return params.substring(0, 1);
     }
 
     handleSubmit = (event) => {
