@@ -1,23 +1,23 @@
 import React from 'react';
 import { Component } from 'react';
-import Header from './component/common/header/Header';
+import Header from './component/header/Header';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { ACCESS_TOKEN } from './constans/Constant';
-import { authenticatedUser, signUp } from "./util/ApiUtils";
-import User from './component/common/user/User';
-import LoginPage from './component/common/login/LoginPage';
-import SignUpForm from './component/form/signup/SignUpForm';
-import './App.css';
-import SettingsPage from './component/common/settings/SettingsPage';
+import { authenticatedUser } from "./util/ApiUtils";
+import User from './component/user/User';
+import LoginPage from './component/login/LoginPage';
+import SignUpForm from './component/signup/SignUpForm';
+import SettingsPage from './component/settings/SettingsPage';
 import PrivateRoute from './component/common/PrivateRoute';
-import Bottom from './component/common/bottom/Bottom';
+import Bottom from './component/bottom/Bottom';
 import Loader from './component/common/loader/Loader';
-import Error from './component/common/error/Error';
-import Barber from './component/common/barber/Barber';
-import Main from './component/common/main/Main';
-import Panel from './component/common/panel/Panel';
+import Error from './component/error/Error';
+import Barber from './component/page/Barber';
+import Index from './component/index/Index';
+import Panel from './component/panel/Panel';
 import OAuthProvider from './security/OAuthProvider';
-import Search from './component/common/search/Search';
+import Search from './component/search/Search';
+import './App.css';
 
 class App extends Component{
   constructor(props){
@@ -68,7 +68,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    localStorage.removeItem(ACCESS_TOKEN)
+    //localStorage.removeItem(ACCESS_TOKEN)
     this.loadUser();
   }
 
@@ -83,7 +83,7 @@ class App extends Component{
           <Header onLogout={this.handleLogout} currentUser={this.state.user} />
           <div className="app-content">   
             <Switch>
-              <Route exact path="/" component={Main}/>
+              <Route exact path="/" component={Index}/>
               <Route path="/login" render={(props) => <LoginPage onLogin={this.handleLogin} {...props} />}/>
               <Route path="/businesses" component={SignUpForm}/>
               <Route path="/error/:status" component={Error}/>
