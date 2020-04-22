@@ -74,7 +74,6 @@ class SignUpForm extends Component{
                     status: 'error'
                 }
             });
-            console.log(this.state);
             return;
         }
         let available = true;

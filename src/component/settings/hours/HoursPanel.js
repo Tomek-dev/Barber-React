@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import HoursList from './HoursList'
 import { FaRegEdit, FaTimes } from 'react-icons/fa'
 import './HoursPanel.css';
+import { withRouter } from 'react-router-dom';
 
 class HoursPanel extends Component{
     constructor(props){
@@ -24,7 +25,6 @@ class HoursPanel extends Component{
     }
 
     componentDidMount(){
-
         this.setState({
             ...this.state,
             form: {
@@ -137,4 +137,4 @@ class HoursPanel extends Component{
     }
 }
 
-export default HoursPanel
+export default withRouter(HoursPanel)

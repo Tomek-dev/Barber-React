@@ -5,6 +5,7 @@ import { FaTimes, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import ReactModal from 'react-modal';
 import MiniLoader from '../../common/loader/MiniLoader';
 import { formatDate } from '../../common/DateTimeFormat';
+import { withRouter } from 'react-router-dom';
 
 class Reservation extends Component{
     constructor(props){
@@ -49,7 +50,7 @@ class Reservation extends Component{
                 available: response,
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await get('/worker/value?service=' + this.props.service).then(response => {
             this.setState({
@@ -57,7 +58,7 @@ class Reservation extends Component{
                 list: response
             });
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await this.setState({
             ...this.state,
@@ -240,4 +241,4 @@ class Reservation extends Component{
     }
 }
 
-export default Reservation;
+export default withRouter(Reservation);

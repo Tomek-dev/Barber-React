@@ -4,6 +4,7 @@ import WorkerItem from './WorkerItem';
 import { FaFolder, FaImages } from 'react-icons/fa';
 import './Worker.css';
 import MiniLoader from '../../common/loader/MiniLoader';
+import { withRouter } from 'react-router-dom';
 
 class Worker extends Component{
     constructor(props){
@@ -36,11 +37,7 @@ class Worker extends Component{
                 isLoading: false
             });
         }).catch(e => {
-            this.setState({
-                ...this.state,
-                isLoading: false
-            });
-            //redirect
+            this.props.history.push('/error/' + e.status);
         });
         get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
@@ -48,11 +45,7 @@ class Worker extends Component{
                 services: response
             });
         }).catch(e => {
-            this.setState({
-                ...this.state,
-                isLoading: false
-            });
-            //redirect
+            this.props.history.push('/error/' + e.status);
         });
     }
 
@@ -181,4 +174,4 @@ class Worker extends Component{
     }
 }
 
-export default Worker;
+export default withRouter(Worker);

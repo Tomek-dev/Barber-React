@@ -5,6 +5,7 @@ import Day from './Day';
 import Socials from './Socials';
 import MiniLoader from '../../common/loader/MiniLoader';
 import './Information.css';
+import { withRouter } from 'react-router-dom';
 
 class Information extends Component{
     constructor(props){
@@ -28,7 +29,7 @@ class Information extends Component{
                 hours: response
             });
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         });
         await get('/worker/value?barber=' + this.props.id).then(response => {
             this.setState({
@@ -36,7 +37,7 @@ class Information extends Component{
                 workers: response
             });
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await get('/social/' + this.props.id).then(response => {
             this.setState({
@@ -44,7 +45,7 @@ class Information extends Component{
                 socials: response
             });
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await this.setState({
             ...this.state,
@@ -89,4 +90,4 @@ class Information extends Component{
     }
 }
 
-export default Information;
+export default withRouter(Information);

@@ -65,7 +65,7 @@ export function checkEmailAvailability(email){
 export function change(password){
     return request({
         url: API_BASE_URL + "/change",
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(password)
     });
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Service from './Service';
 import './ServicePanel.css';
 import { get } from '../../../util/ApiUtils';
+import { withRouter } from 'react-router-dom';
 
 class ServicePanel extends Component {
     constructor(props){
@@ -18,7 +19,7 @@ class ServicePanel extends Component {
                 services: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -36,4 +37,4 @@ class ServicePanel extends Component {
     }
 }
 
-export default ServicePanel;
+export default withRouter(ServicePanel);

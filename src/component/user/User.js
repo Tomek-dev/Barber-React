@@ -4,6 +4,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import Reservation from './Reservation';
 import History from './History';
 import './User.css';
+import { withRouter } from 'react-router-dom';
 
 class User extends Component{
     constructor(props){
@@ -59,4 +60,4 @@ class User extends Component{
     }
 }
 
-export default User;
+export default withRouter(User);

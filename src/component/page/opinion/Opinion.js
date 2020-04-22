@@ -3,6 +3,7 @@ import ReviewForm from './ReviewForm';
 import { get } from '../../../util/ApiUtils';
 import './Opinion.css';
 import { FaStar } from 'react-icons/fa';
+import { withRouter } from 'react-router-dom';
 
 class Opinion extends Component{
     constructor(props){
@@ -18,19 +19,18 @@ class Opinion extends Component{
                 data: respone
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
     render(){
         const opinion = this.state.data;
-        const currentUser = this.props.currentUser;
         return(
             <div className="opinion">
                 <div className="opinion-element">
                     <p className="opinion-panel-info">Opinion</p>
                     <p className="opinion-about">Our opinions are 100% authentic because only customers can write reviews</p>
-                    {currentUser && currentUser.type === 'oauth' ? (<ReviewForm />):null}
+                    <ReviewForm currentUser={this.props.currentUser}/>
                 </div>
                 <div className="opinion-element average-info">
                     <p className="opinion-max"><span className="opinion-average">{opinion.average}</span>/5 Stars</p>
@@ -48,4 +48,4 @@ class Opinion extends Component{
     }
 }
 
-export default Opinion;
+export default withRouter(Opinion);

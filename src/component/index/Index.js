@@ -3,8 +3,9 @@ import BarberElement from '../common/barber/BarberElement';
 import { get } from '../../util/ApiUtils';
 import Loader from '../common/loader/Loader';
 import './Index.css';
+import { withRouter } from 'react-router-dom';
 
-class Main extends Component{
+class Index extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -24,7 +25,7 @@ class Main extends Component{
                 data: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -45,4 +46,4 @@ class Main extends Component{
     }
 }
 
-export default Main;
+export default withRouter(Index);

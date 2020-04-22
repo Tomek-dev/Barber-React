@@ -4,6 +4,7 @@ import Visit from '../common/visit/Visit';
 import MiniLoader from '../common/loader/MiniLoader';
 import { formatDateTime } from '../common/DateTimeFormat';
 import './History.css';
+import { withRouter } from 'react-router-dom';
 
 class History extends Component{
     constructor(props){
@@ -26,7 +27,7 @@ class History extends Component{
                 data: response
             })
         }).catch(e => {
-            //redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -46,4 +47,4 @@ class History extends Component{
     }
 }
 
-export default History;
+export default withRouter(History);

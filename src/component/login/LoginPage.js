@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm';
 import SocialLogin from './SocialLogin';
+import { withRouter } from 'react-router-dom';
 import './LoginPage.css'
 
 
@@ -25,4 +26,4 @@ class LoginPage extends Component{
     }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

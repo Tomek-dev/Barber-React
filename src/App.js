@@ -39,13 +39,10 @@ class App extends Component{
       user: null,
       auth: false,
     });
-
-    //this.context.history.push(redirect);
   }
 
   handleLogin(){
     this.loadUser();
-    //this.context.history.push('/');
   }
 
   loadUser(){
@@ -89,7 +86,7 @@ class App extends Component{
               <Route path="/error/:status" component={Error}/>
               <Route path="/search" component={Search}/>
               <Route path="/oauth/redirect" render={(props) => <OAuthProvider onLogin={this.handleLogin} {...props} />}/>
-              <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.currentUser} {...props} />}/>
+              <Route path="/barber/:id" render={(props) => <Barber currentUser={this.state.user} {...props} />}/>
               <PrivateRoute authenticated={this.state.auth} path="/settings" type="basic" currentUser={this.state.user} component={SettingsPage}/>
               <PrivateRoute authenticated={this.state.auth} path="/visit" type="basic" currentUser={this.state.user} component={Panel}/>
               <PrivateRoute authenticated={this.state.auth} path="/profile" type="oauth" currentUser={this.state.user} component={User}/>

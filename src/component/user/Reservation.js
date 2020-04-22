@@ -4,6 +4,7 @@ import MiniLoader from '../common/loader/MiniLoader';
 import { formatDateTime } from '../common/DateTimeFormat';
 import Visit from './Visit';
 import './Reservation.css';
+import { withRouter } from 'react-router-dom';
 
 class Reservation extends Component{
     constructor(props){
@@ -26,7 +27,7 @@ class Reservation extends Component{
                 data: response
             })
         }).catch(e => {
-            //redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -55,4 +56,4 @@ class Reservation extends Component{
     }
 }
 
-export default Reservation;
+export default withRouter(Reservation);

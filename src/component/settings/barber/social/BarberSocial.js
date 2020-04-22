@@ -5,6 +5,7 @@ import Social from './Social';
 import { FaFolder } from 'react-icons/fa';
 import SocialAdd from './SocialAdd';
 import './BarberSocial.css';
+import { withRouter } from 'react-router-dom';
 
 class BarberSocial extends Component{
     constructor(props){
@@ -33,11 +34,7 @@ class BarberSocial extends Component{
                 isLoading: false
             })
         }).catch(e => {
-            this.setState({
-                ...this.state,
-                isLoading: false
-            });
-            //redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -82,4 +79,4 @@ class BarberSocial extends Component{
 
 }
 
-export default BarberSocial;
+export default withRouter(BarberSocial);

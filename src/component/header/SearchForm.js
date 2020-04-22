@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 import './SearchForm.css';
 import { FaSearch, FaTimes } from 'react-icons/fa'
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component{
     constructor(props){
@@ -79,7 +80,7 @@ class SearchForm extends Component{
             return;
         }
         let url = this.url(form);
-        this.context.history.push(url);
+        this.props.history.push(url);
     }
 
     render(){
@@ -126,4 +127,4 @@ class SearchForm extends Component{
     }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);

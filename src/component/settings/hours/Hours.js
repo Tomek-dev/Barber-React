@@ -4,6 +4,7 @@ import { get } from '../../../util/ApiUtils';
 import MiniLoader from '../../common/loader/MiniLoader';
 import './Hours.css';
 import ChangeHours from './ChangeHours';
+import { withRouter } from 'react-router-dom';
 
 class Hours extends Component{
     constructor(props){
@@ -30,11 +31,7 @@ class Hours extends Component{
                 data: response
             })
         }).catch(e => {
-            this.setState({
-                ...this.state,
-                isLoading: false
-            })
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -66,4 +63,4 @@ class Hours extends Component{
     }
 }
 
-export default Hours;
+export default withRouter(Hours);

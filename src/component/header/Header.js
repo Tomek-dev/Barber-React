@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import DropDownMenu from './DropDownMenu';
 import SearchForm from './SearchForm';
 import { FaRegUserCircle } from 'react-icons/fa'
@@ -44,4 +44,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);

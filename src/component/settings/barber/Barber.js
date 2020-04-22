@@ -3,6 +3,7 @@ import ProfileEdit from './ProfileEdit';
 import BarberEdit from './BarberEdit';
 import './Barber.css';
 import BarberSocial from './social/BarberSocial';
+import { withRouter } from 'react-router-dom';
 
 class Barber extends Component{
     constructor(props){
@@ -35,4 +36,4 @@ class Barber extends Component{
     }
 }
 
-export default Barber;
+export default withRouter(Barber);

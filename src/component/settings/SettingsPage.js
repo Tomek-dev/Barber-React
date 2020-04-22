@@ -8,6 +8,7 @@ import { get } from '../../util/ApiUtils'
 import Loader from '../common/loader/Loader';
 import CreateBarber from './CreateBarber';
 import Hours from './hours/Hours';
+import { withRouter } from 'react-router-dom';
 
 class SettingsPage extends Component{
     constructor(props){
@@ -37,7 +38,7 @@ class SettingsPage extends Component{
                 barber: null,
                 isLoading: false
             });
-            //redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -100,4 +101,4 @@ class SettingsPage extends Component{
     }
 }
 
-export default SettingsPage;
+export default withRouter(SettingsPage);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Review from './Review';
 import { get } from '../../../util/ApiUtils';
 import './ReviewPanel.css';
+import { withRouter } from 'react-router-dom';
 
 class ReviewPanel extends Component {
     constructor(props){
@@ -18,7 +19,7 @@ class ReviewPanel extends Component {
                 reviews: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -36,4 +37,4 @@ class ReviewPanel extends Component {
     }
 }
 
-export default ReviewPanel;
+export default withRouter(ReviewPanel);

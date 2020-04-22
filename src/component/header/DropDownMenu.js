@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import './DropDownMenu.css';
 import { FaUser, FaSlidersH, FaSignOutAlt, FaBriefcase, FaRegUserCircle, FaCalendarAlt } from 'react-icons/fa' 
 
@@ -16,6 +16,7 @@ class DropDownMenu extends Component {
 
     handleLogout(){
         this.props.onLogout();
+        this.props.history.push('/');
     }
 
     showDropDownMenu(event) {
@@ -75,4 +76,4 @@ class DropDownMenu extends Component {
     }
 }
 
-export default DropDownMenu;
+export default withRouter(DropDownMenu);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { login } from "../../util/ApiUtils";
 import { ACCESS_TOKEN } from "../../constans/Constant";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './LoginForm.css';
 import ForgotForm from '../forgot/ForgotForm';
 
@@ -53,6 +53,7 @@ class LoginForm extends Component{
         login(loginRequest).then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.token);
             this.props.onLogin();
+            this.props.history.push('/');
             this.setState({
                 form: {
                     username: '',
@@ -116,4 +117,4 @@ class LoginForm extends Component{
     }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

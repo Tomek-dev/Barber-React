@@ -4,6 +4,7 @@ import { get } from '../../util/ApiUtils';
 import Loader from '../common/loader/Loader';
 import './Panel.css';
 import { FaCalendarAlt } from 'react-icons/fa';
+import { withRouter } from 'react-router-dom';
 
 class Panel extends Component{
     constructor(props){
@@ -25,7 +26,7 @@ class Panel extends Component{
                 data: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -44,4 +45,4 @@ class Panel extends Component{
     }
 }
 
-export default Panel;
+export default withRouter(Panel);

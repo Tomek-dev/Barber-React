@@ -4,6 +4,7 @@ import ServiceItem from './ServiceItem';
 import { FaFolder } from 'react-icons/fa';
 import './Services.css';
 import MiniLoader from '../../common/loader/MiniLoader'
+import { withRouter } from 'react-router-dom';
 
 class Services extends Component{
     constructor(props){
@@ -38,11 +39,7 @@ class Services extends Component{
                 isLoading: false
             });
         }).catch(e => {
-            this.setState({
-                ...this.state,
-                isLoading: false
-            });
-            //redirect
+            this.props.history.push('/error/' + e.status);
         });
     }
 
@@ -180,4 +177,4 @@ class Services extends Component{
     }
 }
 
-export default Services;
+export default withRouter(Services);

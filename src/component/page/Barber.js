@@ -8,6 +8,7 @@ import { FaImages } from 'react-icons/fa';
 import Loader from '../common/loader/Loader';
 import './Barber.css';
 import ServicePanel from './service/ServicePanel';
+import { withRouter } from 'react-router-dom';
 
 class Barber extends Component{
     constructor(props){
@@ -30,7 +31,7 @@ class Barber extends Component{
                 barber: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await get('/image/' + this.props.match.params.id).then(response => {
             this.setState({
@@ -38,7 +39,7 @@ class Barber extends Component{
                 images: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         await this.setState({
             ...this.state,
@@ -75,4 +76,4 @@ class Barber extends Component{
     }
 }
 
-export default Barber;
+export default withRouter(Barber);

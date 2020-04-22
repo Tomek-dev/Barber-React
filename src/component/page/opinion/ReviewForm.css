@@ -1,0 +1,38 @@
+.review-open{
+    margin: 0 0 15px 0 !important;
+}
+
+.star-form{
+    color: #777;
+    font-size: 1.4rem;
+}
+
+.review-content-modal{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.review-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.review-form-star{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media only screen and (min-width: 900px){
+    .review-open{
+        margin: 0 !important;
+    }
+
+    .review-form{
+        padding: 10px 20px;
+    }
+}

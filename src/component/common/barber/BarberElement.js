@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { get } from '../../../util/ApiUtils';
 import { FaImages, FaStar } from 'react-icons/fa';
 import './BarberElement.css';
@@ -20,7 +20,7 @@ class BarberElement extends Component{
                 images: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
         get('/review/info/' + this.props.barber.id).then(response => {
             this.setState({
@@ -28,7 +28,7 @@ class BarberElement extends Component{
                 review: response
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 
@@ -73,4 +73,4 @@ class BarberElement extends Component{
     }
 }
 
-export default BarberElement;
+export default withRouter(BarberElement);
