@@ -49,14 +49,12 @@ class ReviewForm extends Component{
             this.props.history.push('/login');
         }
         this.setState({ 
-            ...this.state, 
             display: true
         });
     }
 
     handleClose() {
         this.setState({ 
-            ...this.state, 
             display: false
         });
     }
@@ -76,9 +74,8 @@ class ReviewForm extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
-                ...this.state,
+                ...this.state.form,
                 [event.target.name]: event.target.value
             }
         });
@@ -86,7 +83,6 @@ class ReviewForm extends Component{
 
     handleVisit = (object) => {
         this.setState({
-            ...this.state,
             service: object.service,
             worker: object.worker
         });
@@ -94,14 +90,12 @@ class ReviewForm extends Component{
 
     handleSelect = (id) => {
         this.setState({
-            ...this.state,
             selected: id
         })
     }
     
     handleStar = (value) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 star: value
@@ -115,7 +109,6 @@ class ReviewForm extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
@@ -131,7 +124,6 @@ class ReviewForm extends Component{
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             });
         });
@@ -161,7 +153,7 @@ class ReviewForm extends Component{
                             </div>
                             <div className="review-visit">
                                 {data.length > 0 ? data.map(element => (
-                                    <Visit review={element} onClick={this.handleSelect(element.id)}/>
+                                    <Visit key={element.id} review={element} onClick={this.handleSelect(element.id)}/>
                                 )): <p className="not-yet">Not found any visit.</p>}
                             </div>
                             <input 

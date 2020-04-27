@@ -199,7 +199,7 @@ class Reservation extends Component{
                         </div>
                         <div className="date-list">
                             {available.length > 0 ? available.map(element => (
-                                <button name="date" className={`btn date-btn ${this.state.form.date === element.time? `selected`:``}`} type="button" value={element.time} onClick={this.handleChange}>
+                                <button name="date" key={element.time} className={`btn date-btn ${this.state.form.date === element.time? `selected`:``}`} type="button" value={element.time} onClick={this.handleChange}>
                                     {element.time}
                                 </button>
                             )): <p>Not found any available time</p> }
@@ -207,7 +207,7 @@ class Reservation extends Component{
                         <p className="list-worker">Available worker:</p>
                         <div className="list-list">
                             {list.length > 0 ? list.map(element => (
-                                <button name="worker" className={`btn list-btn ${this.state.form.worker == element.id? `selected`:``}`} type="button" value={element.id} onClick={this.handleChange}>
+                                <button name="worker" key={element.name} className={`btn list-btn ${this.state.form.worker == element.id? `selected`:``}`} type="button" value={element.id} onClick={this.handleChange}>
                                     {element.name}
                                 </button>
                             )): <p className="not-yet">Not found any available worker</p> } 

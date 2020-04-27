@@ -28,8 +28,7 @@ class SignUpForm extends Component{
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
-            },
-            ...this.state.error
+            }
         });
     }
 
@@ -68,19 +67,18 @@ class SignUpForm extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: {
                     msg: errorMsg,
                     status: 'error'
                 }
             });
-            return;
+            console.log(this.state)
+            return; 
         }
         let available = true;
         await checkUsernameAvailability(form.username).then(response => {
             if(!response.available){
                 this.setState({
-                    ...this.state,
                     error: {
                         msg: 'This username is already taken.',
                         status: 'error'
@@ -90,7 +88,6 @@ class SignUpForm extends Component{
             }
         }).catch(e => {
             this.setState({
-               ...this.state,
                error: {
                    msg: e.message || 'Sorry! Something went wrong. Please try again!',
                    status: 'error' 
@@ -101,7 +98,6 @@ class SignUpForm extends Component{
         checkEmailAvailability(form.email).then(response => {
             if(!response.available){
                 this.setState({
-                    ...this.state,
                     error: {
                         msg: 'This email is already taken.',
                         status: 'error'
@@ -111,7 +107,6 @@ class SignUpForm extends Component{
             }
         }).catch(e => {
             this.setState({
-               ...this.state,
                error: {
                    msg: e.message || 'Sorry! Something went wrong. Please try again!',
                    status: 'error' 
@@ -139,7 +134,6 @@ class SignUpForm extends Component{
             this.context.history.push('/login');
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: {
                     msg: e.message || 'Sorry! Something went wrong. Please try again!',
                     status: 'error'

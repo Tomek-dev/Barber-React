@@ -26,14 +26,12 @@ class SearchForm extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false
         })
     }
@@ -43,8 +41,7 @@ class SearchForm extends Component{
             form:{
                 ...this.state.form,
                 [event.target.name]: event.target.value
-            },
-            ...this.state.error
+            }
         })
     }
 
@@ -56,13 +53,14 @@ class SearchForm extends Component{
     }
 
     url = (form) => {
-        let params;
-        if(!form.query){
+        let params = '';
+        if(form.query){
             params += '&query=' + form.query;
-        }else if(!form.city){
+        }
+        if(form.city){
             params += '&city=' + form.city;
         }
-        return params.substring(0, 1);
+        return params.substring(1);
     }
 
     handleSubmit = (event) => {
@@ -71,7 +69,6 @@ class SearchForm extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state.form,
                 error: {
                     msg: errorMsg,
                     status: 'error'
@@ -80,7 +77,10 @@ class SearchForm extends Component{
             return;
         }
         let url = this.url(form);
-        this.props.history.push(url);
+        this.props.history.push('/search?' + url);
+        this.setState({
+            display: false
+        })
     }
 
     render(){

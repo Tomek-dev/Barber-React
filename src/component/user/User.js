@@ -19,7 +19,6 @@ class User extends Component{
 
     handleError(msg){
         this.setState({
-            ...this.state,
             error: msg
         })
     }

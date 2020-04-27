@@ -23,18 +23,15 @@ class SettingsPage extends Component{
 
     fetchData = () => {
         this.setState({
-            ...this.state,
             isLoading: true
         });
         get('/barber').then(response => {
             this.setState({
-                ...this.state,
                 barber: response,
                 isLoading: false
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 barber: null,
                 isLoading: false
             });

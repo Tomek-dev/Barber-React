@@ -47,7 +47,6 @@ class App extends Component{
 
   loadUser(){
     this.setState({
-        ...this.state,
         isLoading: true
     });
     authenticatedUser().then(response => {
@@ -58,7 +57,6 @@ class App extends Component{
       });
     }).catch(e => {
       this.setState({
-        ...this.state,
         isLoading: false
     });
     })

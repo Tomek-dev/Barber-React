@@ -29,12 +29,10 @@ class Services extends Component{
             return null;
         }
         this.setState({
-            ...this.state,
             isLoading: true
         });
         get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 data: response,
                 isLoading: false
             });
@@ -66,7 +64,6 @@ class Services extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
@@ -80,13 +77,11 @@ class Services extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
         }
         post(form, '/service/add').then(() => {
             this.setState({
-                ...this.state,
                 form: {
                     name: '',
                     description: '',
@@ -98,7 +93,6 @@ class Services extends Component{
             this.fetchData();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
@@ -106,7 +100,6 @@ class Services extends Component{
 
     handleError = (msg) => {
         this.setState({
-            ...this.state,
             error: msg
         });
     }
@@ -119,8 +112,8 @@ class Services extends Component{
         if(this.state.isLoading){
             elements = <MiniLoader isLoading={this.state.isLoading} />
         }else if(this.state.data.length > 0){
-            elements = this.state.data.map((item, index) => (
-                <ServiceItem service={item} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
+            elements = this.state.data.map(item => (
+                <ServiceItem service={item} key={item.id} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any services yet</p>

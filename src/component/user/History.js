@@ -17,7 +17,6 @@ class History extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             isLoading: true
         })
         const date = new Date();

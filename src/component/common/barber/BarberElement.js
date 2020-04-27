@@ -16,7 +16,6 @@ class BarberElement extends Component{
     fetchData = () => {
         get('/image/' + this.props.barber.id).then(response => {
             this.setState({
-                ...this.state,
                 images: response
             })
         }).catch(e => {
@@ -24,7 +23,6 @@ class BarberElement extends Component{
         })
         get('/review/info/' + this.props.barber.id).then(response => {
             this.setState({
-                ...this.state,
                 review: response
             })
         }).catch(e => {

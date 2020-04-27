@@ -25,28 +25,24 @@ class ServiceEdit extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             form: this.props.service
         });
     }
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false
         })
     }
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
@@ -73,7 +69,6 @@ class ServiceEdit extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
@@ -92,7 +87,6 @@ class ServiceEdit extends Component{
             this.props.onEdit();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             })
         });
@@ -152,7 +146,7 @@ class ServiceEdit extends Component{
                             onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <button type="submit" className="submit" onClick={this.handleSubmit}>Add</button>
+                            <button type="submit" className="submit" onClick={this.handleSubmit}>Edit</button>
                         </div>
                     </form>
                 </div>

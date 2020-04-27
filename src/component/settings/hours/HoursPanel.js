@@ -26,7 +26,6 @@ class HoursPanel extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 day: this.props.day
@@ -36,21 +35,18 @@ class HoursPanel extends Component{
 
     handleOpen() {
         this.setState({ 
-            ...this.state, 
             display: true
         });
     }
 
     handleClose() {
         this.setState({ 
-            ...this.state, 
             display: false
         });
     }
 
     handleChange = (value, name) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [name]: value
@@ -86,14 +82,12 @@ class HoursPanel extends Component{
         const errorMsg = this.validate(this.state.form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
         } 
         this.props.onChange(this.props.day, this.state.form);
         this.setState({
-            ...this.state, 
             display: false
         })
     }

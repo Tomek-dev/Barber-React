@@ -25,7 +25,6 @@ class CreateBarber extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
@@ -62,20 +61,17 @@ class CreateBarber extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
         }
         post(form, '/barber/add').then(response => {
             this.setState({
-                ...this.state,
                 display: false
             });
             this.props.onEdit();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
@@ -83,7 +79,6 @@ class CreateBarber extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value

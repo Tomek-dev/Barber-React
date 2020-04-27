@@ -15,7 +15,6 @@ class ReviewPanel extends Component {
     componentDidMount(){
         get('/reviews/' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 reviews: response
             })
         }).catch(e => {

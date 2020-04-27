@@ -24,7 +24,6 @@ class ChangeForm extends Component{
                 ...this.state.form,
                 [event.target.name]: event.target.value
             },
-            ...this.state.error
         });
     }
 
@@ -51,7 +50,6 @@ class ChangeForm extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: {
                     msg: errorMsg,
                     status: 'error'
@@ -73,7 +71,6 @@ class ChangeForm extends Component{
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error:{
                     msg: e.message || 'Sorry! Something went wrong. Please try again!',
                     status: 'error'

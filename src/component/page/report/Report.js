@@ -22,21 +22,18 @@ class Report extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false
         })
     }
 
     handleChange(event){
         this.setState({
-            ...this.state,
             form: {
                 reason: event.target.value
             }
@@ -48,7 +45,6 @@ class Report extends Component{
         const form = this.state.form;
         if(!form.reason){
             this.setState({
-                ...this.state,
                 error: 'Select reason!'
             })
             return;
@@ -63,7 +59,6 @@ class Report extends Component{
             })
         }).catch(e =>{
             this.setState({
-                ...this.state,
                 error: e.message
             })
         })

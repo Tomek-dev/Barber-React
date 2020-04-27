@@ -22,12 +22,10 @@ class Barber extends Component{
 
     componentDidMount = async() =>{
         this.setState({
-            ...this.state,
             isLoading: true
         });
         await get('/barber/' + this.props.match.params.id).then(response => {
             this.setState({
-                ...this.state,
                 barber: response
             })
         }).catch(e => {
@@ -35,14 +33,12 @@ class Barber extends Component{
         })
         await get('/image/' + this.props.match.params.id).then(response => {
             this.setState({
-                ...this.state,
                 images: response
             })
         }).catch(e => {
             this.props.history.push('/error/' + e.status);
         })
         await this.setState({
-            ...this.state,
             isLoading: false
         })
     }
@@ -55,7 +51,7 @@ class Barber extends Component{
         return(
             <div className="barber-container">
                 <div className="barber-navbar">
-                    <Map barber={barber} />
+                    {barber.latitude && barber.longitude ? <Map barber={barber} />: null}
                     <Information id={this.props.match.params.id}/>
                 </div>
                 <div className="barber-content">

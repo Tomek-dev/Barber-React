@@ -17,7 +17,6 @@ class Panel extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             isLoading: true,
         })
         get('/visits').then(response => {

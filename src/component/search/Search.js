@@ -15,7 +15,6 @@ class Search extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             isLoading: true
         })
         get('/search' + this.props.location.search).then(response => {
@@ -24,7 +23,7 @@ class Search extends Component{
                 isLoading: false
             })
         }).catch(e => {
-            // redirect
+            this.props.history.push('/error/' + e.status);
         })
     }
 

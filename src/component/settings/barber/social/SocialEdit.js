@@ -20,7 +20,6 @@ class SocialEdit extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
@@ -35,14 +34,12 @@ class SocialEdit extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             [event.target.name]: event.target.value
         });
     }
     
     componentDidMount(){
         this.setState({
-            ...this.state,
             url: this.props.social.url
         })
     }
@@ -60,7 +57,6 @@ class SocialEdit extends Component{
         const errorMsg = this.validate(url);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
@@ -74,7 +70,6 @@ class SocialEdit extends Component{
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             })
         });

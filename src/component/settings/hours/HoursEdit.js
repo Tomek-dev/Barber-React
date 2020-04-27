@@ -27,7 +27,6 @@ class HoursEdit extends Component{
     componentDidMount(){
 
         this.setState({
-            ...this.state,
             form: {
                 day: this.props.hours.day,
                 open: this.props.hours.open,
@@ -38,21 +37,18 @@ class HoursEdit extends Component{
 
     handleOpen() {
         this.setState({ 
-            ...this.state, 
             display: true
         });
     }
 
     handleClose() {
         this.setState({ 
-            ...this.state, 
             display: false
         });
     }
 
     handleChange = (value, name) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [name]: value
@@ -88,25 +84,21 @@ class HoursEdit extends Component{
         const errorMsg = this.validate(this.state.form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
         } 
         put(this.state.form, '/open/' + this.props.hours.id).then(() => {
             this.setState({
-                ...this.state,
                 display: false
             });
             this.props.onEdit();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             })
         })
         this.setState({
-            ...this.state, 
             display: false
         })
     }

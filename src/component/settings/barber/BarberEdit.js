@@ -23,7 +23,6 @@ class BarberEdit extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             form: this.props.barber,
             edit: this.props.barber
         });
@@ -48,7 +47,6 @@ class BarberEdit extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: {
                     msg: errorMsg,
                     status: 'error'
@@ -58,7 +56,6 @@ class BarberEdit extends Component{
         }
         put(form, '/barber').then(() => {
             this.setState({
-                ...this.state,
                 error: {
                     msg: 'Successfully update data.',
                     status: 'success'
@@ -67,7 +64,6 @@ class BarberEdit extends Component{
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: {
                     msg: e.message || 'Sorry! Something went wrong. Please try again!',
                     status: 'error'
@@ -78,7 +74,6 @@ class BarberEdit extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value

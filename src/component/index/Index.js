@@ -16,7 +16,6 @@ class Index extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             isLoading: true
         })
         get('/barbers').then(response => {

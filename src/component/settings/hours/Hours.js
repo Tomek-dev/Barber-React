@@ -21,12 +21,10 @@ class Hours extends Component{
             return null;
         }
         this.setState({
-            ...this.state,
             isLoading: true
         });
         get('/open/week/' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 isLoading: false,
                 data: response
             })

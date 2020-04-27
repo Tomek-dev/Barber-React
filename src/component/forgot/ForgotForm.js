@@ -24,7 +24,6 @@ class ForgotForm extends Component{
     hanldeChange = (event) => {
         this.setState({
             username: event.target.value,
-            ...this.state.error
         });
     }
 
@@ -33,7 +32,6 @@ class ForgotForm extends Component{
         const errorMsg = this.validate(this.state.username);
         if(!errorMsg){
             this.setState({
-                ...this.state.username,
                 error: {
                     msg: errorMsg,
                     status: 'error'
@@ -69,14 +67,12 @@ class ForgotForm extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false
         })
     }

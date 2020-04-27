@@ -43,7 +43,7 @@ class DropDownMenu extends Component {
                 <div className="drop-down-item" key="settings">
                     <Link className="link" to="/settings"><FaSlidersH className="drop-icon"/>Settings</Link>
                 </div>,
-                <div className="drop-down-item" key="settings">
+                <div className="drop-down-item" key="visits">
                     <Link className="link" to="/visit"><FaCalendarAlt className="drop-icon"/>Visits</Link>
                 </div>,
                 <div className="drop-down-item" key="logout">
@@ -52,7 +52,7 @@ class DropDownMenu extends Component {
             ]
         }else if(currentUser.type === 'oauth'){ 
             items = [
-                <div className="drop-down-item">
+                <div className="drop-down-item" key="profile">
                     <Link className="link" to="/profile"><FaUser className="icon"/> Profile</Link>
                 </div>,
                 <div className="drop-down-item" key="logout">

@@ -40,14 +40,12 @@ class SetHours extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false
         })
     }
@@ -73,7 +71,6 @@ class SetHours extends Component{
 
     handleChange = (name, value) => {
         this.setState({
-            ...this.state,
             form:{
                 ...this.state.form,
                 [name]: value
@@ -86,7 +83,6 @@ class SetHours extends Component{
         const errorMsg = this.validate(this.state.form)
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
@@ -94,13 +90,11 @@ class SetHours extends Component{
         let form = Object.values(this.state.form);
         post(form, '/open/add/' + this.props.id).then(() => {
             this.setState({
-                ...this.state,
                 display: false,
             })
             this.props.onEdit();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             })
         })

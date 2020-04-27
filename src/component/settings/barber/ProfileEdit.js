@@ -30,7 +30,6 @@ class ProfileEdit extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
@@ -56,7 +55,6 @@ class ProfileEdit extends Component{
                 ...this.state.form,
                 [event.target.name]: event.target.value
             },
-            ...this.state.error
         })
     }
 
@@ -99,13 +97,11 @@ class ProfileEdit extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
         }
         post(form, '/password/change').then(() => {
             this.setState({
-                ...this.state,
                 error: {
                     msg: 'Successfully changed password.',
                     status: 'success'
@@ -113,7 +109,6 @@ class ProfileEdit extends Component{
             });
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: {
                     msg: e.message || 'Sorry! Something went wrong. Please try again!',
                     status: 'error'

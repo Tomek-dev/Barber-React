@@ -25,7 +25,6 @@ class LoginForm extends Component{
                 ...this.state.form,
                 [event.target.name]: event.target.value
             },
-            ...this.state.error
         });
     }
 
@@ -44,7 +43,6 @@ class LoginForm extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: ''
             });
             return;
@@ -64,12 +62,10 @@ class LoginForm extends Component{
         }).catch(e => {
             if(e.status === 401){
                 this.setState({
-                    ...this.state,
                     error: 'Your Username or Password is incorrect. Please try again!'
                 });
             }else{
                 this.setState({
-                    ...this.state,
                     error: e.message || 'Sorry! Something went wrong. Please try again!'
                 });
             }

@@ -27,12 +27,10 @@ class Worker extends Component{
             return null;
         }
         this.setState({
-            ...this.state,
             isLoading: true
         });
         get('/worker/value?barber=' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 data: response,
                 isLoading: false
             });
@@ -41,7 +39,6 @@ class Worker extends Component{
         });
         get('/service/value?barber=' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 services: response
             });
         }).catch(e => {
@@ -62,7 +59,6 @@ class Worker extends Component{
 
     handleChange = (event) => {
         this.setState({
-            ...this.state,
             form: {
                 ...this.state.form,
                 [event.target.name]: event.target.value
@@ -78,7 +74,6 @@ class Worker extends Component{
         const errorMsg = this.validate(form);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
         }
@@ -86,14 +81,12 @@ class Worker extends Component{
         await get('/worker/available/' + form.name).then(response => {
             if(!response.available){
                 this.setState({
-                    ...this.state,
                     error: 'This name is already taken.',
                 });
             }
             available = response.available
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             });
             available = false;
@@ -103,7 +96,6 @@ class Worker extends Component{
         }
         post(form, '/worker/add').then(() => {
             this.setState({
-                ...this.state,
                 form: {
                     name: ''
                 },
@@ -112,7 +104,6 @@ class Worker extends Component{
             this.fetchData();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message || 'Sorry! Something went wrong. Please try again!'
             });
         })
@@ -124,7 +115,6 @@ class Worker extends Component{
 
     handleError = (msg) => {
         this.setState({
-            ...this.state,
             error: msg
         });
     }
@@ -137,8 +127,8 @@ class Worker extends Component{
         if(this.state.isLoading){
             elements = <MiniLoader isLoading={this.state.isLoading} />
         }else if(this.state.data.length > 0){
-            elements = this.state.data.map((item, index) => (
-                <WorkerItem worker={item} service={this.state.services} key={index} onEdit={this.handleEdit} onError={this.handleError}/>
+            elements = this.state.data.map(item => (
+                <WorkerItem worker={item} key={item.id} service={this.state.services} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any workers yet</p>

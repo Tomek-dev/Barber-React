@@ -24,7 +24,6 @@ class WorkerAdd extends Component{
 
     componentDidMount(){
         this.setState({
-            ...this.state,
             data: this.props.service
         });
     }
@@ -32,7 +31,6 @@ class WorkerAdd extends Component{
     componentDidUpdate(prevProps){
         if(this.props.service !== prevProps.service){
             this.setState({
-                ...this.state,
                 data: this.props.service
             });
         }
@@ -40,14 +38,12 @@ class WorkerAdd extends Component{
 
     handleOpen(){
         this.setState({
-            ...this.state,
             display: true
         })
     }
 
     handleClose(){
         this.setState({
-            ...this.state,
             display: false,
             selected: ''
         })
@@ -65,7 +61,6 @@ class WorkerAdd extends Component{
         const errorMsg = this.validate(this.state.selected);
         if(errorMsg){
             this.setState({
-                ...this.state,
                 error: errorMsg
             });
             return;
@@ -78,7 +73,6 @@ class WorkerAdd extends Component{
         }
         post(null, url).then(() => {
             this.setState({
-                ...this.state,
                 display: false,
                 selected: '',
                 error: ''
@@ -86,7 +80,6 @@ class WorkerAdd extends Component{
             this.props.onEdit();
         }).catch(e => {
             this.setState({
-                ...this.state,
                 error: e.message
             })
         });
@@ -94,14 +87,12 @@ class WorkerAdd extends Component{
 
     handleOption=()=>{
         this.setState({
-            ...this.state,
             option: !this.state.option
         });
     }
 
     handleChange = (select) => {
         this.setState({
-            ...this.state,
             selected: select
         });
     }
@@ -112,12 +103,12 @@ class WorkerAdd extends Component{
         let add = service.filter(value => !value.workers.includes(this.props.worker.name));
         let elements = [];
         if(service.length > 0 && !this.state.option){
-            elements = remove.map((item, index) => (
-                <Service service={item} key={index} selected={this.state.selected} onClick={this.handleChange}/>
+            elements = remove.map(item => (
+                <Service service={item} key={item.id} selected={this.state.selected} onClick={this.handleChange}/>
             ))
         }else if(service.length > 0 && this.state.option){
-            elements = add.map((item, index) => (
-                <Service service={item} key={index} selected={this.state.selected} onClick={this.handleChange}/>
+            elements = add.map(item => (
+                <Service service={item} key={item.id} selected={this.state.selected} onClick={this.handleChange}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any services yet</p>

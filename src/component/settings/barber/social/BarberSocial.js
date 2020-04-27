@@ -24,12 +24,10 @@ class BarberSocial extends Component{
             return null;
         }
         this.setState({
-            ...this.state,
             isLoading: true
         });
         get('/social/' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 data: response,
                 isLoading: false
             })
@@ -40,7 +38,6 @@ class BarberSocial extends Component{
 
     handleError = (msg) => {
         this.setState({
-            ...this.state,
             error: msg
         })
     }
@@ -58,8 +55,8 @@ class BarberSocial extends Component{
         if(this.state.isLoading){
             elements = <MiniLoader isLoading={this.state.isLoading} />
         }else if(this.state.data.length > 0){
-            elements = this.state.data.map((item, index) => (
-                <Social social={item} key={index} onError={this.handleError} onEdit={this.handleEdit} onError={this.handleError}/>
+            elements = this.state.data.map(item => (
+                <Social key={item.id} social={item} onError={this.handleError} onEdit={this.handleEdit} onError={this.handleError}/>
             ))
         }else{
             elements = <p className="not-yet"><FaFolder className="icon" /> You don't have any socials yet</p>

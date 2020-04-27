@@ -17,7 +17,6 @@ class Reservation extends Component{
 
     fetchData(){
         this.setState({
-            ...this.state,
             isLoading: true
         })
         const date = new Date();

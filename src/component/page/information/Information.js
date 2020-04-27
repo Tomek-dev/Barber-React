@@ -20,12 +20,10 @@ class Information extends Component{
 
     componentDidMount = async() => {
         this.setState({
-            ...this.state,
             isLoading: true
         })
         await get('/open/week/' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 hours: response
             });
         }).catch(e => {
@@ -33,7 +31,6 @@ class Information extends Component{
         });
         await get('/worker/value?barber=' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 workers: response
             });
         }).catch(e => {
@@ -41,14 +38,12 @@ class Information extends Component{
         })
         await get('/social/' + this.props.id).then(response => {
             this.setState({
-                ...this.state,
                 socials: response
             });
         }).catch(e => {
             this.props.history.push('/error/' + e.status);
         })
         await this.setState({
-            ...this.state,
             isLoading: false
         })
     }
